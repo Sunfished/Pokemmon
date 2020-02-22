@@ -1,0 +1,2 @@
+Pokemmon is a mod that adds every Pokemon, (and their many formes), as summonable minions.
+Still WIP!

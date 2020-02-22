@@ -1,0 +1,4 @@
+author = sunfished
+version = 0.1
+displayName = Pokemmon
+buildIgnore = build.txt, .gitattributes, .gitignore, .git/, .vs/, .idea/, bin/, obj/, Thumbs.db, *.csproj, .cs, .sln, Tool/
