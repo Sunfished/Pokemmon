@@ -3,17 +3,17 @@ using Terraria.ModLoader;
 
 namespace Pokemmon.Items
 {
-	public class ItemGigantamaxCandy : ModItem
+	public class ItemMeltanCandy : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Gigantamax Candy");
-			Tooltip.SetDefault("Gigantamaxes a Pokemon");
+			DisplayName.SetDefault("Meltan Candy");
+			Tooltip.SetDefault("Evolves Meltan");
 		}
 		public override void SetDefaults()
 		{
-			item.width = 20;
-			item.height = 21;
+			item.width = 16;
+			item.height = 16;
 			item.useTime = 10;
 			item.useAnimation = 10;
 			item.useStyle = 4;//Like Fallen Star
@@ -21,7 +21,9 @@ namespace Pokemmon.Items
 			item.rare = 2;
 			item.UseSound = SoundID.Item4;//Like Fallen Star
             item.maxStack = 999;
-			item.value = 20000;
+			item.value = 500000;
 		}
+		
+		
 	}
 }

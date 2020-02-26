@@ -104,7 +104,7 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe7 = new ModRecipe(mod);
 			recipe7.AddIngredient(this);
-			recipe7.AddIngredient(mod.GetItem("ItemHeartScale"),1);
+			recipe7.AddIngredient(mod.GetItem("ItemSootheBell"),1);
 			recipe7.AddIngredient(mod.GetItem("ItemTM"),1);
 			recipe7.SetResult(mod.ItemType("SylveonBall"));
 			recipe7.AddTile(mod.TileType("EvolutionMachine"));

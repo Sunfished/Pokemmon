@@ -25,12 +25,19 @@ namespace Pokemmon.Buffs
 				player.buffTime[buffIndex] = 18000;
 			}
 			
+		public override void PostUpdate(Player player, ref int buffIndex) {
+			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
+		
 			//Calc Buffs
+			player.meleeDamage *= 2.6f;
+			player.rangedDamage *= 2.6f;
+			player.magicDamage *= 1.8f;
+			player.maxRunSpeed += 0.5f
 			if (player.meleeDamage >= player.magicDamage || player.rangedDamage >= player.magicDamage)
 			{
 				player.statDefense += 11;
 			}
-			else
+			else if (player.magicDamage >= player.minionDamage)
 			{
 				player.statDefense += 11;
 			}

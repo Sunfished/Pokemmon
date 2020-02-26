@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 0;
-			item.value = 100000;
+			item.value = 10000000;
 			item.rare = 10;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Meltan");
@@ -55,7 +55,7 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemMetalCandy"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemMeltanCandy"),1);
 			recipe0.SetResult(mod.ItemType("MelmetalBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();

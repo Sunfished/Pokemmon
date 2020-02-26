@@ -23,5 +23,7 @@ namespace Pokemmon.Items
             item.maxStack = 999;
 			item.value = 50000;
 		}
+		
+		
 	}
 }

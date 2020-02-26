@@ -55,7 +55,7 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemRareCandy"),52);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),52);
 			recipe0.SetResult(mod.ItemType("BisharpBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();

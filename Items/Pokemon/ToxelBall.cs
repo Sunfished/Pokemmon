@@ -55,7 +55,7 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemRareCandy"),30);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyL"),30);
 			recipe0.AddIngredient(mod.GetItem("ItemThunderStone"),1);
 			recipe0.SetResult(mod.ItemType("ToxtricityAmpedBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
@@ -63,7 +63,7 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe1 = new ModRecipe(mod);
 			recipe1.AddIngredient(this);
-			recipe1.AddIngredient(mod.GetItem("ItemRareCandy"),30);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyL"),30);
 			recipe1.AddIngredient(mod.GetItem("ItemThunderStone"),1);
 			recipe1.SetResult(mod.ItemType("ToxtricityLowKeyBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));

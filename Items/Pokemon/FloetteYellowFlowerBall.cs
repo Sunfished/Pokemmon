@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 0;
-			item.value = 150000;
+			item.value = 200000;
 			item.rare = 5;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("FloetteYellowFlower");
@@ -63,7 +63,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe99 = new ModRecipe(mod);
 			recipe99.AddIngredient(this);
 			recipe99.AddIngredient(mod.GetItem("ItemEverstone"),1);
-			recipe99.SetResult(mod.ItemType("FloetteYellowFlowerBall"));
+			recipe99.SetResult(mod.ItemType("FlabebeYellowFlowerBall"));
 			recipe99.AddTile(mod.TileType("EvolutionMachine"));
 			recipe99.AddRecipe();
 

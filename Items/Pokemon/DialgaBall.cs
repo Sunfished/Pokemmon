@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 11;
-			item.value = 300000;
+			item.value = 500000;
 			item.rare = 9;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Dialga");

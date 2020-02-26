@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 1;
-			item.value = 150000;
+			item.value = 200000;
 			item.rare = 7;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Piloswine");

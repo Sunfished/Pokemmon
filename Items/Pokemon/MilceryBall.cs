@@ -55,8 +55,8 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemRareCandy"),1);
-			recipe0.AddIngredient(mod.GetItem("ItemRareCandy"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe0.AddIngredient(mod.GetItem("ItemSunStone"),1);
 			recipe0.SetResult(mod.ItemType("AlcremieVanillaCreamBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
@@ -64,8 +64,8 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe1 = new ModRecipe(mod);
 			recipe1.AddIngredient(this);
-			recipe1.AddIngredient(mod.GetItem("ItemRareCandy"),1);
-			recipe1.AddIngredient(mod.GetItem("ItemRareCandy"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe1.AddIngredient(mod.GetItem("ItemSunStone"),1);
 			recipe1.SetResult(mod.ItemType("AlcremieRubyCreamBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
@@ -73,8 +73,8 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe2 = new ModRecipe(mod);
 			recipe2.AddIngredient(this);
-			recipe2.AddIngredient(mod.GetItem("ItemRareCandy"),1);
-			recipe2.AddIngredient(mod.GetItem("ItemRareCandy"),1);
+			recipe2.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
+			recipe2.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe2.AddIngredient(mod.GetItem("ItemMoonStone"),1);
 			recipe2.SetResult(mod.ItemType("AlcremieMatchaCreamBall"));
 			recipe2.AddTile(mod.TileType("EvolutionMachine"));
@@ -82,8 +82,8 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe3 = new ModRecipe(mod);
 			recipe3.AddIngredient(this);
-			recipe3.AddIngredient(mod.GetItem("ItemRareCandy"),1);
-			recipe3.AddIngredient(mod.GetItem("ItemRareCandy"),1);
+			recipe3.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
+			recipe3.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe3.AddIngredient(mod.GetItem("ItemMoonStone"),1);
 			recipe3.SetResult(mod.ItemType("AlcremieMintCreamBall"));
 			recipe3.AddTile(mod.TileType("EvolutionMachine"));
@@ -91,8 +91,8 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe4 = new ModRecipe(mod);
 			recipe4.AddIngredient(this);
-			recipe4.AddIngredient(mod.GetItem("ItemRareCandy"),1);
-			recipe4.AddIngredient(mod.GetItem("ItemRareCandy"),1);
+			recipe4.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
+			recipe4.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe4.AddIngredient(mod.GetItem("ItemMoonStone"),1);
 			recipe4.SetResult(mod.ItemType("AlcremieLemonCreamBall"));
 			recipe4.AddTile(mod.TileType("EvolutionMachine"));
@@ -100,8 +100,8 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe5 = new ModRecipe(mod);
 			recipe5.AddIngredient(this);
-			recipe5.AddIngredient(mod.GetItem("ItemRareCandy"),1);
-			recipe5.AddIngredient(mod.GetItem("ItemRareCandy"),1);
+			recipe5.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
+			recipe5.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe5.AddIngredient(mod.GetItem("ItemMoonStone"),1);
 			recipe5.SetResult(mod.ItemType("AlcremieSaltedCreamBall"));
 			recipe5.AddTile(mod.TileType("EvolutionMachine"));
@@ -109,8 +109,8 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe6 = new ModRecipe(mod);
 			recipe6.AddIngredient(this);
-			recipe6.AddIngredient(mod.GetItem("ItemRareCandy"),1);
-			recipe6.AddIngredient(mod.GetItem("ItemRareCandy"),1);
+			recipe6.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
+			recipe6.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe6.AddIngredient(mod.GetItem("ItemSunStone"),1);
 			recipe6.SetResult(mod.ItemType("AlcremieRubySwirlBall"));
 			recipe6.AddTile(mod.TileType("EvolutionMachine"));
@@ -118,8 +118,8 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe7 = new ModRecipe(mod);
 			recipe7.AddIngredient(this);
-			recipe7.AddIngredient(mod.GetItem("ItemRareCandy"),1);
-			recipe7.AddIngredient(mod.GetItem("ItemRareCandy"),1);
+			recipe7.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
+			recipe7.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe7.AddIngredient(mod.GetItem("ItemSunStone"),1);
 			recipe7.SetResult(mod.ItemType("AlcremieCaramelSwirlBall"));
 			recipe7.AddTile(mod.TileType("EvolutionMachine"));
@@ -127,8 +127,8 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe8 = new ModRecipe(mod);
 			recipe8.AddIngredient(this);
-			recipe8.AddIngredient(mod.GetItem("ItemRareCandy"),1);
-			recipe8.AddIngredient(mod.GetItem("ItemRareCandy"),1);
+			recipe8.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
+			recipe8.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe8.AddIngredient(mod.GetItem("ItemDuskStone"),1);
 			recipe8.SetResult(mod.ItemType("AlcremieRainbowCreamBall"));
 			recipe8.AddTile(mod.TileType("EvolutionMachine"));

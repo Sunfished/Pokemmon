@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 0;
-			item.value = 300000;
+			item.value = 500000;
 			item.rare = -1;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Hatterene");
@@ -56,7 +56,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe99 = new ModRecipe(mod);
 			recipe99.AddIngredient(this);
 			recipe99.AddIngredient(mod.GetItem("ItemEverstone"),1);
-			recipe99.SetResult(mod.ItemType("HattereneBall"));
+			recipe99.SetResult(mod.ItemType("HattremBall"));
 			recipe99.AddTile(mod.TileType("EvolutionMachine"));
 			recipe99.AddRecipe();
 

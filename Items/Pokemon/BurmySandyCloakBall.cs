@@ -55,14 +55,14 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemRareCandy"),20);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),20);
 			recipe0.SetResult(mod.ItemType("WormadamSandyCloakBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();
 
 			ModRecipe recipe1 = new ModRecipe(mod);
 			recipe1.AddIngredient(this);
-			recipe1.AddIngredient(mod.GetItem("ItemRareCandy"),20);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),20);
 			recipe1.AddIngredient(mod.GetItem("ItemMPheromone"),1);
 			recipe1.SetResult(mod.ItemType("MothimBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));

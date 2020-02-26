@@ -8,7 +8,7 @@ namespace Pokemmon.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("F Pheromone");
-			Tooltip.SetDefault("Evolves certain Pokemon");
+			Tooltip.SetDefault("Evolves Female Pokemon");
 		}
 		public override void SetDefaults()
 		{
@@ -23,5 +23,7 @@ namespace Pokemmon.Items
             item.maxStack = 999;
 			item.value = 100000;
 		}
+		
+		
 	}
 }

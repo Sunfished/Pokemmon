@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 0;
-			item.value = 150000;
+			item.value = 200000;
 			item.rare = 5;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Tranquill");
@@ -55,14 +55,14 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemRareCandy"),32);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),32);
 			recipe0.SetResult(mod.ItemType("UnfezantMBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();
 
 			ModRecipe recipe1 = new ModRecipe(mod);
 			recipe1.AddIngredient(this);
-			recipe1.AddIngredient(mod.GetItem("ItemRareCandy"),32);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),32);
 			recipe1.SetResult(mod.ItemType("UnfezantFBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
 			recipe1.AddRecipe();

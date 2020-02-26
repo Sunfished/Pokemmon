@@ -10,7 +10,7 @@ namespace Pokemmon.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("CherishBox");
-			Tooltip.SetDefault("Contains a Mystical Pokemon");
+			Tooltip.SetDefault("Contains a Mythical Pokemon");
 		}
 		public override void SetDefaults()
 		{

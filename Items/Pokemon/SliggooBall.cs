@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 0;
-			item.value = 150000;
+			item.value = 200000;
 			item.rare = 8;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Sliggoo");
@@ -55,7 +55,7 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemRareCandy"),50);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyXL"),50);
 			recipe0.AddIngredient(mod.GetItem("ItemWaterStone"),1);
 			recipe0.SetResult(mod.ItemType("GoodraBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));

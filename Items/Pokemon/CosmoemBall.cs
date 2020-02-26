@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 16;
-			item.value = 150000;
+			item.value = 200000;
 			item.rare = 8;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Cosmoem");
@@ -55,7 +55,7 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemRareCandy"),53);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyXL"),53);
 			recipe0.AddIngredient(mod.GetItem("ItemSunStone"),1);
 			recipe0.SetResult(mod.ItemType("SolgaleoBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
@@ -63,7 +63,7 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe1 = new ModRecipe(mod);
 			recipe1.AddIngredient(this);
-			recipe1.AddIngredient(mod.GetItem("ItemRareCandy"),53);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyXL"),53);
 			recipe1.AddIngredient(mod.GetItem("ItemMoonStone"),1);
 			recipe1.SetResult(mod.ItemType("LunalaBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));

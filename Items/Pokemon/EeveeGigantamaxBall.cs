@@ -15,7 +15,7 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 1;
+			item.damage = 25;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -24,8 +24,8 @@ namespace Pokemmon.Items.Pokemon
 			item.useAnimation = 30;
 			item.useStyle = 4;
 			item.noMelee = true;
-			item.knockBack = 1;
-			item.value = 300000;
+			item.knockBack = 0;
+			item.value = 500000;
 			item.rare = 8;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("EeveeGigantamax");

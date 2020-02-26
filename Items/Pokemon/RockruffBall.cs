@@ -55,7 +55,7 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemRareCandy"),25);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),25);
 			recipe0.AddIngredient(mod.GetItem("ItemSunStone"),1);
 			recipe0.SetResult(mod.ItemType("LycanrocMiddayBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
@@ -63,7 +63,7 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe1 = new ModRecipe(mod);
 			recipe1.AddIngredient(this);
-			recipe1.AddIngredient(mod.GetItem("ItemRareCandy"),25);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),25);
 			recipe1.AddIngredient(mod.GetItem("ItemMoonStone"),1);
 			recipe1.SetResult(mod.ItemType("LycanrocMidnightBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
@@ -71,7 +71,7 @@ namespace Pokemmon.Items.Pokemon
 
 			ModRecipe recipe2 = new ModRecipe(mod);
 			recipe2.AddIngredient(this);
-			recipe2.AddIngredient(mod.GetItem("ItemRareCandy"),25);
+			recipe2.AddIngredient(mod.GetItem("ItemExpCandyM"),25);
 			recipe2.AddIngredient(mod.GetItem("ItemDuskStone"),1);
 			recipe2.SetResult(mod.ItemType("LycanrocDuskBall"));
 			recipe2.AddTile(mod.TileType("EvolutionMachine"));
