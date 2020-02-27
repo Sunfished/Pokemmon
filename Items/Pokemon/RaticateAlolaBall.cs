@@ -56,7 +56,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe99 = new ModRecipe(mod);
 			recipe99.AddIngredient(this);
 			recipe99.AddIngredient(mod.GetItem("ItemEverstone"),1);
-			recipe99.SetResult(mod.ItemType("RattataBall"));
+			recipe99.SetResult(mod.ItemType("RattataAlolaBall"));
 			recipe99.AddTile(mod.TileType("EvolutionMachine"));
 			recipe99.AddRecipe();
 

@@ -8,7 +8,7 @@ namespace Pokemmon.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Dynamax Candy");
-			Tooltip.SetDefault("Gigantamaxes a Pokemon");
+			Tooltip.SetDefault("Dynamaxes a Pokemon");
 		}
 		public override void SetDefaults()
 		{

@@ -15,7 +15,7 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 1;
+			item.damage = 2;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -55,7 +55,7 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemExpCandyXL"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyXS"),1);
 			recipe0.SetResult(mod.ItemType("DuohmBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();

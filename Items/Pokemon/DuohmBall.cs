@@ -15,7 +15,7 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 1;
+			item.damage = 3;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;

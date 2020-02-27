@@ -1159,7 +1159,8 @@ namespace Pokemmon
 		public bool summonedToxel;
 		public bool summonedToxtricityAmped;
 		public bool summonedToxtricityLowKey;
-		public bool summonedToxtricityGigantamax;
+		public bool summonedToxtricityAmpedGigantamax;
+		public bool summonedToxtricityLowKeyGigantamax;
 		public bool summonedSizzlipede;
 		public bool summonedCentiskorch;
 		public bool summonedCentiskorchGigantamax;
@@ -2432,7 +2433,8 @@ namespace Pokemmon
 			summonedToxel = false;
 			summonedToxtricityAmped = false;
 			summonedToxtricityLowKey = false;
-			summonedToxtricityGigantamax = false;
+			summonedToxtricityAmpedGigantamax = false;
+			summonedToxtricityLowKeyGigantamax = false;
 			summonedSizzlipede = false;
 			summonedCentiskorch = false;
 			summonedCentiskorchGigantamax = false;

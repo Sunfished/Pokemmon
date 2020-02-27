@@ -15,7 +15,7 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 14;
+			item.damage = 20;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 1;
-			item.value = 100000;
+			item.value = 200000;
 			item.rare = 8;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("MrMimeGalar");
@@ -59,6 +59,13 @@ namespace Pokemmon.Items.Pokemon
 			recipe0.SetResult(mod.ItemType("MrRimeBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();
+
+			ModRecipe recipe99 = new ModRecipe(mod);
+			recipe99.AddIngredient(this);
+			recipe99.AddIngredient(mod.GetItem("ItemEverstone"),1);
+			recipe99.SetResult(mod.ItemType("MimeJrBall"));
+			recipe99.AddTile(mod.TileType("EvolutionMachine"));
+			recipe99.AddRecipe();
 
 
 		}
