@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 0;
-			item.value = 100000;
+			item.value = 5000000;
 			item.rare = 8;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Cosmog");
