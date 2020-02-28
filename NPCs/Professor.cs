@@ -213,6 +213,8 @@ namespace Pokemmon.NPCs
 			nextSlot++;
 			shop.item[nextSlot].SetDefaults(mod.ItemType("RowletBall"));
 			nextSlot++;
+			shop.item[nextSlot].SetDefaults(mod.ItemType("GrookeyBall"));
+			nextSlot++;
 
 			//Fire Starters
 			shop.item[nextSlot].SetDefaults(mod.ItemType("CharmanderBall"));
@@ -226,6 +228,8 @@ namespace Pokemmon.NPCs
 			shop.item[nextSlot].SetDefaults(mod.ItemType("TepigBall"));
 			nextSlot++;
 			shop.item[nextSlot].SetDefaults(mod.ItemType("FennekinBall"));
+			nextSlot++;
+			shop.item[nextSlot].SetDefaults(mod.ItemType("LittenBall"));
 			nextSlot++;
 			shop.item[nextSlot].SetDefaults(mod.ItemType("LittenBall"));
 			nextSlot++;
@@ -245,9 +249,13 @@ namespace Pokemmon.NPCs
 			nextSlot++;
 			shop.item[nextSlot].SetDefaults(mod.ItemType("PopplioBall"));
 			nextSlot++;
+			shop.item[nextSlot].SetDefaults(mod.ItemType("SobbleBall"));
+			nextSlot++;
 			
-			//General Items Always Available
+			//PokeBoxes
 			shop.item[nextSlot].SetDefaults(mod.ItemType("PokeBox"));
+			nextSlot++;
+			shop.item[nextSlot].SetDefaults(mod.ItemType("NestBox"));
 			nextSlot++;
 			
 			//Evolution Machine After Skeletron
