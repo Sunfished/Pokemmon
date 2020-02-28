@@ -42,7 +42,7 @@ namespace Pokemmon.Items
 		
         public override void RightClick(Player player)
         {
-            int choice = Main.rand.Next(308);
+            int choice = Main.rand.Next(284);
 			if(choice==0) {player.QuickSpawnItem(mod.ItemType("CaterpieBall"));}
 			if(choice==1) {player.QuickSpawnItem(mod.ItemType("WeedleBall"));}
 			if(choice==2) {player.QuickSpawnItem(mod.ItemType("PidgeyBall"));}
@@ -305,52 +305,28 @@ namespace Pokemmon.Items
 			if(choice==259) {player.QuickSpawnItem(mod.ItemType("WimpodBall"));}
 			if(choice==260) {player.QuickSpawnItem(mod.ItemType("SandygastBall"));}
 			if(choice==261) {player.QuickSpawnItem(mod.ItemType("JangmooBall"));}
-			if(choice==262) {player.QuickSpawnItem(mod.ItemType("CosmogBall"));}
-			if(choice==263) {player.QuickSpawnItem(mod.ItemType("SkowvetBall"));}
-			if(choice==264) {player.QuickSpawnItem(mod.ItemType("RookideeBall"));}
-			if(choice==265) {player.QuickSpawnItem(mod.ItemType("BlipbugBall"));}
-			if(choice==266) {player.QuickSpawnItem(mod.ItemType("NickitBall"));}
-			if(choice==267) {player.QuickSpawnItem(mod.ItemType("GossifleurBall"));}
-			if(choice==268) {player.QuickSpawnItem(mod.ItemType("WoolooBall"));}
-			if(choice==269) {player.QuickSpawnItem(mod.ItemType("ChewtleBall"));}
-			if(choice==270) {player.QuickSpawnItem(mod.ItemType("YamperBall"));}
-			if(choice==271) {player.QuickSpawnItem(mod.ItemType("RolycolyBall"));}
-			if(choice==272) {player.QuickSpawnItem(mod.ItemType("ApplinBall"));}
-			if(choice==273) {player.QuickSpawnItem(mod.ItemType("SilicobraBall"));}
-			if(choice==274) {player.QuickSpawnItem(mod.ItemType("ArrokudaBall"));}
-			if(choice==275) {player.QuickSpawnItem(mod.ItemType("SizzlipedeBall"));}
-			if(choice==276) {player.QuickSpawnItem(mod.ItemType("ClobbopusBall"));}
-			if(choice==277) {player.QuickSpawnItem(mod.ItemType("SinisteaPhonyBall"));}
-			if(choice==278) {player.QuickSpawnItem(mod.ItemType("HatennaBall"));}
-			if(choice==279) {player.QuickSpawnItem(mod.ItemType("ImpidimpBall"));}
-			if(choice==280) {player.QuickSpawnItem(mod.ItemType("MilceryBall"));}
-			if(choice==281) {player.QuickSpawnItem(mod.ItemType("SnomBall"));}
-			if(choice==282) {player.QuickSpawnItem(mod.ItemType("CufantBall"));}
-			if(choice==283) {player.QuickSpawnItem(mod.ItemType("DreepyBall"));}
-			if(choice==284) {player.QuickSpawnItem(mod.ItemType("SyclarBall"));}
-			if(choice==285) {player.QuickSpawnItem(mod.ItemType("EmbirchBall"));}
-			if(choice==286) {player.QuickSpawnItem(mod.ItemType("BreeziBall"));}
-			if(choice==287) {player.QuickSpawnItem(mod.ItemType("RebbleBall"));}
-			if(choice==288) {player.QuickSpawnItem(mod.ItemType("PrivatykeBall"));}
-			if(choice==289) {player.QuickSpawnItem(mod.ItemType("NohfaceBall"));}
-			if(choice==290) {player.QuickSpawnItem(mod.ItemType("MonohmBall"));}
-			if(choice==291) {player.QuickSpawnItem(mod.ItemType("C1Ball"));}
-			if(choice==292) {player.QuickSpawnItem(mod.ItemType("ProtowattBall"));}
-			if(choice==293) {player.QuickSpawnItem(mod.ItemType("VoodollBall"));}
-			if(choice==294) {player.QuickSpawnItem(mod.ItemType("ScratchetBall"));}
-			if(choice==295) {player.QuickSpawnItem(mod.ItemType("NecturineBall"));}
-			if(choice==296) {player.QuickSpawnItem(mod.ItemType("CupraBall"));}
-			if(choice==297) {player.QuickSpawnItem(mod.ItemType("BrattlerBall"));}
-			if(choice==298) {player.QuickSpawnItem(mod.ItemType("CawdetBall"));}
-			if(choice==299) {player.QuickSpawnItem(mod.ItemType("VolkritterBall"));}
-			if(choice==300) {player.QuickSpawnItem(mod.ItemType("SnugglowBall"));}
-			if(choice==301) {player.QuickSpawnItem(mod.ItemType("FloatoyBall"));}
-			if(choice==302) {player.QuickSpawnItem(mod.ItemType("PluffleBall"));}
-			if(choice==303) {player.QuickSpawnItem(mod.ItemType("MumbaoBall"));}
-			if(choice==304) {player.QuickSpawnItem(mod.ItemType("FawniferBall"));}
-			if(choice==305) {player.QuickSpawnItem(mod.ItemType("SmogeckoBall"));}
-			if(choice==306) {player.QuickSpawnItem(mod.ItemType("SwirlpoolBall"));}
-			if(choice==307) {player.QuickSpawnItem(mod.ItemType("JustykeBall"));}
+			if(choice==262) {player.QuickSpawnItem(mod.ItemType("SkowvetBall"));}
+			if(choice==263) {player.QuickSpawnItem(mod.ItemType("RookideeBall"));}
+			if(choice==264) {player.QuickSpawnItem(mod.ItemType("BlipbugBall"));}
+			if(choice==265) {player.QuickSpawnItem(mod.ItemType("NickitBall"));}
+			if(choice==266) {player.QuickSpawnItem(mod.ItemType("GossifleurBall"));}
+			if(choice==267) {player.QuickSpawnItem(mod.ItemType("WoolooBall"));}
+			if(choice==268) {player.QuickSpawnItem(mod.ItemType("ChewtleBall"));}
+			if(choice==269) {player.QuickSpawnItem(mod.ItemType("YamperBall"));}
+			if(choice==270) {player.QuickSpawnItem(mod.ItemType("RolycolyBall"));}
+			if(choice==271) {player.QuickSpawnItem(mod.ItemType("ApplinBall"));}
+			if(choice==272) {player.QuickSpawnItem(mod.ItemType("SilicobraBall"));}
+			if(choice==273) {player.QuickSpawnItem(mod.ItemType("ArrokudaBall"));}
+			if(choice==274) {player.QuickSpawnItem(mod.ItemType("SizzlipedeBall"));}
+			if(choice==275) {player.QuickSpawnItem(mod.ItemType("ClobbopusBall"));}
+			if(choice==276) {player.QuickSpawnItem(mod.ItemType("SinisteaPhonyBall"));}
+			if(choice==277) {player.QuickSpawnItem(mod.ItemType("HatennaBall"));}
+			if(choice==278) {player.QuickSpawnItem(mod.ItemType("ImpidimpBall"));}
+			if(choice==279) {player.QuickSpawnItem(mod.ItemType("MilceryBall"));}
+			if(choice==280) {player.QuickSpawnItem(mod.ItemType("SnomBall"));}
+			if(choice==281) {player.QuickSpawnItem(mod.ItemType("CufantBall"));}
+			if(choice==282) {player.QuickSpawnItem(mod.ItemType("DreepyBall"));}
+			if(choice==283) {player.QuickSpawnItem(mod.ItemType("C1Ball"));}
 
         }
 	}

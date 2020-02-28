@@ -2566,9 +2566,9 @@ namespace Pokemmon
 		public override void SetupStartInventory(IList<Item> items)
         {
 			Item item = new Item();
-            item.SetDefaults(mod.ItemType("PremierBox"));
-            item.stack = 1;
-            items.Add(item);
+			item.SetDefaults(mod.ItemType("PremierBox"));
+			item.stack = 1;
+			items.Add(item);
 		}
 	}
 }
