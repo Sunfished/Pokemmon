@@ -6,16 +6,16 @@ using Terraria.ModLoader;
 namespace Pokemmon.Items.Pokemon
 {
 	//imported from my tAPI mod because I'm lazy
-	public class NohfaceBall : ModItem
+	public class MiasmiteBall : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Nohface's Pokeball");
+			DisplayName.SetDefault("Miasmite's Pokeball");
 			//Tooltip.SetDefault("");
 			
 		}
 
 		public override void SetDefaults() {
-			item.damage = 11;
+			item.damage = 13;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -28,9 +28,9 @@ namespace Pokemmon.Items.Pokemon
 			item.value = 100000;
 			item.rare = 10;
 			item.UseSound = SoundID.Item4;
-			item.shoot = mod.ProjectileType("Nohface");
+			item.shoot = mod.ProjectileType("Miasmite");
 			item.shootSpeed = 10f;
-			item.buffType = mod.BuffType("BuffNohface"); //The buff added to player after used the item
+			item.buffType = mod.BuffType("BuffMiasmite"); //The buff added to player after used the item
 			item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
 			item.stack = 1;
 			item.maxStack = 999;
@@ -57,8 +57,8 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemExpCandyL"),1);
-			recipe0.SetResult(mod.ItemType("KitsunohBall"));
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyL"),30);
+			recipe0.SetResult(mod.ItemType("MiasmawBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();
 

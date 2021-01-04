@@ -42,7 +42,7 @@ namespace Pokemmon.Items.PokeBoxes
 		
         public override void RightClick(Player player)
         {
-            int choice = Main.rand.Next(28);
+            int choice = Main.rand.Next(29);
 			if(choice==0) {player.QuickSpawnItem(mod.ItemType("SyclarBall"));}
 			if(choice==1) {player.QuickSpawnItem(mod.ItemType("RevenankhBall"));}
 			if(choice==2) {player.QuickSpawnItem(mod.ItemType("EmbirchBall"));}
@@ -71,6 +71,7 @@ namespace Pokemmon.Items.PokeBoxes
 			if(choice==25) {player.QuickSpawnItem(mod.ItemType("SwirlpoolBall"));}
 			if(choice==26) {player.QuickSpawnItem(mod.ItemType("JustykeBall"));}
 			if(choice==27) {player.QuickSpawnItem(mod.ItemType("SolotlBall"));}
+			if(choice==28) {player.QuickSpawnItem(mod.ItemType("MiasmiteBall"));}
 
         }
 	}

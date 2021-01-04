@@ -15,7 +15,7 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 3;
+			item.damage = 17;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -24,7 +24,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useAnimation = 30;
 			item.useStyle = 4;
 			item.noMelee = true;
-			item.knockBack = 1;
+			item.knockBack = 0;
 			item.value = 200000;
 			item.rare = 10;
 			item.UseSound = SoundID.Item4;

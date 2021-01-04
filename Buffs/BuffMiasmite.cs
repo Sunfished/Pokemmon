@@ -3,21 +3,21 @@ using Terraria.ModLoader;
 
 namespace Pokemmon.Buffs
 {
-	public class BuffNohface : ModBuff
+	public class BuffMiasmite : ModBuff
 	{
 		public override void SetDefaults() {
-			DisplayName.SetDefault("Go, Nohface!");
-			Description.SetDefault("Nohface was sent out!");
+			DisplayName.SetDefault("Go, Miasmite!");
+			Description.SetDefault("Miasmite was sent out!");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Nohface")] > 0) {
-				modPlayer.summonedNohface = true;
+			if (player.ownedProjectileCounts[mod.ProjectileType("Miasmite")] > 0) {
+				modPlayer.summonedMiasmite = true;
 			}
-			if (!modPlayer.summonedNohface) {
+			if (!modPlayer.summonedMiasmite) {
 				player.DelBuff(buffIndex);
 				buffIndex--;
 				
@@ -33,19 +33,19 @@ namespace Pokemmon.Buffs
 				isMelee = false;
 			if (isMelee)
 			{
-				player.statDefense += 5;
+				player.statDefense += 6;
 			}
 			else
 			{
 				player.statDefense += 5;
 			}
 			
-			player.statLifeMax2 += 73;
-			player.meleeDamage *= 1.7f;
-			player.rangedDamage *= 1.7f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
-			player.maxRunSpeed += 0.4f;
+			player.statLifeMax2 += 85;
+			player.meleeDamage *= 1.9f;
+			player.rangedDamage *= 1.9f;
+			player.magicDamage *= 1.5f;
+			player.minionDamage *= 1.5f;
+			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;
 		}

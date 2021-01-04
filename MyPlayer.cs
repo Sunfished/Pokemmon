@@ -1314,6 +1314,8 @@ namespace Pokemmon
 		public bool summonedEquilibra;
 		public bool summonedSolotl;
 		public bool summonedAstrolotl;
+		public bool summonedMiasmite;
+		public bool summonedMiasmaw;
 
 
 		public override void ResetEffects() {
@@ -2609,6 +2611,8 @@ namespace Pokemmon
 			summonedEquilibra = false;
 			summonedSolotl = false;
 			summonedAstrolotl = false;
+			summonedMiasmite = false;
+			summonedMiasmaw = false;
 
 		}
 		

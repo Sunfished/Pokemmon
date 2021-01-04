@@ -33,19 +33,19 @@ namespace Pokemmon.Buffs
 				isMelee = false;
 			if (isMelee)
 			{
-				player.statDefense += 0;
+				player.statDefense += 5;
 			}
 			else
 			{
-				player.statDefense += 0;
+				player.statDefense += 5;
 			}
 			
-			player.statLifeMax2 += 1;
-			player.meleeDamage *= 1.0f;
-			player.rangedDamage *= 1.0f;
-			player.magicDamage *= 1.0f;
-			player.minionDamage *= 1.0f;
-			player.maxRunSpeed += 0.0f;
+			player.statLifeMax2 += 40;
+			player.meleeDamage *= 1.4f;
+			player.rangedDamage *= 1.4f;
+			player.magicDamage *= 1.7f;
+			player.minionDamage *= 1.7f;
+			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;
 		}
