@@ -20,7 +20,7 @@ namespace Pokemmon.Items.Placeable
 			item.useTime = 10;
 			item.useStyle = 1;
 			item.consumable = true;
-			item.value = 150;
+			item.value = 150000;
 			item.createTile = mod.TileType("EvolutionMachine");
 		}
 
