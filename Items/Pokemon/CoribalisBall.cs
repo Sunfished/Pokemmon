@@ -24,7 +24,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useAnimation = 30;
 			item.useStyle = 4;
 			item.noMelee = true;
-			item.knockBack = 1;
+			item.knockBack = 0;
 			item.value = 200000;
 			item.rare = 10;
 			item.UseSound = SoundID.Item4;
@@ -41,6 +41,8 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
+			modPlayer.ResetEffects();
 			return player.altFunctionUse != 2;
 		}
 

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 
-namespace Pokemmon.Items
+namespace Pokemmon.Items.PokeBoxes
 {
 	public class PremierBox : ModItem
 	{

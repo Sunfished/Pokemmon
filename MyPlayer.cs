@@ -15,6 +15,13 @@ namespace Pokemmon
 {
 	public class MyPlayer : ModPlayer
 	{
+		//buff stats
+		//public float boostAttack = 0f;
+		//public float boostDefense = 0f;
+		//public int numSpawned = 0;//Number of currently active Pokemon
+		
+		//public List<float> attackList = new List<float>();
+		
 		//public bool summonedBulbasaur;
 		public bool summonedBulbasaur;
 		public bool summonedIvysaur;
@@ -64,6 +71,7 @@ namespace Pokemmon
 		public bool summonedPikachuKalosCap;
 		public bool summonedPikachuAlolaCap;
 		public bool summonedPikachuPartnerCap;
+		public bool summonedPikachuWorldCap;
 		public bool summonedPikachuPartner;
 		public bool summonedPikachuGigantamax;
 		public bool summonedRaichu;
@@ -138,8 +146,10 @@ namespace Pokemmon
 		public bool summonedRapidash;
 		public bool summonedRapidashGalar;
 		public bool summonedSlowpoke;
+		public bool summonedSlowpokeGalar;
 		public bool summonedSlowbro;
 		public bool summonedSlowbroMega;
+		public bool summonedSlowbroGalar;
 		public bool summonedMagnemite;
 		public bool summonedMagneton;
 		public bool summonedFarfetchd;
@@ -221,8 +231,11 @@ namespace Pokemmon
 		public bool summonedSnorlax;
 		public bool summonedSnorlaxGigantamax;
 		public bool summonedArticuno;
+		public bool summonedArticunoGalar;
 		public bool summonedZapdos;
+		public bool summonedZapdosGalar;
 		public bool summonedMoltres;
+		public bool summonedMoltresGalar;
 		public bool summonedDratini;
 		public bool summonedDragonair;
 		public bool summonedDragonite;
@@ -280,6 +293,7 @@ namespace Pokemmon
 		public bool summonedUmbreon;
 		public bool summonedMurkrow;
 		public bool summonedSlowking;
+		public bool summonedSlowkingGalar;
 		public bool summonedMisdreavus;
 		public bool summonedUnownA;
 		public bool summonedUnownB;
@@ -1224,6 +1238,18 @@ namespace Pokemmon
 		public bool summonedZamazentaCrowned;
 		public bool summonedEternatus;
 		public bool summonedEternatusEternamax;
+		public bool summonedKubfu;
+		public bool summonedUrshifuSingleStrikeStyle;
+		public bool summonedUrshifuRapidStrikeStyle;
+		public bool summonedZarude;
+		public bool summonedZarudeDada;
+		public bool summonedRegieleki;
+		public bool summonedRegidrago;
+		public bool summonedGlastrier;
+		public bool summonedSpectrier;
+		public bool summonedCalyrex;
+		public bool summonedCalyrexIceRider;
+		public bool summonedCalyrexShadowRider;
 		public bool summonedIncineraffe;
 		public bool summonedSyclar;
 		public bool summonedSyclant;
@@ -1286,6 +1312,8 @@ namespace Pokemmon
 		public bool summonedSnaelstrom;
 		public bool summonedJustyke;
 		public bool summonedEquilibra;
+		public bool summonedSolotl;
+		public bool summonedAstrolotl;
 
 
 		public override void ResetEffects() {
@@ -1338,6 +1366,7 @@ namespace Pokemmon
 			summonedPikachuKalosCap = false;
 			summonedPikachuAlolaCap = false;
 			summonedPikachuPartnerCap = false;
+			summonedPikachuWorldCap = false;
 			summonedPikachuPartner = false;
 			summonedPikachuGigantamax = false;
 			summonedRaichu = false;
@@ -1412,8 +1441,10 @@ namespace Pokemmon
 			summonedRapidash = false;
 			summonedRapidashGalar = false;
 			summonedSlowpoke = false;
+			summonedSlowpokeGalar = false;
 			summonedSlowbro = false;
 			summonedSlowbroMega = false;
+			summonedSlowbroGalar = false;
 			summonedMagnemite = false;
 			summonedMagneton = false;
 			summonedFarfetchd = false;
@@ -1495,8 +1526,11 @@ namespace Pokemmon
 			summonedSnorlax = false;
 			summonedSnorlaxGigantamax = false;
 			summonedArticuno = false;
+			summonedArticunoGalar = false;
 			summonedZapdos = false;
+			summonedZapdosGalar = false;
 			summonedMoltres = false;
+			summonedMoltresGalar = false;
 			summonedDratini = false;
 			summonedDragonair = false;
 			summonedDragonite = false;
@@ -1554,6 +1588,7 @@ namespace Pokemmon
 			summonedUmbreon = false;
 			summonedMurkrow = false;
 			summonedSlowking = false;
+			summonedSlowkingGalar = false;
 			summonedMisdreavus = false;
 			summonedUnownA = false;
 			summonedUnownB = false;
@@ -2498,6 +2533,18 @@ namespace Pokemmon
 			summonedZamazentaCrowned = false;
 			summonedEternatus = false;
 			summonedEternatusEternamax = false;
+			summonedKubfu = false;
+			summonedUrshifuSingleStrikeStyle = false;
+			summonedUrshifuRapidStrikeStyle = false;
+			summonedZarude = false;
+			summonedZarudeDada = false;
+			summonedRegieleki = false;
+			summonedRegidrago = false;
+			summonedGlastrier = false;
+			summonedSpectrier = false;
+			summonedCalyrex = false;
+			summonedCalyrexIceRider = false;
+			summonedCalyrexShadowRider = false;
 			summonedIncineraffe = false;
 			summonedSyclar = false;
 			summonedSyclant = false;
@@ -2560,15 +2607,35 @@ namespace Pokemmon
 			summonedSnaelstrom = false;
 			summonedJustyke = false;
 			summonedEquilibra = false;
+			summonedSolotl = false;
+			summonedAstrolotl = false;
 
 		}
 		
+		//Handle new player items
 		public override void SetupStartInventory(IList<Item> items)
-        {
+		{
 			Item item = new Item();
 			item.SetDefaults(mod.ItemType("PremierBox"));
 			item.stack = 1;
 			items.Add(item);
 		}
+		
+		/*public override void PostUpdate() {
+		
+			if(numSpawned > 0)
+			{
+				//Reset all boosts back to 0
+				boostAttack = 0f;
+				boostDefense = 0f;
+				
+				float bAttack = boostAttack/numSpawned;
+				player.meleeDamage *= bAttack;
+				
+				mod.Logger.Info("Boost Attack = " + bAttack.ToString());
+				
+				numSpawned = 0;
+			}
+		}//*/
 	}
 }

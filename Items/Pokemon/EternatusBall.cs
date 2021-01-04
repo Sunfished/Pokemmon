@@ -25,8 +25,8 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 15;
-			item.value = 5000000;
-			item.rare = -1;
+			item.value = 1500000;
+			item.rare = 0;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Eternatus");
 			item.shootSpeed = 10f;
@@ -41,6 +41,8 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
+			modPlayer.ResetEffects();
 			return player.altFunctionUse != 2;
 		}
 

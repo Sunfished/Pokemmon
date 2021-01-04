@@ -20,17 +20,22 @@ namespace Pokemmon.Buffs
 			if (!modPlayer.summonedKyogrePrimal) {
 				player.DelBuff(buffIndex);
 				buffIndex--;
+				
 			}
 			else {
 				player.buffTime[buffIndex] = 18000;
 			}
 		
 			//Calc Buffs
-			if (player.meleeDamage >= player.magicDamage || player.rangedDamage >= player.magicDamage)
+			var isMelee = true;
+			if(player.magicDamage > player.meleeDamage || player.magicDamage > player.rangedDamage ||
+			player.minionDamage > player.meleeDamage || player.minionDamage > player.rangedDamage)
+				isMelee = false;
+			if (isMelee)
 			{
 				player.statDefense += 9;
 			}
-			else if (player.magicDamage >= player.minionDamage)
+			else
 			{
 				player.statDefense += 16;
 			}
@@ -39,8 +44,10 @@ namespace Pokemmon.Buffs
 			player.meleeDamage *= 2.5f;
 			player.rangedDamage *= 2.5f;
 			player.magicDamage *= 2.8f;
+			player.minionDamage *= 2.8f;
 			player.maxRunSpeed += 0.5f;
+			
+			//modPlayer.numSpawned++;
 		}
-
 	}
 }

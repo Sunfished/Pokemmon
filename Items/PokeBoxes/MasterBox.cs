@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 
-namespace Pokemmon.Items
+namespace Pokemmon.Items.PokeBoxes
 {
 	public class MasterBox : ModItem
 	{
@@ -42,7 +42,7 @@ namespace Pokemmon.Items
 		
         public override void RightClick(Player player)
         {
-            int choice = Main.rand.Next(42);
+            int choice = Main.rand.Next(41);
 			if(choice==0) {player.QuickSpawnItem(mod.ItemType("ArticunoBall"));}
 			if(choice==1) {player.QuickSpawnItem(mod.ItemType("ZapdosBall"));}
 			if(choice==2) {player.QuickSpawnItem(mod.ItemType("MoltresBall"));}
@@ -79,12 +79,11 @@ namespace Pokemmon.Items
 			if(choice==33) {player.QuickSpawnItem(mod.ItemType("KyuremBall"));}
 			if(choice==34) {player.QuickSpawnItem(mod.ItemType("XerneasBall"));}
 			if(choice==35) {player.QuickSpawnItem(mod.ItemType("YveltalBall"));}
-			if(choice==36) {player.QuickSpawnItem(mod.ItemType("Zygarde50Ball"));}
-			if(choice==37) {player.QuickSpawnItem(mod.ItemType("CosmogBall"));}
-			if(choice==38) {player.QuickSpawnItem(mod.ItemType("NecrozmaBall"));}
-			if(choice==39) {player.QuickSpawnItem(mod.ItemType("ZacianBall"));}
-			if(choice==40) {player.QuickSpawnItem(mod.ItemType("ZamazentaBall"));}
-			if(choice==41) {player.QuickSpawnItem(mod.ItemType("EternatusBall"));}
+			if(choice==36) {player.QuickSpawnItem(mod.ItemType("CosmogBall"));}
+			if(choice==37) {player.QuickSpawnItem(mod.ItemType("NecrozmaBall"));}
+			if(choice==38) {player.QuickSpawnItem(mod.ItemType("ZacianBall"));}
+			if(choice==39) {player.QuickSpawnItem(mod.ItemType("ZamazentaBall"));}
+			if(choice==40) {player.QuickSpawnItem(mod.ItemType("EternatusBall"));}
 
         }
 	}

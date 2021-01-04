@@ -41,6 +41,8 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
+			modPlayer.ResetEffects();
 			return player.altFunctionUse != 2;
 		}
 
@@ -53,6 +55,13 @@ namespace Pokemmon.Items.Pokemon
 		
 		public override void AddRecipes()
 		{
+			ModRecipe recipe99 = new ModRecipe(mod);
+			recipe99.AddIngredient(this);
+			recipe99.AddIngredient(mod.GetItem("ItemEverstone"),1);
+			recipe99.SetResult(mod.ItemType("SlowpokeBall"));
+			recipe99.AddTile(mod.TileType("EvolutionMachine"));
+			recipe99.AddRecipe();
+
 
 		}
 	}

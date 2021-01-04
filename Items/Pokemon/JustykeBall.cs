@@ -41,6 +41,8 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
+			modPlayer.ResetEffects();
 			return player.altFunctionUse != 2;
 		}
 
@@ -55,7 +57,7 @@ namespace Pokemmon.Items.Pokemon
 		{
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemExpCandyL"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyL"),32);
 			recipe0.SetResult(mod.ItemType("EquilibraBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();

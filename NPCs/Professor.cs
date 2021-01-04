@@ -231,7 +231,7 @@ namespace Pokemmon.NPCs
 			nextSlot++;
 			shop.item[nextSlot].SetDefaults(mod.ItemType("LittenBall"));
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("LittenBall"));
+			shop.item[nextSlot].SetDefaults(mod.ItemType("ScorbunnyBall"));
 			nextSlot++;
 			
 			//Water Starters

@@ -35,7 +35,15 @@ namespace Pokemmon.Projectiles.Minions
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			return false;
-		}//*/
+		}
+		
+		public override bool? CanCutTiles() {
+			return false;
+		}
+
+		public override bool MinionContactDamage() {
+			return true;
+		}
 		
 		public override void AI()
 		{

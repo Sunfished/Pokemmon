@@ -26,7 +26,7 @@ namespace Pokemmon.Items.Pokemon
 			item.noMelee = true;
 			item.knockBack = 8;
 			item.value = 500000;
-			item.rare = -1;
+			item.rare = 8;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Stonjourner");
 			item.shootSpeed = 10f;
@@ -41,6 +41,8 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
+			modPlayer.ResetEffects();
 			return player.altFunctionUse != 2;
 		}
 

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 
-namespace Pokemmon.Items
+namespace Pokemmon.Items.PokeBoxes
 {
 	public class NestBox : ModItem
 	{
@@ -19,7 +19,7 @@ namespace Pokemmon.Items
 			item.useTime = 10;
 			item.useAnimation = 10;
 			//item.useStyle = 4;//Like Fallen Star
-			item.value = 50000;
+			item.value = 100000;
 			item.rare = 2;
 			item.UseSound = SoundID.Item4;//Like Fallen Star
             item.stack = 1;

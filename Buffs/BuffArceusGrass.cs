@@ -20,17 +20,22 @@ namespace Pokemmon.Buffs
 			if (!modPlayer.summonedArceusGrass) {
 				player.DelBuff(buffIndex);
 				buffIndex--;
+				
 			}
 			else {
 				player.buffTime[buffIndex] = 18000;
 			}
 		
 			//Calc Buffs
-			if (player.meleeDamage >= player.magicDamage || player.rangedDamage >= player.magicDamage)
+			var isMelee = true;
+			if(player.magicDamage > player.meleeDamage || player.magicDamage > player.rangedDamage ||
+			player.minionDamage > player.meleeDamage || player.minionDamage > player.rangedDamage)
+				isMelee = false;
+			if (isMelee)
 			{
 				player.statDefense += 12;
 			}
-			else if (player.magicDamage >= player.minionDamage)
+			else
 			{
 				player.statDefense += 12;
 			}
@@ -39,8 +44,10 @@ namespace Pokemmon.Buffs
 			player.meleeDamage *= 2.2f;
 			player.rangedDamage *= 2.2f;
 			player.magicDamage *= 2.2f;
+			player.minionDamage *= 2.2f;
 			player.maxRunSpeed += 0.6f;
+			
+			//modPlayer.numSpawned++;
 		}
-
 	}
 }

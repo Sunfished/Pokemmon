@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 
-namespace Pokemmon.Items
+namespace Pokemmon.Items.PokeBoxes
 {
 	public class CherishBox : ModItem
 	{
@@ -42,7 +42,7 @@ namespace Pokemmon.Items
 		
         public override void RightClick(Player player)
         {
-            int choice = Main.rand.Next(19);
+            int choice = Main.rand.Next(23);
 			if(choice==0) {player.QuickSpawnItem(mod.ItemType("MewBall"));}
 			if(choice==1) {player.QuickSpawnItem(mod.ItemType("CelebiBall"));}
 			if(choice==2) {player.QuickSpawnItem(mod.ItemType("JirachiBall"));}
@@ -55,13 +55,17 @@ namespace Pokemmon.Items
 			if(choice==9) {player.QuickSpawnItem(mod.ItemType("VictiniBall"));}
 			if(choice==10) {player.QuickSpawnItem(mod.ItemType("KeldeoBall"));}
 			if(choice==11) {player.QuickSpawnItem(mod.ItemType("GenesectBall"));}
-			if(choice==12) {player.QuickSpawnItem(mod.ItemType("DiancieBall"));}
-			if(choice==13) {player.QuickSpawnItem(mod.ItemType("HoopaBall"));}
-			if(choice==14) {player.QuickSpawnItem(mod.ItemType("VolcanionBall"));}
-			if(choice==15) {player.QuickSpawnItem(mod.ItemType("MagearnaBall"));}
-			if(choice==16) {player.QuickSpawnItem(mod.ItemType("MarshadowBall"));}
-			if(choice==17) {player.QuickSpawnItem(mod.ItemType("ZeraoraBall"));}
-			if(choice==18) {player.QuickSpawnItem(mod.ItemType("MeltanBall"));}
+			if(choice==12) {player.QuickSpawnItem(mod.ItemType("FloetteEternalFlowerBall"));}
+			if(choice==13) {player.QuickSpawnItem(mod.ItemType("DiancieBall"));}
+			if(choice==14) {player.QuickSpawnItem(mod.ItemType("HoopaBall"));}
+			if(choice==15) {player.QuickSpawnItem(mod.ItemType("VolcanionBall"));}
+			if(choice==16) {player.QuickSpawnItem(mod.ItemType("TypeNullBall"));}
+			if(choice==17) {player.QuickSpawnItem(mod.ItemType("MagearnaBall"));}
+			if(choice==18) {player.QuickSpawnItem(mod.ItemType("MarshadowBall"));}
+			if(choice==19) {player.QuickSpawnItem(mod.ItemType("ZeraoraBall"));}
+			if(choice==20) {player.QuickSpawnItem(mod.ItemType("MeltanBall"));}
+			if(choice==21) {player.QuickSpawnItem(mod.ItemType("KubfuBall"));}
+			if(choice==22) {player.QuickSpawnItem(mod.ItemType("ZarudeBall"));}
 
         }
 	}

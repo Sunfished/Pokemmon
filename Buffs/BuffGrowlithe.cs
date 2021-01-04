@@ -20,17 +20,22 @@ namespace Pokemmon.Buffs
 			if (!modPlayer.summonedGrowlithe) {
 				player.DelBuff(buffIndex);
 				buffIndex--;
+				
 			}
 			else {
 				player.buffTime[buffIndex] = 18000;
 			}
 		
 			//Calc Buffs
-			if (player.meleeDamage >= player.magicDamage || player.rangedDamage >= player.magicDamage)
+			var isMelee = true;
+			if(player.magicDamage > player.meleeDamage || player.magicDamage > player.rangedDamage ||
+			player.minionDamage > player.meleeDamage || player.minionDamage > player.rangedDamage)
+				isMelee = false;
+			if (isMelee)
 			{
 				player.statDefense += 4;
 			}
-			else if (player.magicDamage >= player.minionDamage)
+			else
 			{
 				player.statDefense += 5;
 			}
@@ -39,8 +44,10 @@ namespace Pokemmon.Buffs
 			player.meleeDamage *= 1.7f;
 			player.rangedDamage *= 1.7f;
 			player.magicDamage *= 1.7f;
+			player.minionDamage *= 1.7f;
 			player.maxRunSpeed += 0.3f;
+			
+			//modPlayer.numSpawned++;
 		}
-
 	}
 }
