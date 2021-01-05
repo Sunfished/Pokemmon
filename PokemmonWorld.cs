@@ -88,31 +88,40 @@ namespace Pokemmon
 			
 			for (int chestIndex = 0; chestIndex < 1000; chestIndex++) {
 				Chest chest = Main.chest[chestIndex];
+				
 				// If you look at the sprite for Chests by extracting Tiles_21.xnb, you'll see that the 12th chest is the Ice Chest. Since we are counting from 0, this is where 11 comes from. 36 comes from the width of each tile including padding. 
 				//https://terraria.gamepedia.com/Tile_IDs
 				
-				//Guranteed spawn of 1 Common, afterwards 1/5th chance
-				if (chest != null && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 0 * 36) {
-					for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++) {
-						if (chest.item[inventoryIndex].type == ItemID.None) {
-							if(addedCommonItems <= commonItems.Length || Main.rand.Next(5) == 0)
-							{
-								chest.item[inventoryIndex].SetDefaults(commonItems[commonItemsChoice]);
-								commonItemsChoice = (commonItemsChoice + 1) % commonItems.Length;
-								addedCommonItems++;
+				if(chest != null && Main.tile[chest.x, chest.y].type == TileID.Containers)
+				{
+					
+					//Guranteed spawn of 1 Common, afterwards 1/5th chance
+					if (Main.tile[chest.x, chest.y].frameX == 0 * 36) {
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++) {
+							if (chest.item[inventoryIndex].type == ItemID.None) {
+								if(addedCommonItems <= commonItems.Length || Main.rand.Next(5) == 0)
+								{
+									var myItem = commonItems[commonItemsChoice];
+									chest.item[inventoryIndex].SetDefaults(myItem);
+									mod.Logger.Info("Added Pokemmon Item to Common Chest");
+									commonItemsChoice = (commonItemsChoice + 1) % commonItems.Length;
+									addedCommonItems++;
+								}
+								break;
 							}
-							break;
 						}
 					}
-				}
-				
-				//Every Water chest contains at least one Water Item 
-				if (chest != null && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 17 * 36) {
-					for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++) {
-						if (chest.item[inventoryIndex].type == ItemID.None) {
-							chest.item[inventoryIndex].SetDefaults(commonItems[waterItemsChoice]);
-							waterItemsChoice = (waterItemsChoice + 1) % waterItems.Length;
-							break;
+					
+					//Every Water chest contains at least one Water Item 
+					//chest id: 17
+					if (Main.tile[chest.x, chest.y].frameX == 17 * 36) {
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++) {
+							if (chest.item[inventoryIndex].type == ItemID.None) {
+								chest.item[inventoryIndex].SetDefaults(waterItems[waterItemsChoice]);
+								waterItemsChoice = (waterItemsChoice + 1) % waterItems.Length;
+								mod.Logger.Info("Added Pokemmon Item to Water Chest");
+								break;
+							}
 						}
 					}
 				}
