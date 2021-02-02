@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Dracovish!");
-			Description.SetDefault("Dracovish was sent out!");
+			Description.SetDefault("+90 HP\n+1.3x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.4 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -41,10 +41,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 90;
-			player.meleeDamage *= 1.9f;
-			player.rangedDamage *= 1.9f;
-			player.magicDamage *= 1.7f;
-			player.minionDamage *= 1.7f;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

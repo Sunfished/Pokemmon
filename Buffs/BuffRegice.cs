@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Regice!");
-			Description.SetDefault("Regice was sent out!");
+			Description.SetDefault("+80 HP\n+1.1x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+20 Magic/Summon Defense\n+0.2 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 20;
 			}
 			
-			player.statLifeMax2 += 50;
-			player.meleeDamage *= 1.5f;
-			player.rangedDamage *= 1.5f;
-			player.magicDamage *= 2.0f;
-			player.minionDamage *= 2.0f;
+			player.statLifeMax2 += 80;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

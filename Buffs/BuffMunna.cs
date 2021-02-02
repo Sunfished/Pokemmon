@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Munna!");
-			Description.SetDefault("Munna was sent out!");
+			Description.SetDefault("+76 HP\n+1.0x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.1 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 5;
 			}
 			
-			player.statLifeMax2 += 25;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.7f;
-			player.minionDamage *= 1.7f;
+			player.statLifeMax2 += 76;
+			player.meleeDamage *= 1.0f;
+			player.rangedDamage *= 1.0f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

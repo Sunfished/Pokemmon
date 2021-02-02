@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Samurott!");
-			Description.SetDefault("Samurott was sent out!");
+			Description.SetDefault("+95 HP\n+1.3x Melee/Ranged Damage\n+8 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.3 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 7;
 			}
 			
-			player.statLifeMax2 += 100;
-			player.meleeDamage *= 2.0f;
-			player.rangedDamage *= 2.0f;
-			player.magicDamage *= 2.1f;
-			player.minionDamage *= 2.1f;
+			player.statLifeMax2 += 95;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

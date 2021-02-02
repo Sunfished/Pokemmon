@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Cursola!");
-			Description.SetDefault("Cursola was sent out!");
+			Description.SetDefault("+60 HP\n+1.3x Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+13 Magic/Summon Defense\n+0.1 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 13;
 			}
 			
-			player.statLifeMax2 += 95;
-			player.meleeDamage *= 1.9f;
-			player.rangedDamage *= 1.9f;
-			player.magicDamage *= 2.5f;
-			player.minionDamage *= 2.5f;
+			player.statLifeMax2 += 60;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.4f;
+			player.minionDamage *= 1.4f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

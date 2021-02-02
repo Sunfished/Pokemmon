@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Mamoswine!");
-			Description.SetDefault("Mamoswine was sent out!");
+			Description.SetDefault("+110 HP\n+1.4x Melee/Ranged Damage\n+8 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.4 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 6;
 			}
 			
-			player.statLifeMax2 += 130;
-			player.meleeDamage *= 2.3f;
-			player.rangedDamage *= 2.3f;
-			player.magicDamage *= 1.7f;
-			player.minionDamage *= 1.7f;
+			player.statLifeMax2 += 110;
+			player.meleeDamage *= 1.4f;
+			player.rangedDamage *= 1.4f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

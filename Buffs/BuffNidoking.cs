@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Nidoking!");
-			Description.SetDefault("Nidoking was sent out!");
+			Description.SetDefault("+81 HP\n+1.3x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.4 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 7;
 			}
 			
-			player.statLifeMax2 += 102;
-			player.meleeDamage *= 2.0f;
-			player.rangedDamage *= 2.0f;
-			player.magicDamage *= 1.9f;
-			player.minionDamage *= 1.9f;
+			player.statLifeMax2 += 81;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

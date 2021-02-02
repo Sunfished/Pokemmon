@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Reuniclus!");
-			Description.SetDefault("Reuniclus was sent out!");
+			Description.SetDefault("+110 HP\n+1.2x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.1 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 8;
 			}
 			
-			player.statLifeMax2 += 65;
-			player.meleeDamage *= 1.6f;
-			player.rangedDamage *= 1.6f;
-			player.magicDamage *= 2.2f;
-			player.minionDamage *= 2.2f;
+			player.statLifeMax2 += 110;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.4f;
+			player.minionDamage *= 1.4f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

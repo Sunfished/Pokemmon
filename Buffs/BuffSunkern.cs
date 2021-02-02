@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Sunkern!");
-			Description.SetDefault("Sunkern was sent out!");
+			Description.SetDefault("+30 HP\n+1.1x Melee/Ranged Damage\n+3 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+3 Magic/Summon Defense\n+0.1 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -41,10 +41,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 30;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Pincurchin!");
-			Description.SetDefault("Pincurchin was sent out!");
+			Description.SetDefault("+48 HP\n+1.3x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.1 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 8;
 			}
 			
-			player.statLifeMax2 += 101;
-			player.meleeDamage *= 2.0f;
-			player.rangedDamage *= 2.0f;
-			player.magicDamage *= 1.9f;
-			player.minionDamage *= 1.9f;
+			player.statLifeMax2 += 48;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

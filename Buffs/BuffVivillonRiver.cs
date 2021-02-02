@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Vivillon!");
-			Description.SetDefault("Vivillon was sent out!");
+			Description.SetDefault("+80 HP\n+1.1x Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.4 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 5;
 			}
 			
-			player.statLifeMax2 += 52;
-			player.meleeDamage *= 1.5f;
-			player.rangedDamage *= 1.5f;
-			player.magicDamage *= 1.9f;
-			player.minionDamage *= 1.9f;
+			player.statLifeMax2 += 80;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

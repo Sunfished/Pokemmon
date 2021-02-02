@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Slugma!");
-			Description.SetDefault("Slugma was sent out!");
+			Description.SetDefault("+40 HP\n+1.1x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.1 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -41,10 +41,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 40;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
-			player.magicDamage *= 1.7f;
-			player.minionDamage *= 1.7f;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

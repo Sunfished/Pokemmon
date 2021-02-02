@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Snugglow!");
-			Description.SetDefault("Snugglow was sent out!");
+			Description.SetDefault("+40 HP\n+1.1x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.3 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 6;
 			}
 			
-			player.statLifeMax2 += 37;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
-			player.magicDamage *= 1.9f;
-			player.minionDamage *= 1.9f;
+			player.statLifeMax2 += 40;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

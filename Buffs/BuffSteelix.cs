@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Steelix!");
-			Description.SetDefault("Steelix was sent out!");
+			Description.SetDefault("+75 HP\n+1.2x Melee/Ranged Damage\n+20 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.1 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 6;
 			}
 			
-			player.statLifeMax2 += 85;
-			player.meleeDamage *= 1.9f;
-			player.rangedDamage *= 1.9f;
-			player.magicDamage *= 1.6f;
-			player.minionDamage *= 1.6f;
+			player.statLifeMax2 += 75;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

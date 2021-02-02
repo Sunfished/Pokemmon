@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Nihilego!");
-			Description.SetDefault("Nihilego was sent out!");
+			Description.SetDefault("+109 HP\n+1.1x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+13 Magic/Summon Defense\n+0.5 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 13;
 			}
 			
-			player.statLifeMax2 += 53;
-			player.meleeDamage *= 1.5f;
-			player.rangedDamage *= 1.5f;
-			player.magicDamage *= 2.3f;
-			player.minionDamage *= 2.3f;
+			player.statLifeMax2 += 109;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.4f;
+			player.minionDamage *= 1.4f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Mewtwo!");
-			Description.SetDefault("Mewtwo was sent out!");
+			Description.SetDefault("+106 HP\n+1.5x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.5x Magic/Summon Damage\n+12 Magic/Summon Defense\n+0.7 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 12;
 			}
 			
-			player.statLifeMax2 += 150;
-			player.meleeDamage *= 2.5f;
-			player.rangedDamage *= 2.5f;
-			player.magicDamage *= 2.9f;
-			player.minionDamage *= 2.9f;
+			player.statLifeMax2 += 106;
+			player.meleeDamage *= 1.5f;
+			player.rangedDamage *= 1.5f;
+			player.magicDamage *= 1.5f;
+			player.minionDamage *= 1.5f;
 			player.maxRunSpeed += 0.7f;
 			
 			//modPlayer.numSpawned++;

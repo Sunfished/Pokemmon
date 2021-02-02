@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Cosmog!");
-			Description.SetDefault("Cosmog was sent out!");
+			Description.SetDefault("+43 HP\n+1.0x Melee/Ranged Damage\n+3 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+3 Magic/Summon Defense\n+0.2 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 3;
 			}
 			
-			player.statLifeMax2 += 29;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.statLifeMax2 += 43;
+			player.meleeDamage *= 1.0f;
+			player.rangedDamage *= 1.0f;
+			player.magicDamage *= 1.0f;
+			player.minionDamage *= 1.0f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

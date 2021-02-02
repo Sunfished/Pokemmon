@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Ribombee!");
-			Description.SetDefault("Ribombee was sent out!");
+			Description.SetDefault("+60 HP\n+1.1x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.6 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 7;
 			}
 			
-			player.statLifeMax2 += 55;
-			player.meleeDamage *= 1.6f;
-			player.rangedDamage *= 1.6f;
-			player.magicDamage *= 1.9f;
-			player.minionDamage *= 1.9f;
+			player.statLifeMax2 += 60;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.6f;
 			
 			//modPlayer.numSpawned++;

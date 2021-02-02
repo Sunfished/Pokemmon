@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Gabite!");
-			Description.SetDefault("Gabite was sent out!");
+			Description.SetDefault("+68 HP\n+1.3x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.4 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 5;
 			}
 			
-			player.statLifeMax2 += 90;
-			player.meleeDamage *= 1.9f;
-			player.rangedDamage *= 1.9f;
-			player.magicDamage *= 1.5f;
-			player.minionDamage *= 1.5f;
+			player.statLifeMax2 += 68;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

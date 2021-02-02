@@ -258,8 +258,12 @@ namespace Pokemmon.NPCs
 			shop.item[nextSlot].SetDefaults(mod.ItemType("NestBox"));
 			nextSlot++;
 			
+			//EverStone
+			shop.item[nextSlot].SetDefaults(mod.ItemType("ItemEverstone"));
+			nextSlot++;
+			
 			//Evolution Machine After Skeletron
-			if(NPC.downedBoss3)
+			if(NPC.downedBoss2)
 			{
 				shop.item[nextSlot].SetDefaults(mod.ItemType("EvolutionMachine"));
 				nextSlot++;

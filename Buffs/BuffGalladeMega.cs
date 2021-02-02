@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Gallade!");
-			Description.SetDefault("Gallade was sent out!");
+			Description.SetDefault("+68 HP\n+1.5x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.6 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 11;
 			}
 			
-			player.statLifeMax2 += 165;
-			player.meleeDamage *= 2.6f;
-			player.rangedDamage *= 2.6f;
-			player.magicDamage *= 1.6f;
-			player.minionDamage *= 1.6f;
+			player.statLifeMax2 += 68;
+			player.meleeDamage *= 1.5f;
+			player.rangedDamage *= 1.5f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.6f;
 			
 			//modPlayer.numSpawned++;

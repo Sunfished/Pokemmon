@@ -1,5 +1,11 @@
 Pokemmon is a mod that adds every Pokemon up to gen 8, (and their many formes), as summonable minions.
 Still WIP!
 
-Please visit the wiki for more information:
+Current features:
+- Obtain (almost) every Pokemon up to Gen 8 + DLC! (we're talking only 50 or so missing)
+- Pokemon Minions provide buffs based on their main game stats, making them all unique!
+- Obtain new Pokemon from the PokeBox, a grab-bag that grants a random base-stage Pokemon!
+- Evolve your Pokemon over the course of a playthrough, with only the strongest reserved for the end!
+
+Please visit the wiki for more information, such as when/how to obtain certain evolutions/forms and the buffs provided by each Pokemon:
 https://github.com/Sunfished/Pokemmon/wiki

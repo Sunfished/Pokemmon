@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Pyukumuku!");
-			Description.SetDefault("Pyukumuku was sent out!");
+			Description.SetDefault("+55 HP\n+1.2x Melee/Ranged Damage\n+13 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+13 Magic/Summon Defense\n+0.0 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 13;
 			}
 			
-			player.statLifeMax2 += 60;
-			player.meleeDamage *= 1.6f;
-			player.rangedDamage *= 1.6f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.statLifeMax2 += 55;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.0f;
 			
 			//modPlayer.numSpawned++;

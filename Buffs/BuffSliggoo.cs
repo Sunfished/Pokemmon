@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Sliggoo!");
-			Description.SetDefault("Sliggoo was sent out!");
+			Description.SetDefault("+68 HP\n+1.2x Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.3 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 11;
 			}
 			
-			player.statLifeMax2 += 75;
-			player.meleeDamage *= 1.8f;
-			player.rangedDamage *= 1.8f;
-			player.magicDamage *= 1.8f;
-			player.minionDamage *= 1.8f;
+			player.statLifeMax2 += 68;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

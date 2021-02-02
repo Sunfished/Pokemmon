@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Tauros!");
-			Description.SetDefault("Tauros was sent out!");
+			Description.SetDefault("+75 HP\n+1.3x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.6 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 7;
 			}
 			
-			player.statLifeMax2 += 100;
-			player.meleeDamage *= 2.0f;
-			player.rangedDamage *= 2.0f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.statLifeMax2 += 75;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.6f;
 			
 			//modPlayer.numSpawned++;

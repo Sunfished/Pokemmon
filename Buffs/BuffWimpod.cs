@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Wimpod!");
-			Description.SetDefault("Wimpod was sent out!");
+			Description.SetDefault("+25 HP\n+1.1x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+3 Magic/Summon Defense\n+0.4 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 3;
 			}
 			
-			player.statLifeMax2 += 35;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.statLifeMax2 += 25;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.0f;
+			player.minionDamage *= 1.0f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

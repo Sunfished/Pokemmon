@@ -65,6 +65,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe1 = new ModRecipe(mod);
 			recipe1.AddIngredient(this);
 			recipe1.AddIngredient(mod.GetItem("ItemShedShell"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyXS"),1);
 			recipe1.SetResult(mod.ItemType("ShedinjaBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
 			recipe1.AddRecipe();

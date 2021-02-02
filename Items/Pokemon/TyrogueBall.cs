@@ -58,6 +58,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
 			recipe0.AddIngredient(mod.GetItem("ItemPowerBracer"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe0.SetResult(mod.ItemType("HitmonleeBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();
@@ -65,6 +66,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe1 = new ModRecipe(mod);
 			recipe1.AddIngredient(this);
 			recipe1.AddIngredient(mod.GetItem("ItemPowerBelt"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe1.SetResult(mod.ItemType("HitmonchanBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
 			recipe1.AddRecipe();
@@ -72,6 +74,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe2 = new ModRecipe(mod);
 			recipe2.AddIngredient(this);
 			recipe2.AddIngredient(mod.GetItem("ItemPowerAnklet"),1);
+			recipe2.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe2.SetResult(mod.ItemType("HitmontopBall"));
 			recipe2.AddTile(mod.TileType("EvolutionMachine"));
 			recipe2.AddRecipe();

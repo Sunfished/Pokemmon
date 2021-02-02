@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Alakazam!");
-			Description.SetDefault("Alakazam was sent out!");
+			Description.SetDefault("+55 HP\n+1.1x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.5x Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.8 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 10;
 			}
 			
-			player.statLifeMax2 += 50;
-			player.meleeDamage *= 1.5f;
-			player.rangedDamage *= 1.5f;
-			player.magicDamage *= 2.8f;
-			player.minionDamage *= 2.8f;
+			player.statLifeMax2 += 55;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.5f;
+			player.minionDamage *= 1.5f;
 			player.maxRunSpeed += 0.8f;
 			
 			//modPlayer.numSpawned++;

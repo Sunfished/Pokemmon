@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Darmanitan!");
-			Description.SetDefault("Darmanitan was sent out!");
+			Description.SetDefault("+105 HP\n+1.5x Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.7 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 5;
 			}
 			
-			player.statLifeMax2 += 160;
-			player.meleeDamage *= 2.6f;
-			player.rangedDamage *= 2.6f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.statLifeMax2 += 105;
+			player.meleeDamage *= 1.5f;
+			player.rangedDamage *= 1.5f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.7f;
 			
 			//modPlayer.numSpawned++;

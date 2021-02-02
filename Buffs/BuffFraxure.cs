@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Fraxure!");
-			Description.SetDefault("Fraxure was sent out!");
+			Description.SetDefault("+66 HP\n+1.3x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.3 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 5;
 			}
 			
-			player.statLifeMax2 += 117;
-			player.meleeDamage *= 2.2f;
-			player.rangedDamage *= 2.2f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.statLifeMax2 += 66;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

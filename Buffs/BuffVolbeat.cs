@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Volbeat!");
-			Description.SetDefault("Volbeat was sent out!");
+			Description.SetDefault("+65 HP\n+1.2x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.4 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 8;
 			}
 			
-			player.statLifeMax2 += 73;
-			player.meleeDamage *= 1.7f;
-			player.rangedDamage *= 1.7f;
-			player.magicDamage *= 1.5f;
-			player.minionDamage *= 1.5f;
+			player.statLifeMax2 += 65;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

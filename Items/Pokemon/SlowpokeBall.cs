@@ -66,6 +66,7 @@ namespace Pokemmon.Items.Pokemon
 			recipe1.AddIngredient(this);
 			recipe1.AddIngredient(mod.GetItem("ItemLinkCable"),1);
 			recipe1.AddIngredient(mod.GetItem("ItemKingsRock"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe1.SetResult(mod.ItemType("SlowkingBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
 			recipe1.AddRecipe();

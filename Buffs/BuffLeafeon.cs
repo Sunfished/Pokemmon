@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Leafeon!");
-			Description.SetDefault("Leafeon was sent out!");
+			Description.SetDefault("+65 HP\n+1.3x Melee/Ranged Damage\n+13 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.5 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 6;
 			}
 			
-			player.statLifeMax2 += 110;
-			player.meleeDamage *= 2.1f;
-			player.rangedDamage *= 2.1f;
-			player.magicDamage *= 1.6f;
-			player.minionDamage *= 1.6f;
+			player.statLifeMax2 += 65;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Wishiwashi!");
-			Description.SetDefault("Wishiwashi was sent out!");
+			Description.SetDefault("+45 HP\n+1.4x Melee/Ranged Damage\n+13 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+13 Magic/Summon Defense\n+0.1 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 13;
 			}
 			
-			player.statLifeMax2 += 140;
-			player.meleeDamage *= 2.4f;
-			player.rangedDamage *= 2.4f;
-			player.magicDamage *= 2.4f;
-			player.minionDamage *= 2.4f;
+			player.statLifeMax2 += 45;
+			player.meleeDamage *= 1.4f;
+			player.rangedDamage *= 1.4f;
+			player.magicDamage *= 1.4f;
+			player.minionDamage *= 1.4f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Eternatus!");
-			Description.SetDefault("Eternatus was sent out!");
+			Description.SetDefault("+255 HP\n+1.3x Melee/Ranged Damage\n+25 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+25 Magic/Summon Defense\n+0.7 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 25;
 			}
 			
-			player.statLifeMax2 += 115;
-			player.meleeDamage *= 2.1f;
-			player.rangedDamage *= 2.1f;
-			player.magicDamage *= 2.2f;
-			player.minionDamage *= 2.2f;
+			player.statLifeMax2 += 255;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.4f;
+			player.minionDamage *= 1.4f;
 			player.maxRunSpeed += 0.7f;
 			
 			//modPlayer.numSpawned++;

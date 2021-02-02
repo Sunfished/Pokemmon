@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Rayquaza!");
-			Description.SetDefault("Rayquaza was sent out!");
+			Description.SetDefault("+105 HP\n+1.5x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.5x Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.6 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 10;
 			}
 			
-			player.statLifeMax2 += 180;
-			player.meleeDamage *= 2.8f;
-			player.rangedDamage *= 2.8f;
-			player.magicDamage *= 2.8f;
-			player.minionDamage *= 2.8f;
+			player.statLifeMax2 += 105;
+			player.meleeDamage *= 1.5f;
+			player.rangedDamage *= 1.5f;
+			player.magicDamage *= 1.5f;
+			player.minionDamage *= 1.5f;
 			player.maxRunSpeed += 0.6f;
 			
 			//modPlayer.numSpawned++;

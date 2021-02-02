@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Tangela!");
-			Description.SetDefault("Tangela was sent out!");
+			Description.SetDefault("+65 HP\n+1.1x Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.3 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 4;
 			}
 			
-			player.statLifeMax2 += 55;
-			player.meleeDamage *= 1.6f;
-			player.rangedDamage *= 1.6f;
-			player.magicDamage *= 2.0f;
-			player.minionDamage *= 2.0f;
+			player.statLifeMax2 += 65;
+			player.meleeDamage *= 1.1f;
+			player.rangedDamage *= 1.1f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

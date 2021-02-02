@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Mismagius!");
-			Description.SetDefault("Mismagius was sent out!");
+			Description.SetDefault("+60 HP\n+1.2x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.5 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -41,10 +41,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 60;
-			player.meleeDamage *= 1.6f;
-			player.rangedDamage *= 1.6f;
-			player.magicDamage *= 2.0f;
-			player.minionDamage *= 2.0f;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

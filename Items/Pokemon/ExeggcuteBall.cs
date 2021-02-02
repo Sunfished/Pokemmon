@@ -58,6 +58,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
 			recipe0.AddIngredient(mod.GetItem("ItemLeafStone"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyL"),1);
 			recipe0.SetResult(mod.ItemType("ExeggutorBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();
@@ -66,6 +67,7 @@ namespace Pokemmon.Items.Pokemon
 			recipe1.AddIngredient(this);
 			recipe1.AddIngredient(mod.GetItem("ItemLeafStone"),1);
 			recipe1.AddIngredient(mod.GetItem("ItemMalasada"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyL"),1);
 			recipe1.SetResult(mod.ItemType("ExeggutorAlolaBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
 			recipe1.AddRecipe();

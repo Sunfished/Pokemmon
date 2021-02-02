@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Yungoos!");
-			Description.SetDefault("Yungoos was sent out!");
+			Description.SetDefault("+48 HP\n+1.2x Melee/Ranged Damage\n+3 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+3 Magic/Summon Defense\n+0.2 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 3;
 			}
 			
-			player.statLifeMax2 += 70;
-			player.meleeDamage *= 1.7f;
-			player.rangedDamage *= 1.7f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.statLifeMax2 += 48;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

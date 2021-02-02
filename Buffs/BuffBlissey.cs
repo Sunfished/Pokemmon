@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Blissey!");
-			Description.SetDefault("Blissey was sent out!");
+			Description.SetDefault("+255 HP\n+1.0x Melee/Ranged Damage\n+1 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+13 Magic/Summon Defense\n+0.3 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 13;
 			}
 			
-			player.statLifeMax2 += 10;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.8f;
-			player.minionDamage *= 1.8f;
+			player.statLifeMax2 += 255;
+			player.meleeDamage *= 1.0f;
+			player.rangedDamage *= 1.0f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

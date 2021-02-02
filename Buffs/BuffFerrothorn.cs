@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Ferrothorn!");
-			Description.SetDefault("Ferrothorn was sent out!");
+			Description.SetDefault("+74 HP\n+1.3x Melee/Ranged Damage\n+13 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.1 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 11;
 			}
 			
-			player.statLifeMax2 += 94;
-			player.meleeDamage *= 1.9f;
-			player.rangedDamage *= 1.9f;
-			player.magicDamage *= 1.5f;
-			player.minionDamage *= 1.5f;
+			player.statLifeMax2 += 74;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Tranquill!");
-			Description.SetDefault("Tranquill was sent out!");
+			Description.SetDefault("+62 HP\n+1.2x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.3 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 4;
 			}
 			
-			player.statLifeMax2 += 77;
-			player.meleeDamage *= 1.8f;
-			player.rangedDamage *= 1.8f;
-			player.magicDamage *= 1.5f;
-			player.minionDamage *= 1.5f;
+			player.statLifeMax2 += 62;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.1f;
+			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

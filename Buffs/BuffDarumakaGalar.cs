@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Darumaka!");
-			Description.SetDefault("Darumaka was sent out!");
+			Description.SetDefault("+70 HP\n+1.3x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.2 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 4;
 			}
 			
-			player.statLifeMax2 += 90;
-			player.meleeDamage *= 1.9f;
-			player.rangedDamage *= 1.9f;
-			player.magicDamage *= 1.1f;
-			player.minionDamage *= 1.1f;
+			player.statLifeMax2 += 70;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.0f;
+			player.minionDamage *= 1.0f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

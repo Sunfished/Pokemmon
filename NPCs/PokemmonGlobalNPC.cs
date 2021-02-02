@@ -72,6 +72,17 @@ namespace PokemmonGlobalNPC.NPCs
 				nextSlot++;
 			}
 			
+			//Demolitionist
+			else if (type == NPCID.Demolitionist)
+			{
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemPowerBracer>());
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemPowerAnklet>());
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemPowerBelt>());
+				nextSlot++;
+			}
+			
 			//Party Girl
 			else if (type == NPCID.PartyGirl)
 			{
@@ -105,12 +116,56 @@ namespace PokemmonGlobalNPC.NPCs
 				nextSlot++;
 			}
 			
+			//Wizard
+			else if (type == NPCID.Wizard)
+			{
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemDragonScale>());
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemReaperCloth>());
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemMetronome>());
+				nextSlot++;
+			}
+			
+			//Steampunker
+			else if (type == NPCID.Steampunker)
+			{
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemMagmarizer>());
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemElectrizer>());
+				nextSlot++;
+			}
+			
 			//Arms Dealer
 			else if (type == NPCID.ArmsDealer)
 			{
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemMetalCoat>());
 				nextSlot++;
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemProtector>());
+				nextSlot++;
 			}
+			
+			//Cyborg
+			else if (type == NPCID.Cyborg)
+			{
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemDubiousDisc>());
+				nextSlot++;
+			}
+
+			//Mechanic
+			else if (type == NPCID.Mechanic)
+			{
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemUpGrade>());
+				nextSlot++;
+			}
+			
+			//Painter
+			else if (type == NPCID.Painter)
+			{
+				shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemOvalStone>());
+				nextSlot++;
+			}
+
 			
 			//Stylist
 			else if (type == NPCID.Stylist)

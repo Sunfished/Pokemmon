@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Keldeo!");
-			Description.SetDefault("Keldeo was sent out!");
+			Description.SetDefault("+91 HP\n+1.2x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+9 Magic/Summon Defense\n+0.5 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 9;
 			}
 			
-			player.statLifeMax2 += 72;
-			player.meleeDamage *= 1.7f;
-			player.rangedDamage *= 1.7f;
-			player.magicDamage *= 2.3f;
-			player.minionDamage *= 2.3f;
+			player.statLifeMax2 += 91;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.4f;
+			player.minionDamage *= 1.4f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

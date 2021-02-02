@@ -58,6 +58,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
 			recipe0.AddIngredient(mod.GetItem("ItemWaterStone"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyL"),1);
 			recipe0.SetResult(mod.ItemType("PoliwrathBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();
@@ -66,6 +67,7 @@ namespace Pokemmon.Items.Pokemon
 			recipe1.AddIngredient(this);
 			recipe1.AddIngredient(mod.GetItem("ItemLinkCable"),1);
 			recipe1.AddIngredient(mod.GetItem("ItemKingsRock"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyL"),1);
 			recipe1.SetResult(mod.ItemType("PolitoedBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
 			recipe1.AddRecipe();

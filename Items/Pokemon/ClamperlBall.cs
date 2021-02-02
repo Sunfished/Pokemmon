@@ -59,6 +59,7 @@ namespace Pokemmon.Items.Pokemon
 			recipe0.AddIngredient(this);
 			recipe0.AddIngredient(mod.GetItem("ItemLinkCable"),1);
 			recipe0.AddIngredient(mod.GetItem("ItemDeepSeaTooth"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe0.SetResult(mod.ItemType("HuntailBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();
@@ -67,6 +68,7 @@ namespace Pokemmon.Items.Pokemon
 			recipe1.AddIngredient(this);
 			recipe1.AddIngredient(mod.GetItem("ItemLinkCable"),1);
 			recipe1.AddIngredient(mod.GetItem("ItemDeepSeaScale"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe1.SetResult(mod.ItemType("GorebyssBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
 			recipe1.AddRecipe();

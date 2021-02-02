@@ -66,6 +66,7 @@ namespace Pokemmon.Items.Pokemon
 			recipe1.AddIngredient(this);
 			recipe1.AddIngredient(mod.GetItem("ItemDawnStone"),1);
 			recipe1.AddIngredient(mod.GetItem("ItemMPheromone"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyL"),1);
 			recipe1.SetResult(mod.ItemType("GalladeBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
 			recipe1.AddRecipe();

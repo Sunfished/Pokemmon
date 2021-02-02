@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Krabby!");
-			Description.SetDefault("Krabby was sent out!");
+			Description.SetDefault("+30 HP\n+1.3x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+2 Magic/Summon Defense\n+0.2 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 2;
 			}
 			
-			player.statLifeMax2 += 105;
-			player.meleeDamage *= 2.0f;
-			player.rangedDamage *= 2.0f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.statLifeMax2 += 30;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.0f;
+			player.minionDamage *= 1.0f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

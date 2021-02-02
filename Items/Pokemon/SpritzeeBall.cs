@@ -59,6 +59,7 @@ namespace Pokemmon.Items.Pokemon
 			recipe0.AddIngredient(this);
 			recipe0.AddIngredient(mod.GetItem("ItemSachet"),1);
 			recipe0.AddIngredient(mod.GetItem("ItemLinkCable"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe0.SetResult(mod.ItemType("AromatisseBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();

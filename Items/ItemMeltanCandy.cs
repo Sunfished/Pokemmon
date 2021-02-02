@@ -21,7 +21,7 @@ namespace Pokemmon.Items
 			item.rare = 2;
 			item.UseSound = SoundID.Item4;//Like Fallen Star
             item.maxStack = 999;
-			item.value = 500000;
+			item.value = 300000;
 		}
 		
 		

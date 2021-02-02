@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Volcanion!");
-			Description.SetDefault("Volcanion was sent out!");
+			Description.SetDefault("+80 HP\n+1.3x Melee/Ranged Damage\n+12 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+9 Magic/Summon Defense\n+0.3 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 9;
 			}
 			
-			player.statLifeMax2 += 110;
-			player.meleeDamage *= 2.1f;
-			player.rangedDamage *= 2.1f;
-			player.magicDamage *= 2.3f;
-			player.minionDamage *= 2.3f;
+			player.statLifeMax2 += 80;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.4f;
+			player.minionDamage *= 1.4f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, C-1!");
-			Description.SetDefault("C-1 was sent out!");
+			Description.SetDefault("+1 HP\n+1.0x Melee/Ranged Damage\n+0 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+0 Magic/Summon Defense\n+0.0 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

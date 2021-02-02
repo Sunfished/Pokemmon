@@ -7,7 +7,7 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Xurkitree!");
-			Description.SetDefault("Xurkitree was sent out!");
+			Description.SetDefault("+83 HP\n+1.2x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.5x Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.4 Speed");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -40,11 +40,11 @@ namespace Pokemmon.Buffs
 				player.statDefense += 7;
 			}
 			
-			player.statLifeMax2 += 89;
-			player.meleeDamage *= 1.9f;
-			player.rangedDamage *= 1.9f;
-			player.magicDamage *= 2.7f;
-			player.minionDamage *= 2.7f;
+			player.statLifeMax2 += 83;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.5f;
+			player.minionDamage *= 1.5f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;
