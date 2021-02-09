@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Blacephalon!");
-			Description.SetDefault("+53 HP\n+1.4x Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+1.5x Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+53 HP\n+25% Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+30% Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.5 Speed\nFire Type: Lights up area\nGhost Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Blacephalon")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Blacephalon")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedBlacephalon = true;
+				modPlayer.buffFireType = true;
+				modPlayer.buffGhostType = true;
 			}
-			if (!modPlayer.summonedBlacephalon) {
+			if (!modPlayer.summonedBlacephalon || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffFireType = false;
+				modPlayer.buffGhostType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 53;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
-			player.magicDamage *= 1.5f;
-			player.minionDamage *= 1.5f;
+			player.meleeDamage *= 1.25f;
+			player.rangedDamage *= 1.25f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

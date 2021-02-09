@@ -58,7 +58,7 @@ namespace Pokemmon.NPCs
 		}//*/
 
 		public override bool CanTownNPCSpawn(int numTownNPCs, int money) {
-			if (NPC.downedBoss1)  //so after the EoC is killed
+			if (NPC.downedSlimeKing)  //spawn after King Slime
             {
                 return true;
             }
@@ -262,7 +262,7 @@ namespace Pokemmon.NPCs
 			shop.item[nextSlot].SetDefaults(mod.ItemType("ItemEverstone"));
 			nextSlot++;
 			
-			//Evolution Machine After Skeletron
+			//Evolution Machine After Brain/Worm
 			if(NPC.downedBoss2)
 			{
 				shop.item[nextSlot].SetDefaults(mod.ItemType("EvolutionMachine"));

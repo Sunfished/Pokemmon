@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Tyranitar!");
-			Description.SetDefault("+100 HP\n+1.5x Melee/Ranged Damage\n+15 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+12 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+100 HP\n+30% Melee/Ranged Damage\n+15 Melee/Ranged Defense\n+19% Magic/Summon Damage\n+12 Magic/Summon Defense\n+0.4 Speed\nRock Type: Increases Knockback\nDark Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("TyranitarMega")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("TyranitarMega")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedTyranitarMega = true;
+				modPlayer.buffRockType = true;
+				modPlayer.buffDarkType = true;
 			}
-			if (!modPlayer.summonedTyranitarMega) {
+			if (!modPlayer.summonedTyranitarMega || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffRockType = false;
+				modPlayer.buffDarkType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 100;
-			player.meleeDamage *= 1.5f;
-			player.rangedDamage *= 1.5f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.19f;
+			player.minionDamage *= 1.19f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

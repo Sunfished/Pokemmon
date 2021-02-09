@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Hydreigon!");
-			Description.SetDefault("+92 HP\n+1.3x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+9 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+92 HP\n+21% Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+25% Magic/Summon Damage\n+9 Magic/Summon Defense\n+0.5 Speed\nDark Type: Unimplemented Effect\nDragon Type: Multitude of effects when HP < 20%");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Hydreigon")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Hydreigon")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedHydreigon = true;
+				modPlayer.buffDarkType = true;
+				modPlayer.buffDragonType = true;
 			}
-			if (!modPlayer.summonedHydreigon) {
+			if (!modPlayer.summonedHydreigon || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffDarkType = false;
+				modPlayer.buffDragonType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 92;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.meleeDamage *= 1.21f;
+			player.rangedDamage *= 1.21f;
+			player.magicDamage *= 1.25f;
+			player.minionDamage *= 1.25f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

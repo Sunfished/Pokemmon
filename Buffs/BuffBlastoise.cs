@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Blastoise!");
-			Description.SetDefault("+79 HP\n+1.2x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+79 HP\n+16% Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+17% Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.4 Speed\nWater Type: Allows swimming and water breathing");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Blastoise")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Blastoise")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedBlastoise = true;
+				modPlayer.buffWaterType = true;
 			}
-			if (!modPlayer.summonedBlastoise) {
+			if (!modPlayer.summonedBlastoise || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffWaterType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 79;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.16f;
+			player.rangedDamage *= 1.16f;
+			player.magicDamage *= 1.17f;
+			player.minionDamage *= 1.17f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

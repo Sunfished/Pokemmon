@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Manectric!");
-			Description.SetDefault("+70 HP\n+1.2x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+70 HP\n+15% Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+21% Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.5 Speed\nElectric Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Manectric")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Manectric")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedManectric = true;
+				modPlayer.buffElectricType = true;
 			}
-			if (!modPlayer.summonedManectric) {
+			if (!modPlayer.summonedManectric || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffElectricType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 70;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.meleeDamage *= 1.15f;
+			player.rangedDamage *= 1.15f;
+			player.magicDamage *= 1.21f;
+			player.minionDamage *= 1.21f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

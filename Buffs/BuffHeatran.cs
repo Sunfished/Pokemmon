@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Heatran!");
-			Description.SetDefault("+91 HP\n+1.3x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+91 HP\n+18% Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+26% Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.4 Speed\nFire Type: Lights up area\nSteel Type: Decreases incoming DMG by 20%");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Heatran")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Heatran")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedHeatran = true;
+				modPlayer.buffFireType = true;
+				modPlayer.buffSteelType = true;
 			}
-			if (!modPlayer.summonedHeatran) {
+			if (!modPlayer.summonedHeatran || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffFireType = false;
+				modPlayer.buffSteelType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 91;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.meleeDamage *= 1.18f;
+			player.rangedDamage *= 1.18f;
+			player.magicDamage *= 1.26f;
+			player.minionDamage *= 1.26f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

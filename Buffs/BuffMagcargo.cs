@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Magcargo!");
-			Description.SetDefault("+60 HP\n+1.1x Melee/Ranged Damage\n+12 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.1 Speed");
+			Description.SetDefault("+60 HP\n+10% Melee/Ranged Damage\n+12 Melee/Ranged Defense\n+18% Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.1 Speed\nFire Type: Lights up area\nRock Type: Increases Knockback");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Magcargo")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Magcargo")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedMagcargo = true;
+				modPlayer.buffFireType = true;
+				modPlayer.buffRockType = true;
 			}
-			if (!modPlayer.summonedMagcargo) {
+			if (!modPlayer.summonedMagcargo || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffFireType = false;
+				modPlayer.buffRockType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -43,8 +46,8 @@ namespace Pokemmon.Buffs
 			player.statLifeMax2 += 60;
 			player.meleeDamage *= 1.1f;
 			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.magicDamage *= 1.18f;
+			player.minionDamage *= 1.18f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

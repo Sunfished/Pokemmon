@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Diggersby!");
-			Description.SetDefault("+85 HP\n+1.1x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+85 HP\n+11% Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+10% Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.4 Speed\nNormal Type: Unimplemented Effect\nGround Type: Nullifies Knockback");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Diggersby")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Diggersby")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedDiggersby = true;
+				modPlayer.buffNormalType = true;
+				modPlayer.buffGroundType = true;
 			}
-			if (!modPlayer.summonedDiggersby) {
+			if (!modPlayer.summonedDiggersby || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffNormalType = false;
+				modPlayer.buffGroundType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,8 +44,8 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 85;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
+			player.meleeDamage *= 1.11f;
+			player.rangedDamage *= 1.11f;
 			player.magicDamage *= 1.1f;
 			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.4f;

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Gardevoir!");
-			Description.SetDefault("+68 HP\n+1.2x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+68 HP\n+13% Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+25% Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.4 Speed\nPsychic Type: Regens Mana faster\nFairy Type: Regens HP during nighttime");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Gardevoir")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Gardevoir")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedGardevoir = true;
+				modPlayer.buffPsychicType = true;
+				modPlayer.buffFairyType = true;
 			}
-			if (!modPlayer.summonedGardevoir) {
+			if (!modPlayer.summonedGardevoir || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffPsychicType = false;
+				modPlayer.buffFairyType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 68;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.meleeDamage *= 1.13f;
+			player.rangedDamage *= 1.13f;
+			player.magicDamage *= 1.25f;
+			player.minionDamage *= 1.25f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

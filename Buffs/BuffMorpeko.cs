@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Morpeko!");
-			Description.SetDefault("+58 HP\n+1.3x Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+58 HP\n+19% Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+14% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.5 Speed\nElectric Type: Unimplemented Effect\nDark Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Morpeko")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Morpeko")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedMorpeko = true;
+				modPlayer.buffElectricType = true;
+				modPlayer.buffDarkType = true;
 			}
-			if (!modPlayer.summonedMorpeko) {
+			if (!modPlayer.summonedMorpeko || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffElectricType = false;
+				modPlayer.buffDarkType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 58;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.19f;
+			player.rangedDamage *= 1.19f;
+			player.magicDamage *= 1.14f;
+			player.minionDamage *= 1.14f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

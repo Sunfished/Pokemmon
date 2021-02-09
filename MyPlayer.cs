@@ -15,12 +15,28 @@ namespace Pokemmon
 {
 	public class MyPlayer : ModPlayer
 	{
-		//buff stats
-		//public float boostAttack = 0f;
-		//public float boostDefense = 0f;
-		//public int numSpawned = 0;//Number of currently active Pokemon
+		//type buff effects
+		public bool buffNormalType;
+		public bool buffGrassType;
+		public bool buffFireType;
+		public bool buffWaterType;
+		public bool buffElectricType;
+		public bool buffFlyingType;
+		public bool buffBugType;
+		public bool buffFightingType;
+		public bool buffPoisonType;
+		public bool buffRockType;
+		public bool buffGroundType;
+		public bool buffSteelType;
+		public bool buffIceType;
+		public bool buffPsychicType;
+		public bool buffDarkType;
+		public bool buffGhostType;
+		public bool buffDragonType;
+		public bool buffFairyType;
 		
-		//public List<float> attackList = new List<float>();
+		//other
+		public int pokemonAmount;		
 		
 		//public bool summonedBulbasaur;
 		public bool summonedBulbasaur;
@@ -1269,7 +1285,7 @@ namespace Pokemmon
 		public bool summonedMonohm;
 		public bool summonedDuohm;
 		public bool summonedCyclohm;
-		public bool summonedC1;
+		public bool summonedDorsoil;
 		public bool summonedColossoil;
 		public bool summonedProtowatt;
 		public bool summonedKrilowatt;
@@ -1318,7 +1334,8 @@ namespace Pokemmon
 		public bool summonedMiasmaw;
 
 
-		public override void ResetEffects() {
+		public override void ResetEffects() {			
+			
 			//summonedBulbasaur = false;
 			summonedBulbasaur = false;
 			summonedIvysaur = false;
@@ -2566,7 +2583,7 @@ namespace Pokemmon
 			summonedMonohm = false;
 			summonedDuohm = false;
 			summonedCyclohm = false;
-			summonedC1 = false;
+			summonedDorsoil = false;
 			summonedColossoil = false;
 			summonedProtowatt = false;
 			summonedKrilowatt = false;
@@ -2625,21 +2642,87 @@ namespace Pokemmon
 			items.Add(item);
 		}
 		
-		/*public override void PostUpdate() {
-		
-			if(numSpawned > 0)
+		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource) {
+			
+			//Immunity to knockback
+			if (buffGroundType)
 			{
-				//Reset all boosts back to 0
-				boostAttack = 0f;
-				boostDefense = 0f;
-				
-				float bAttack = boostAttack/numSpawned;
-				player.meleeDamage *= bAttack;
-				
-				mod.Logger.Info("Boost Attack = " + bAttack.ToString());
-				
-				numSpawned = 0;
+				hitDirection = 0;
 			}
-		}//*/
+			
+			return true;
+		}
+
+		
+		public override void PreUpdateBuffs() {
+			
+			//Dragon - Multiple buffs when hp dips below 1/5 max
+			bool canDragon = (buffDragonType && player.statLife <= (player.statLifeMax+player.statLifeMax2)/5);
+			if (canDragon)
+			{
+				if (!player.HasBuff(BuffID.Regeneration))
+					player.AddBuff(BuffID.Regeneration,1);
+			}
+			
+			//Grass - HP Regeneration during Day
+			if (buffGrassType)
+			{
+				if (!player.HasBuff(BuffID.Regeneration) && Main.dayTime)
+					player.AddBuff(BuffID.Regeneration,1);
+			}
+			
+			//Fire - Shine Buff
+			if (buffFireType)
+			{
+				if (!player.HasBuff(BuffID.Shine))
+					player.AddBuff(BuffID.Shine,1);
+			}
+			
+			//Water - Gills + Flipper Buff
+			if (buffWaterType)
+			{
+				if (!player.HasBuff(BuffID.Flipper))
+					player.AddBuff(BuffID.Flipper,1);
+				if (!player.HasBuff(BuffID.Gills))
+					player.AddBuff(BuffID.Gills,1);
+			}
+			
+			if (buffFlyingType)
+			{
+				if (!player.HasBuff(BuffID.Featherfall))
+					player.AddBuff(BuffID.Featherfall,1);
+			}
+			
+			if (buffFightingType || canDragon)
+			{
+				if (!player.HasBuff(BuffID.Rage))
+					player.AddBuff(BuffID.Rage,1);
+			}
+			
+			if (buffRockType || canDragon)
+			{
+				if (!player.HasBuff(BuffID.Titan))
+					player.AddBuff(BuffID.Titan,1);
+			}
+			
+			if (buffPsychicType || canDragon)
+			{
+				if (!player.HasBuff(BuffID.ManaRegeneration))
+					player.AddBuff(BuffID.ManaRegeneration,1);
+			}
+			
+			if (buffSteelType || canDragon)
+			{
+				if (!player.HasBuff(BuffID.Endurance))
+					player.AddBuff(BuffID.Endurance,1);
+			}
+			
+			//Fairy - HP Regeneration during Night
+			if (buffFairyType)
+			{
+				if (!player.HasBuff(BuffID.Regeneration) && !Main.dayTime)
+					player.AddBuff(BuffID.Regeneration,1);
+			}
+		}
 	}
 }

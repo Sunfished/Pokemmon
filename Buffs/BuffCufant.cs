@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Cufant!");
-			Description.SetDefault("+72 HP\n+1.2x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+72 HP\n+16% Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+8% Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.2 Speed\nSteel Type: Decreases incoming DMG by 20%");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Cufant")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Cufant")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedCufant = true;
+				modPlayer.buffSteelType = true;
 			}
-			if (!modPlayer.summonedCufant) {
+			if (!modPlayer.summonedCufant || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffSteelType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 72;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.1f;
-			player.minionDamage *= 1.1f;
+			player.meleeDamage *= 1.16f;
+			player.rangedDamage *= 1.16f;
+			player.magicDamage *= 1.08f;
+			player.minionDamage *= 1.08f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

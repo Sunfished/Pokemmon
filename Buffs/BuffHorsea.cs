@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Horsea!");
-			Description.SetDefault("+30 HP\n+1.1x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+2 Magic/Summon Defense\n+0.3 Speed");
+			Description.SetDefault("+30 HP\n+8% Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+14% Magic/Summon Damage\n+2 Magic/Summon Defense\n+0.3 Speed\nWater Type: Allows swimming and water breathing");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Horsea")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Horsea")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedHorsea = true;
+				modPlayer.buffWaterType = true;
 			}
-			if (!modPlayer.summonedHorsea) {
+			if (!modPlayer.summonedHorsea || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffWaterType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 30;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.08f;
+			player.rangedDamage *= 1.08f;
+			player.magicDamage *= 1.14f;
+			player.minionDamage *= 1.14f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

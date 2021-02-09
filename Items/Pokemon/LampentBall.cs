@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 0;
-			item.value = 200000;
+			item.value = 129411;
 			item.rare = 6;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Lampent");
@@ -43,6 +43,8 @@ namespace Pokemmon.Items.Pokemon
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
 			modPlayer.ResetEffects();
+			modPlayer.pokemonAmount++;
+			//modPlayer.summonedLampent = true;
 			return player.altFunctionUse != 2;
 		}
 

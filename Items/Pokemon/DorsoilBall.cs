@@ -6,16 +6,16 @@ using Terraria.ModLoader;
 namespace Pokemmon.Items.Pokemon
 {
 	//imported from my tAPI mod because I'm lazy
-	public class C1Ball : ModItem
+	public class DorsoilBall : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("C-1's Pokeball");
+			DisplayName.SetDefault("Dorsoil's Pokeball");
 			//Tooltip.SetDefault("");
 			
 		}
 
 		public override void SetDefaults() {
-			item.damage = 2;
+			item.damage = 16;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -25,12 +25,12 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 1;
-			item.value = 100000;
+			item.value = 199215;
 			item.rare = 10;
 			item.UseSound = SoundID.Item4;
-			item.shoot = mod.ProjectileType("C1");
+			item.shoot = mod.ProjectileType("Dorsoil");
 			item.shootSpeed = 10f;
-			item.buffType = mod.BuffType("BuffC1"); //The buff added to player after used the item
+			item.buffType = mod.BuffType("BuffDorsoil"); //The buff added to player after used the item
 			item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
 			item.stack = 1;
 			item.maxStack = 999;
@@ -43,6 +43,8 @@ namespace Pokemmon.Items.Pokemon
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
 			modPlayer.ResetEffects();
+			modPlayer.pokemonAmount++;
+			//modPlayer.summonedDorsoil = true;
 			return player.altFunctionUse != 2;
 		}
 

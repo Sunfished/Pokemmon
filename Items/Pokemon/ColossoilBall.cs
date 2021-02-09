@@ -15,7 +15,7 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 54;
+			item.damage = 27;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 11;
-			item.value = 500000;
+			item.value = 199215;
 			item.rare = 10;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Colossoil");
@@ -43,6 +43,8 @@ namespace Pokemmon.Items.Pokemon
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
 			modPlayer.ResetEffects();
+			modPlayer.pokemonAmount++;
+			//modPlayer.summonedColossoil = true;
 			return player.altFunctionUse != 2;
 		}
 
@@ -58,7 +60,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe99 = new ModRecipe(mod);
 			recipe99.AddIngredient(this);
 			recipe99.AddIngredient(mod.GetItem("ItemEverstone"),1);
-			recipe99.SetResult(mod.ItemType("C1Ball"));
+			recipe99.SetResult(mod.ItemType("DorsoilBall"));
 			recipe99.AddTile(mod.TileType("EvolutionMachine"));
 			recipe99.AddRecipe();
 

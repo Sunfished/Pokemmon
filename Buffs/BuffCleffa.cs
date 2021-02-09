@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Cleffa!");
-			Description.SetDefault("+50 HP\n+1.0x Melee/Ranged Damage\n+2 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.1 Speed");
+			Description.SetDefault("+50 HP\n+5% Melee/Ranged Damage\n+2 Melee/Ranged Defense\n+9% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.1 Speed\nFairy Type: Regens HP during nighttime");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Cleffa")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Cleffa")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedCleffa = true;
+				modPlayer.buffFairyType = true;
 			}
-			if (!modPlayer.summonedCleffa) {
+			if (!modPlayer.summonedCleffa || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffFairyType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 50;
-			player.meleeDamage *= 1.0f;
-			player.rangedDamage *= 1.0f;
-			player.magicDamage *= 1.1f;
-			player.minionDamage *= 1.1f;
+			player.meleeDamage *= 1.05f;
+			player.rangedDamage *= 1.05f;
+			player.magicDamage *= 1.09f;
+			player.minionDamage *= 1.09f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

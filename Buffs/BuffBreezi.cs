@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Breezi!");
-			Description.SetDefault("+50 HP\n+1.1x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+50 HP\n+9% Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+12% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.4 Speed\nPoison Type: Unimplemented Effect\nFlying Type: Descends slowly in the air");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Breezi")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Breezi")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedBreezi = true;
+				modPlayer.buffPoisonType = true;
+				modPlayer.buffFlyingType = true;
 			}
-			if (!modPlayer.summonedBreezi) {
+			if (!modPlayer.summonedBreezi || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffPoisonType = false;
+				modPlayer.buffFlyingType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 50;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.09f;
+			player.rangedDamage *= 1.09f;
+			player.magicDamage *= 1.12f;
+			player.minionDamage *= 1.12f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

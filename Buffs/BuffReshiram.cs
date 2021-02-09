@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Reshiram!");
-			Description.SetDefault("+100 HP\n+1.4x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.5x Magic/Summon Damage\n+12 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+100 HP\n+24% Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+30% Magic/Summon Damage\n+12 Magic/Summon Defense\n+0.5 Speed\nDragon Type: Multitude of effects when HP < 20%\nFire Type: Lights up area");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Reshiram")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Reshiram")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedReshiram = true;
+				modPlayer.buffDragonType = true;
+				modPlayer.buffFireType = true;
 			}
-			if (!modPlayer.summonedReshiram) {
+			if (!modPlayer.summonedReshiram || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffDragonType = false;
+				modPlayer.buffFireType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 100;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
-			player.magicDamage *= 1.5f;
-			player.minionDamage *= 1.5f;
+			player.meleeDamage *= 1.24f;
+			player.rangedDamage *= 1.24f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

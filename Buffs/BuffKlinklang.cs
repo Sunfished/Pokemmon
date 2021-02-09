@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Klinklang!");
-			Description.SetDefault("+60 HP\n+1.3x Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+60 HP\n+20% Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+14% Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.5 Speed\nSteel Type: Decreases incoming DMG by 20%");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Klinklang")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Klinklang")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedKlinklang = true;
+				modPlayer.buffSteelType = true;
 			}
-			if (!modPlayer.summonedKlinklang) {
+			if (!modPlayer.summonedKlinklang || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffSteelType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 60;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.14f;
+			player.minionDamage *= 1.14f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

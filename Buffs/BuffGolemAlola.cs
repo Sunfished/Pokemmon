@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Golem!");
-			Description.SetDefault("+80 HP\n+1.4x Melee/Ranged Damage\n+13 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+80 HP\n+24% Melee/Ranged Damage\n+13 Melee/Ranged Defense\n+11% Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.2 Speed\nRock Type: Increases Knockback\nElectric Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("GolemAlola")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("GolemAlola")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedGolemAlola = true;
+				modPlayer.buffRockType = true;
+				modPlayer.buffElectricType = true;
 			}
-			if (!modPlayer.summonedGolemAlola) {
+			if (!modPlayer.summonedGolemAlola || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffRockType = false;
+				modPlayer.buffElectricType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 80;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
-			player.magicDamage *= 1.1f;
-			player.minionDamage *= 1.1f;
+			player.meleeDamage *= 1.24f;
+			player.rangedDamage *= 1.24f;
+			player.magicDamage *= 1.11f;
+			player.minionDamage *= 1.11f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

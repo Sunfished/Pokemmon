@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Binacle!");
-			Description.SetDefault("+42 HP\n+1.1x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+42 HP\n+10% Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+7% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.2 Speed\nRock Type: Increases Knockback\nWater Type: Allows swimming and water breathing");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Binacle")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Binacle")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedBinacle = true;
+				modPlayer.buffRockType = true;
+				modPlayer.buffWaterType = true;
 			}
-			if (!modPlayer.summonedBinacle) {
+			if (!modPlayer.summonedBinacle || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffRockType = false;
+				modPlayer.buffWaterType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -43,8 +46,8 @@ namespace Pokemmon.Buffs
 			player.statLifeMax2 += 42;
 			player.meleeDamage *= 1.1f;
 			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.1f;
-			player.minionDamage *= 1.1f;
+			player.magicDamage *= 1.07f;
+			player.minionDamage *= 1.07f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

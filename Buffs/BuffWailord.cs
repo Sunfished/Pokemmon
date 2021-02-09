@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Wailord!");
-			Description.SetDefault("+170 HP\n+1.3x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.3 Speed");
+			Description.SetDefault("+170 HP\n+18% Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+18% Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.3 Speed\nWater Type: Allows swimming and water breathing");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Wailord")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Wailord")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedWailord = true;
+				modPlayer.buffWaterType = true;
 			}
-			if (!modPlayer.summonedWailord) {
+			if (!modPlayer.summonedWailord || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffWaterType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 170;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.meleeDamage *= 1.18f;
+			player.rangedDamage *= 1.18f;
+			player.magicDamage *= 1.18f;
+			player.minionDamage *= 1.18f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

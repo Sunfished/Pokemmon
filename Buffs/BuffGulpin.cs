@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Gulpin!");
-			Description.SetDefault("+70 HP\n+1.1x Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+70 HP\n+8% Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+8% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.2 Speed\nPoison Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Gulpin")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Gulpin")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedGulpin = true;
+				modPlayer.buffPoisonType = true;
 			}
-			if (!modPlayer.summonedGulpin) {
+			if (!modPlayer.summonedGulpin || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffPoisonType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 70;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.1f;
-			player.minionDamage *= 1.1f;
+			player.meleeDamage *= 1.08f;
+			player.rangedDamage *= 1.08f;
+			player.magicDamage *= 1.08f;
+			player.minionDamage *= 1.08f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

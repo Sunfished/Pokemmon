@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Happiny!");
-			Description.SetDefault("+100 HP\n+1.0x Melee/Ranged Damage\n+0 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.1 Speed");
+			Description.SetDefault("+100 HP\n+1% Melee/Ranged Damage\n+0 Melee/Ranged Defense\n+3% Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.1 Speed\nNormal Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Happiny")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Happiny")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedHappiny = true;
+				modPlayer.buffNormalType = true;
 			}
-			if (!modPlayer.summonedHappiny) {
+			if (!modPlayer.summonedHappiny || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffNormalType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 100;
-			player.meleeDamage *= 1.0f;
-			player.rangedDamage *= 1.0f;
-			player.magicDamage *= 1.0f;
-			player.minionDamage *= 1.0f;
+			player.meleeDamage *= 1.01f;
+			player.rangedDamage *= 1.01f;
+			player.magicDamage *= 1.03f;
+			player.minionDamage *= 1.03f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

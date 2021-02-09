@@ -15,7 +15,7 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 25;
+			item.damage = 24;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 0;
-			item.value = 200000;
+			item.value = 129411;
 			item.rare = 6;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Doublade");
@@ -43,6 +43,8 @@ namespace Pokemmon.Items.Pokemon
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
 			modPlayer.ResetEffects();
+			modPlayer.pokemonAmount++;
+			//modPlayer.summonedDoublade = true;
 			return player.altFunctionUse != 2;
 		}
 
@@ -58,7 +60,7 @@ namespace Pokemmon.Items.Pokemon
 			ModRecipe recipe0 = new ModRecipe(mod);
 			recipe0.AddIngredient(this);
 			recipe0.AddIngredient(mod.GetItem("ItemDuskStone"),1);
-			recipe0.AddIngredient(mod.GetItem("ItemExpCandyL"),1);
+			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe0.SetResult(mod.ItemType("AegislashShieldBall"));
 			recipe0.AddTile(mod.TileType("EvolutionMachine"));
 			recipe0.AddRecipe();

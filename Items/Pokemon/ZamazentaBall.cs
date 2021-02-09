@@ -15,7 +15,7 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 57;
+			item.damage = 28;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 3;
-			item.value = 1500000;
+			item.value = 192156;
 			item.rare = 10;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Zamazenta");
@@ -43,6 +43,8 @@ namespace Pokemmon.Items.Pokemon
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
 			modPlayer.ResetEffects();
+			modPlayer.pokemonAmount++;
+			//modPlayer.summonedZamazenta = true;
 			return player.altFunctionUse != 2;
 		}
 

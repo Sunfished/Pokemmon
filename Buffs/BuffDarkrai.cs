@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Darkrai!");
-			Description.SetDefault("+70 HP\n+1.3x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+9 Magic/Summon Defense\n+0.6 Speed");
+			Description.SetDefault("+70 HP\n+18% Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+27% Magic/Summon Damage\n+9 Magic/Summon Defense\n+0.6 Speed\nDark Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Darkrai")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Darkrai")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedDarkrai = true;
+				modPlayer.buffDarkType = true;
 			}
-			if (!modPlayer.summonedDarkrai) {
+			if (!modPlayer.summonedDarkrai || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffDarkType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 70;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.meleeDamage *= 1.18f;
+			player.rangedDamage *= 1.18f;
+			player.magicDamage *= 1.27f;
+			player.minionDamage *= 1.27f;
 			player.maxRunSpeed += 0.6f;
 			
 			//modPlayer.numSpawned++;

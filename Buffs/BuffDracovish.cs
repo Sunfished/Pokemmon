@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Dracovish!");
-			Description.SetDefault("+90 HP\n+1.3x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+90 HP\n+18% Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+14% Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.4 Speed\nWater Type: Allows swimming and water breathing\nDragon Type: Multitude of effects when HP < 20%");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Dracovish")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Dracovish")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedDracovish = true;
+				modPlayer.buffWaterType = true;
+				modPlayer.buffDragonType = true;
 			}
-			if (!modPlayer.summonedDracovish) {
+			if (!modPlayer.summonedDracovish || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffWaterType = false;
+				modPlayer.buffDragonType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 90;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.18f;
+			player.rangedDamage *= 1.18f;
+			player.magicDamage *= 1.14f;
+			player.minionDamage *= 1.14f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Pawniard!");
-			Description.SetDefault("+45 HP\n+1.2x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.3 Speed");
+			Description.SetDefault("+45 HP\n+17% Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+8% Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.3 Speed\nDark Type: Unimplemented Effect\nSteel Type: Decreases incoming DMG by 20%");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Pawniard")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Pawniard")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedPawniard = true;
+				modPlayer.buffDarkType = true;
+				modPlayer.buffSteelType = true;
 			}
-			if (!modPlayer.summonedPawniard) {
+			if (!modPlayer.summonedPawniard || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffDarkType = false;
+				modPlayer.buffSteelType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 45;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.1f;
-			player.minionDamage *= 1.1f;
+			player.meleeDamage *= 1.17f;
+			player.rangedDamage *= 1.17f;
+			player.magicDamage *= 1.08f;
+			player.minionDamage *= 1.08f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Boldore!");
-			Description.SetDefault("+70 HP\n+1.3x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.1 Speed");
+			Description.SetDefault("+70 HP\n+21% Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+10% Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.1 Speed\nRock Type: Increases Knockback");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Boldore")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Boldore")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedBoldore = true;
+				modPlayer.buffRockType = true;
 			}
-			if (!modPlayer.summonedBoldore) {
+			if (!modPlayer.summonedBoldore || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffRockType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,8 +42,8 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 70;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
+			player.meleeDamage *= 1.21f;
+			player.rangedDamage *= 1.21f;
 			player.magicDamage *= 1.1f;
 			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.1f;

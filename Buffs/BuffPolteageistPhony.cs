@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Polteageist!");
-			Description.SetDefault("+60 HP\n+1.2x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.3 Speed");
+			Description.SetDefault("+60 HP\n+13% Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+26% Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.3 Speed\nGhost Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("PolteageistPhony")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("PolteageistPhony")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedPolteageistPhony = true;
+				modPlayer.buffGhostType = true;
 			}
-			if (!modPlayer.summonedPolteageistPhony) {
+			if (!modPlayer.summonedPolteageistPhony || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffGhostType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 60;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.meleeDamage *= 1.13f;
+			player.rangedDamage *= 1.13f;
+			player.magicDamage *= 1.26f;
+			player.minionDamage *= 1.26f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

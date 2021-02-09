@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Pikachu!");
-			Description.SetDefault("+35 HP\n+1.1x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+35 HP\n+11% Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+10% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.5 Speed\nElectric Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("PikachuWorldCap")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("PikachuWorldCap")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedPikachuWorldCap = true;
+				modPlayer.buffElectricType = true;
 			}
-			if (!modPlayer.summonedPikachuWorldCap) {
+			if (!modPlayer.summonedPikachuWorldCap || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffElectricType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,8 +42,8 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 35;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
+			player.meleeDamage *= 1.11f;
+			player.rangedDamage *= 1.11f;
 			player.magicDamage *= 1.1f;
 			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.5f;

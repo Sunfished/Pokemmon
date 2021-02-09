@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Scatterbug!");
-			Description.SetDefault("+38 HP\n+1.1x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+2 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+38 HP\n+7% Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+5% Magic/Summon Damage\n+2 Magic/Summon Defense\n+0.2 Speed\nBug Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Scatterbug")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Scatterbug")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedScatterbug = true;
+				modPlayer.buffBugType = true;
 			}
-			if (!modPlayer.summonedScatterbug) {
+			if (!modPlayer.summonedScatterbug || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffBugType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 38;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.0f;
-			player.minionDamage *= 1.0f;
+			player.meleeDamage *= 1.07f;
+			player.rangedDamage *= 1.07f;
+			player.magicDamage *= 1.05f;
+			player.minionDamage *= 1.05f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Budew!");
-			Description.SetDefault("+40 HP\n+1.1x Melee/Ranged Damage\n+3 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.3 Speed");
+			Description.SetDefault("+40 HP\n+6% Melee/Ranged Damage\n+3 Melee/Ranged Defense\n+10% Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.3 Speed\nGrass Type: Regens HP during daytime\nPoison Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Budew")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Budew")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedBudew = true;
+				modPlayer.buffGrassType = true;
+				modPlayer.buffPoisonType = true;
 			}
-			if (!modPlayer.summonedBudew) {
+			if (!modPlayer.summonedBudew || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffGrassType = false;
+				modPlayer.buffPoisonType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,8 +44,8 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 40;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
+			player.meleeDamage *= 1.06f;
+			player.rangedDamage *= 1.06f;
 			player.magicDamage *= 1.1f;
 			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.3f;

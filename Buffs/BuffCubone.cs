@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Cubone!");
-			Description.SetDefault("+50 HP\n+1.1x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+50 HP\n+10% Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+8% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.2 Speed\nGround Type: Nullifies Knockback");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Cubone")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Cubone")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedCubone = true;
+				modPlayer.buffGroundType = true;
 			}
-			if (!modPlayer.summonedCubone) {
+			if (!modPlayer.summonedCubone || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffGroundType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -43,8 +44,8 @@ namespace Pokemmon.Buffs
 			player.statLifeMax2 += 50;
 			player.meleeDamage *= 1.1f;
 			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.1f;
-			player.minionDamage *= 1.1f;
+			player.magicDamage *= 1.08f;
+			player.minionDamage *= 1.08f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

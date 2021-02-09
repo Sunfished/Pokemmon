@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Stonjourner!");
-			Description.SetDefault("+100 HP\n+1.4x Melee/Ranged Damage\n+13 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+2 Magic/Summon Defense\n+0.3 Speed");
+			Description.SetDefault("+100 HP\n+25% Melee/Ranged Damage\n+13 Melee/Ranged Defense\n+4% Magic/Summon Damage\n+2 Magic/Summon Defense\n+0.3 Speed\nRock Type: Increases Knockback");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Stonjourner")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Stonjourner")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedStonjourner = true;
+				modPlayer.buffRockType = true;
 			}
-			if (!modPlayer.summonedStonjourner) {
+			if (!modPlayer.summonedStonjourner || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffRockType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 100;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
-			player.magicDamage *= 1.0f;
-			player.minionDamage *= 1.0f;
+			player.meleeDamage *= 1.25f;
+			player.rangedDamage *= 1.25f;
+			player.magicDamage *= 1.04f;
+			player.minionDamage *= 1.04f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Slaking!");
-			Description.SetDefault("+150 HP\n+1.5x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+150 HP\n+30% Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+19% Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.5 Speed\nNormal Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Slaking")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Slaking")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedSlaking = true;
+				modPlayer.buffNormalType = true;
 			}
-			if (!modPlayer.summonedSlaking) {
+			if (!modPlayer.summonedSlaking || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffNormalType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 150;
-			player.meleeDamage *= 1.5f;
-			player.rangedDamage *= 1.5f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.19f;
+			player.minionDamage *= 1.19f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

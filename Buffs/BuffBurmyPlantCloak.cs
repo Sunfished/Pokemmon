@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Burmy!");
-			Description.SetDefault("+40 HP\n+1.0x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+40 HP\n+5% Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+5% Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.2 Speed\nBug Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("BurmyPlantCloak")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("BurmyPlantCloak")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedBurmyPlantCloak = true;
+				modPlayer.buffBugType = true;
 			}
-			if (!modPlayer.summonedBurmyPlantCloak) {
+			if (!modPlayer.summonedBurmyPlantCloak || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffBugType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 40;
-			player.meleeDamage *= 1.0f;
-			player.rangedDamage *= 1.0f;
-			player.magicDamage *= 1.0f;
-			player.minionDamage *= 1.0f;
+			player.meleeDamage *= 1.05f;
+			player.rangedDamage *= 1.05f;
+			player.magicDamage *= 1.05f;
+			player.minionDamage *= 1.05f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

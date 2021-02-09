@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Arceus!");
-			Description.SetDefault("+120 HP\n+1.4x Melee/Ranged Damage\n+12 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+12 Magic/Summon Defense\n+0.6 Speed");
+			Description.SetDefault("+120 HP\n+24% Melee/Ranged Damage\n+12 Melee/Ranged Defense\n+24% Magic/Summon Damage\n+12 Magic/Summon Defense\n+0.6 Speed\nSteel Type: Decreases incoming DMG by 20%");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("ArceusSteel")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("ArceusSteel")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedArceusSteel = true;
+				modPlayer.buffSteelType = true;
 			}
-			if (!modPlayer.summonedArceusSteel) {
+			if (!modPlayer.summonedArceusSteel || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffSteelType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 120;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.meleeDamage *= 1.24f;
+			player.rangedDamage *= 1.24f;
+			player.magicDamage *= 1.24f;
+			player.minionDamage *= 1.24f;
 			player.maxRunSpeed += 0.6f;
 			
 			//modPlayer.numSpawned++;

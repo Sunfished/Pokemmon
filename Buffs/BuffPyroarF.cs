@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Pyroar!");
-			Description.SetDefault("+86 HP\n+1.2x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+86 HP\n+13% Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+21% Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.5 Speed\nFire Type: Lights up area\nNormal Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("PyroarF")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("PyroarF")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedPyroarF = true;
+				modPlayer.buffFireType = true;
+				modPlayer.buffNormalType = true;
 			}
-			if (!modPlayer.summonedPyroarF) {
+			if (!modPlayer.summonedPyroarF || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffFireType = false;
+				modPlayer.buffNormalType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 86;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.meleeDamage *= 1.13f;
+			player.rangedDamage *= 1.13f;
+			player.magicDamage *= 1.21f;
+			player.minionDamage *= 1.21f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Volkraken!");
-			Description.SetDefault("+100 HP\n+1.1x Melee/Ranged Damage\n+8 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+100 HP\n+9% Melee/Ranged Damage\n+8 Melee/Ranged Defense\n+27% Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.5 Speed\nWater Type: Allows swimming and water breathing\nFire Type: Lights up area");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Volkraken")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Volkraken")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedVolkraken = true;
+				modPlayer.buffWaterType = true;
+				modPlayer.buffFireType = true;
 			}
-			if (!modPlayer.summonedVolkraken) {
+			if (!modPlayer.summonedVolkraken || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffWaterType = false;
+				modPlayer.buffFireType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 100;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.meleeDamage *= 1.09f;
+			player.rangedDamage *= 1.09f;
+			player.magicDamage *= 1.27f;
+			player.minionDamage *= 1.27f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Charjabug!");
-			Description.SetDefault("+57 HP\n+1.2x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+57 HP\n+16% Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+11% Magic/Summon Damage\n+7 Magic/Summon Defense\n+0.2 Speed\nBug Type: Unimplemented Effect\nElectric Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Charjabug")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Charjabug")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedCharjabug = true;
+				modPlayer.buffBugType = true;
+				modPlayer.buffElectricType = true;
 			}
-			if (!modPlayer.summonedCharjabug) {
+			if (!modPlayer.summonedCharjabug || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffBugType = false;
+				modPlayer.buffElectricType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 57;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.1f;
-			player.minionDamage *= 1.1f;
+			player.meleeDamage *= 1.16f;
+			player.rangedDamage *= 1.16f;
+			player.magicDamage *= 1.11f;
+			player.minionDamage *= 1.11f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

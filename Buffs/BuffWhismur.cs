@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Whismur!");
-			Description.SetDefault("+64 HP\n+1.1x Melee/Ranged Damage\n+2 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+2 Magic/Summon Defense\n+0.1 Speed");
+			Description.SetDefault("+64 HP\n+10% Melee/Ranged Damage\n+2 Melee/Ranged Defense\n+10% Magic/Summon Damage\n+2 Magic/Summon Defense\n+0.1 Speed\nNormal Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Whismur")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Whismur")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedWhismur = true;
+				modPlayer.buffNormalType = true;
 			}
-			if (!modPlayer.summonedWhismur) {
+			if (!modPlayer.summonedWhismur || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffNormalType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs

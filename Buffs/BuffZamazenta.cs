@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Zamazenta!");
-			Description.SetDefault("+92 HP\n+1.4x Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.7 Speed");
+			Description.SetDefault("+92 HP\n+26% Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+16% Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.7 Speed\nFighting Type: Increases DMG when HP > 50%");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Zamazenta")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Zamazenta")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedZamazenta = true;
+				modPlayer.buffFightingType = true;
 			}
-			if (!modPlayer.summonedZamazenta) {
+			if (!modPlayer.summonedZamazenta || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffFightingType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 92;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.26f;
+			player.rangedDamage *= 1.26f;
+			player.magicDamage *= 1.16f;
+			player.minionDamage *= 1.16f;
 			player.maxRunSpeed += 0.7f;
 			
 			//modPlayer.numSpawned++;

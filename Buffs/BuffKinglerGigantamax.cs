@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Kingler!");
-			Description.SetDefault("+55 HP\n+1.4x Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+1.1x Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+55 HP\n+26% Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+10% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.4 Speed\nWater Type: Allows swimming and water breathing");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("KinglerGigantamax")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("KinglerGigantamax")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedKinglerGigantamax = true;
+				modPlayer.buffWaterType = true;
 			}
-			if (!modPlayer.summonedKinglerGigantamax) {
+			if (!modPlayer.summonedKinglerGigantamax || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffWaterType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,8 +42,8 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 55;
-			player.meleeDamage *= 1.4f;
-			player.rangedDamage *= 1.4f;
+			player.meleeDamage *= 1.26f;
+			player.rangedDamage *= 1.26f;
 			player.magicDamage *= 1.1f;
 			player.minionDamage *= 1.1f;
 			player.maxRunSpeed += 0.4f;

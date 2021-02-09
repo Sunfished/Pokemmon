@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Froakie!");
-			Description.SetDefault("+41 HP\n+1.1x Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+41 HP\n+11% Melee/Ranged Damage\n+4 Melee/Ranged Defense\n+12% Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.4 Speed\nWater Type: Allows swimming and water breathing");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Froakie")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Froakie")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedFroakie = true;
+				modPlayer.buffWaterType = true;
 			}
-			if (!modPlayer.summonedFroakie) {
+			if (!modPlayer.summonedFroakie || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffWaterType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 41;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.11f;
+			player.rangedDamage *= 1.11f;
+			player.magicDamage *= 1.12f;
+			player.minionDamage *= 1.12f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

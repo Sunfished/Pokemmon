@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Hoopa!");
-			Description.SetDefault("+80 HP\n+1.5x Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+1.5x Magic/Summon Damage\n+13 Magic/Summon Defense\n+0.4 Speed");
+			Description.SetDefault("+80 HP\n+30% Melee/Ranged Damage\n+6 Melee/Ranged Defense\n+30% Magic/Summon Damage\n+13 Magic/Summon Defense\n+0.4 Speed\nPsychic Type: Regens Mana faster\nDark Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("HoopaUnbound")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("HoopaUnbound")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedHoopaUnbound = true;
+				modPlayer.buffPsychicType = true;
+				modPlayer.buffDarkType = true;
 			}
-			if (!modPlayer.summonedHoopaUnbound) {
+			if (!modPlayer.summonedHoopaUnbound || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffPsychicType = false;
+				modPlayer.buffDarkType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 80;
-			player.meleeDamage *= 1.5f;
-			player.rangedDamage *= 1.5f;
-			player.magicDamage *= 1.5f;
-			player.minionDamage *= 1.5f;
+			player.meleeDamage *= 1.3f;
+			player.rangedDamage *= 1.3f;
+			player.magicDamage *= 1.3f;
+			player.minionDamage *= 1.3f;
 			player.maxRunSpeed += 0.4f;
 			
 			//modPlayer.numSpawned++;

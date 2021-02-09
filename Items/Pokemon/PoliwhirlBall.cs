@@ -15,7 +15,7 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 15;
+			item.damage = 14;
 			item.summon = true;
 			item.mana = 1;
 			item.width = 18;
@@ -25,7 +25,7 @@ namespace Pokemmon.Items.Pokemon
 			item.useStyle = 4;
 			item.noMelee = true;
 			item.knockBack = 0;
-			item.value = 200000;
+			item.value = 105882;
 			item.rare = 5;
 			item.UseSound = SoundID.Item4;
 			item.shoot = mod.ProjectileType("Poliwhirl");
@@ -43,6 +43,8 @@ namespace Pokemmon.Items.Pokemon
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
 			modPlayer.ResetEffects();
+			modPlayer.pokemonAmount++;
+			//modPlayer.summonedPoliwhirl = true;
 			return player.altFunctionUse != 2;
 		}
 
@@ -67,7 +69,7 @@ namespace Pokemmon.Items.Pokemon
 			recipe1.AddIngredient(this);
 			recipe1.AddIngredient(mod.GetItem("ItemLinkCable"),1);
 			recipe1.AddIngredient(mod.GetItem("ItemKingsRock"),1);
-			recipe1.AddIngredient(mod.GetItem("ItemExpCandyL"),1);
+			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
 			recipe1.SetResult(mod.ItemType("PolitoedBall"));
 			recipe1.AddTile(mod.TileType("EvolutionMachine"));
 			recipe1.AddRecipe();

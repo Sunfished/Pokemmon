@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Shaymin!");
-			Description.SetDefault("+100 HP\n+1.3x Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+100 HP\n+20% Melee/Ranged Damage\n+10 Melee/Ranged Defense\n+20% Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.5 Speed\nGrass Type: Regens HP during daytime");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Shaymin")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Shaymin")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedShaymin = true;
+				modPlayer.buffGrassType = true;
 			}
-			if (!modPlayer.summonedShaymin) {
+			if (!modPlayer.summonedShaymin || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffGrassType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 100;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.meleeDamage *= 1.2f;
+			player.rangedDamage *= 1.2f;
+			player.magicDamage *= 1.2f;
+			player.minionDamage *= 1.2f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

@@ -1,4 +1,5 @@
 author = sunfished
-version = 0.4
-displayName = Pokemmon
+version = 0.5
+displayName = Pokemmon - Pokemon Minion Mod
 buildIgnore = build.txt, .gitattributes, .gitignore, .git/, .vs/, .idea/, bin/, obj/, Thumbs.db, *.csproj, .cs, .sln, Tool/
+homepage=https://forums.terraria.org/index.php?threads/pokemmon-pokemon-minion-mod.83848/

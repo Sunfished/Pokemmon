@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Shuckle!");
-			Description.SetDefault("+20 HP\n+1.0x Melee/Ranged Damage\n+23 Melee/Ranged Defense\n+1.0x Magic/Summon Damage\n+23 Magic/Summon Defense\n+0.0 Speed");
+			Description.SetDefault("+20 HP\n+2% Melee/Ranged Damage\n+23 Melee/Ranged Defense\n+2% Magic/Summon Damage\n+23 Magic/Summon Defense\n+0.0 Speed\nBug Type: Unimplemented Effect\nRock Type: Increases Knockback");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Shuckle")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Shuckle")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedShuckle = true;
+				modPlayer.buffBugType = true;
+				modPlayer.buffRockType = true;
 			}
-			if (!modPlayer.summonedShuckle) {
+			if (!modPlayer.summonedShuckle || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffBugType = false;
+				modPlayer.buffRockType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 20;
-			player.meleeDamage *= 1.0f;
-			player.rangedDamage *= 1.0f;
-			player.magicDamage *= 1.0f;
-			player.minionDamage *= 1.0f;
+			player.meleeDamage *= 1.02f;
+			player.rangedDamage *= 1.02f;
+			player.magicDamage *= 1.02f;
+			player.minionDamage *= 1.02f;
 			player.maxRunSpeed += 0.0f;
 			
 			//modPlayer.numSpawned++;

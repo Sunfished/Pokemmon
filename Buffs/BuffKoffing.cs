@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,23 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Koffing!");
-			Description.SetDefault("+40 HP\n+1.2x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+40 HP\n+13% Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+12% Magic/Summon Damage\n+4 Magic/Summon Defense\n+0.2 Speed\nPoison Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Koffing")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Koffing")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedKoffing = true;
+				modPlayer.buffPoisonType = true;
 			}
-			if (!modPlayer.summonedKoffing) {
+			if (!modPlayer.summonedKoffing || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffPoisonType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 40;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.13f;
+			player.rangedDamage *= 1.13f;
+			player.magicDamage *= 1.12f;
+			player.minionDamage *= 1.12f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

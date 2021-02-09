@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Orbeetle!");
-			Description.SetDefault("+60 HP\n+1.1x Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+1.2x Magic/Summon Damage\n+12 Magic/Summon Defense\n+0.5 Speed");
+			Description.SetDefault("+60 HP\n+9% Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+16% Magic/Summon Damage\n+12 Magic/Summon Defense\n+0.5 Speed\nBug Type: Unimplemented Effect\nPsychic Type: Regens Mana faster");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("OrbeetleGigantamax")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("OrbeetleGigantamax")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedOrbeetleGigantamax = true;
+				modPlayer.buffBugType = true;
+				modPlayer.buffPsychicType = true;
 			}
-			if (!modPlayer.summonedOrbeetleGigantamax) {
+			if (!modPlayer.summonedOrbeetleGigantamax || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffBugType = false;
+				modPlayer.buffPsychicType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 60;
-			player.meleeDamage *= 1.1f;
-			player.rangedDamage *= 1.1f;
-			player.magicDamage *= 1.2f;
-			player.minionDamage *= 1.2f;
+			player.meleeDamage *= 1.09f;
+			player.rangedDamage *= 1.09f;
+			player.magicDamage *= 1.16f;
+			player.minionDamage *= 1.16f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

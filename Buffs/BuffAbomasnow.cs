@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Abomasnow!");
-			Description.SetDefault("+90 HP\n+1.3x Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+1.3x Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.3 Speed");
+			Description.SetDefault("+90 HP\n+18% Melee/Ranged Damage\n+7 Melee/Ranged Defense\n+18% Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.3 Speed\nIce Type: Unimplemented Effect\nGrass Type: Regens HP during daytime");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Abomasnow")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Abomasnow")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedAbomasnow = true;
+				modPlayer.buffIceType = true;
+				modPlayer.buffGrassType = true;
 			}
-			if (!modPlayer.summonedAbomasnow) {
+			if (!modPlayer.summonedAbomasnow || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffIceType = false;
+				modPlayer.buffGrassType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 90;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.3f;
-			player.minionDamage *= 1.3f;
+			player.meleeDamage *= 1.18f;
+			player.rangedDamage *= 1.18f;
+			player.magicDamage *= 1.18f;
+			player.minionDamage *= 1.18f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

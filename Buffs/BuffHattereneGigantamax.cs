@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Hatterene!");
-			Description.SetDefault("+57 HP\n+1.3x Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.1 Speed");
+			Description.SetDefault("+57 HP\n+18% Melee/Ranged Damage\n+9 Melee/Ranged Defense\n+27% Magic/Summon Damage\n+10 Magic/Summon Defense\n+0.1 Speed\nPsychic Type: Regens Mana faster\nFairy Type: Regens HP during nighttime");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("HattereneGigantamax")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("HattereneGigantamax")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedHattereneGigantamax = true;
+				modPlayer.buffPsychicType = true;
+				modPlayer.buffFairyType = true;
 			}
-			if (!modPlayer.summonedHattereneGigantamax) {
+			if (!modPlayer.summonedHattereneGigantamax || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffPsychicType = false;
+				modPlayer.buffFairyType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 57;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.meleeDamage *= 1.18f;
+			player.rangedDamage *= 1.18f;
+			player.magicDamage *= 1.27f;
+			player.minionDamage *= 1.27f;
 			player.maxRunSpeed += 0.1f;
 			
 			//modPlayer.numSpawned++;

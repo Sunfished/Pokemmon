@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Pokemmon.Buffs
 {
@@ -7,23 +8,25 @@ namespace Pokemmon.Buffs
 	{
 		public override void SetDefaults() {
 			DisplayName.SetDefault("Go, Drampa!");
-			Description.SetDefault("+78 HP\n+1.2x Melee/Ranged Damage\n+8 Melee/Ranged Defense\n+1.4x Magic/Summon Damage\n+9 Magic/Summon Defense\n+0.2 Speed");
+			Description.SetDefault("+78 HP\n+12% Melee/Ranged Damage\n+8 Melee/Ranged Defense\n+27% Magic/Summon Damage\n+9 Magic/Summon Defense\n+0.2 Speed\nNormal Type: Unimplemented Effect\nDragon Type: Multitude of effects when HP < 20%");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Drampa")] > 0) {
+			if (player.ownedProjectileCounts[mod.ProjectileType("Drampa")] > 0 && modPlayer.pokemonAmount == 1) {
+				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedDrampa = true;
+				modPlayer.buffNormalType = true;
+				modPlayer.buffDragonType = true;
 			}
-			if (!modPlayer.summonedDrampa) {
+			if (!modPlayer.summonedDrampa || modPlayer.pokemonAmount > 1) {
+				modPlayer.buffNormalType = false;
+				modPlayer.buffDragonType = false;
 				player.DelBuff(buffIndex);
 				buffIndex--;
-				
-			}
-			else {
-				player.buffTime[buffIndex] = 18000;
+				modPlayer.pokemonAmount = 0;
 			}
 		
 			//Calc Buffs
@@ -41,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 78;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.4f;
-			player.minionDamage *= 1.4f;
+			player.meleeDamage *= 1.12f;
+			player.rangedDamage *= 1.12f;
+			player.magicDamage *= 1.27f;
+			player.minionDamage *= 1.27f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;
