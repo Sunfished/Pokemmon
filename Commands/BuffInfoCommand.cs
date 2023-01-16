@@ -30,7 +30,7 @@ namespace Pokemmon.Commands
 				throw new UsageException("Could not find player: " + args[0]);
 			}//*/
 			
-			mod.Logger.Info("Displayed Buff Info");
+			Mod.Logger.Info("Displayed Buff Info");
 			//var modPlayer = Main.player[player].GetModPlayer<MyPlayer>();
 			Player player = Main.player[Main.myPlayer];
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();

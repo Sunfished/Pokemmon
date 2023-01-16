@@ -6,7 +6,7 @@ namespace Pokemmon.Buffs
 {
 	public class BuffRhyperior : ModBuff
 	{
-		public override void SetDefaults() {
+		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Go, Rhyperior!");
 			Description.SetDefault("+115 HP\n+28% Melee/Ranged Damage\n+13 Melee/Ranged Defense\n+11% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.2 Speed\nGround Type: Nullifies Knockback\nRock Type: Increases Knockback");
 			Main.buffNoSave[Type] = true;
@@ -15,7 +15,7 @@ namespace Pokemmon.Buffs
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Rhyperior")] > 0 && modPlayer.pokemonAmount == 1) {
+			if (player.ownedProjectileCounts[Mod.Find<ModProjectile>("Rhyperior").Type] > 0 && modPlayer.pokemonAmount == 1) {
 				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedRhyperior = true;
 				modPlayer.buffGroundType = true;
@@ -31,8 +31,8 @@ namespace Pokemmon.Buffs
 		
 			//Calc Buffs
 			var isMelee = true;
-			if(player.magicDamage > player.meleeDamage || player.magicDamage > player.rangedDamage ||
-			player.minionDamage > player.meleeDamage || player.minionDamage > player.rangedDamage)
+			if(player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Ranged).Flat ||
+			player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Ranged).Flat)
 				isMelee = false;
 			if (isMelee)
 			{
@@ -44,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 115;
-			player.meleeDamage *= 1.28f;
-			player.rangedDamage *= 1.28f;
-			player.magicDamage *= 1.11f;
-			player.minionDamage *= 1.11f;
+			player.GetDamage(DamageClass.Melee) *= 1.28f;
+			player.GetDamage(DamageClass.Ranged) *= 1.28f;
+			player.GetDamage(DamageClass.Magic) *= 1.11f;
+			player.GetDamage(DamageClass.Summon) *= 1.11f;
 			player.maxRunSpeed += 0.2f;
 			
 			//modPlayer.numSpawned++;

@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,32 +17,32 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 11;
-			item.summon = true;
-			item.mana = 1;
-			item.width = 18;
-			item.height = 18;
-			item.useTime = 30;
-			item.useAnimation = 30;
-			item.useStyle = 4;
-			item.noMelee = true;
-			item.knockBack = 0;
-			item.value = 43137;
-			item.rare = 2;
-			item.UseSound = SoundID.Item4;
-			item.shoot = mod.ProjectileType("Milcery");
-			item.shootSpeed = 10f;
-			item.buffType = mod.BuffType("BuffMilcery"); //The buff added to player after used the item
-			item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
-			item.stack = 1;
-			item.maxStack = 999;
+			Item.damage = 11;
+			Item.DamageType = DamageClass.Summon;
+			Item.mana = 1;
+			Item.width = 18;
+			Item.height = 18;
+			Item.useTime = 30;
+			Item.useAnimation = 30;
+			Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.noMelee = true;
+			Item.knockBack = 0;
+			Item.value = 43137;
+			Item.rare = ItemRarityID.Green;
+			Item.UseSound = SoundID.Item4;
+			Item.shoot = Mod.Find<ModProjectile>("Milcery").Type;
+			Item.shootSpeed = 10f;
+			Item.buffType = Mod.Find<ModBuff>("BuffMilcery").Type; //The buff added to player after used the item
+			Item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
+			Item.stack = 1;
+			Item.maxStack = 999;
 		}
 
 		public override bool AltFunctionUse(Player player) {
 			return true;
 		}
 
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
 			modPlayer.ResetEffects();
 			modPlayer.pokemonAmount++;
@@ -48,95 +50,86 @@ namespace Pokemmon.Items.Pokemon
 			return player.altFunctionUse != 2;
 		}
 
-		public override bool UseItem(Player player) {
+		public override Nullable<bool> UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */ {
 			if (player.altFunctionUse == 2) {
-				player.MinionNPCTargetAim();
+				player.MinionNPCTargetAim(true);
 			}
 			return base.UseItem(player);
 		}
 		
 		public override void AddRecipes()
 		{
-			ModRecipe recipe0 = new ModRecipe(mod);
+			Recipe recipe0 = Recipe.Create(Mod.Find<ModItem>("AlcremieVanillaCreamBall").Type);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe0.AddIngredient(mod.GetItem("ItemSunStone"),1);
-			recipe0.SetResult(mod.ItemType("AlcremieVanillaCreamBall"));
-			recipe0.AddTile(mod.TileType("EvolutionMachine"));
-			recipe0.AddRecipe();
+			recipe0.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe0.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe0.AddIngredient(Mod.Find<ModItem>("ItemSunStone").Type,1);
+			recipe0.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe0.Register();
 
-			ModRecipe recipe1 = new ModRecipe(mod);
+			Recipe recipe1 = Recipe.Create(Mod.Find<ModItem>("AlcremieRubyCreamBall").Type);
 			recipe1.AddIngredient(this);
-			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe1.AddIngredient(mod.GetItem("ItemSunStone"),1);
-			recipe1.SetResult(mod.ItemType("AlcremieRubyCreamBall"));
-			recipe1.AddTile(mod.TileType("EvolutionMachine"));
-			recipe1.AddRecipe();
+			recipe1.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe1.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe1.AddIngredient(Mod.Find<ModItem>("ItemSunStone").Type,1);
+			recipe1.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe1.Register();
 
-			ModRecipe recipe2 = new ModRecipe(mod);
+			Recipe recipe2 = Recipe.Create(Mod.Find<ModItem>("AlcremieMatchaCreamBall").Type);
 			recipe2.AddIngredient(this);
-			recipe2.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe2.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe2.AddIngredient(mod.GetItem("ItemMoonStone"),1);
-			recipe2.SetResult(mod.ItemType("AlcremieMatchaCreamBall"));
-			recipe2.AddTile(mod.TileType("EvolutionMachine"));
-			recipe2.AddRecipe();
+			recipe2.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe2.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe2.AddIngredient(Mod.Find<ModItem>("ItemMoonStone").Type,1);
+			recipe2.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe2.Register();
 
-			ModRecipe recipe3 = new ModRecipe(mod);
+			Recipe recipe3 = Recipe.Create(Mod.Find<ModItem>("AlcremieMintCreamBall").Type);
 			recipe3.AddIngredient(this);
-			recipe3.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe3.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe3.AddIngredient(mod.GetItem("ItemMoonStone"),1);
-			recipe3.SetResult(mod.ItemType("AlcremieMintCreamBall"));
-			recipe3.AddTile(mod.TileType("EvolutionMachine"));
-			recipe3.AddRecipe();
+			recipe3.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe3.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe3.AddIngredient(Mod.Find<ModItem>("ItemMoonStone").Type,1);
+			recipe3.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe3.Register();
 
-			ModRecipe recipe4 = new ModRecipe(mod);
+			Recipe recipe4 = Recipe.Create(Mod.Find<ModItem>("AlcremieLemonCreamBall").Type);
 			recipe4.AddIngredient(this);
-			recipe4.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe4.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe4.AddIngredient(mod.GetItem("ItemMoonStone"),1);
-			recipe4.SetResult(mod.ItemType("AlcremieLemonCreamBall"));
-			recipe4.AddTile(mod.TileType("EvolutionMachine"));
-			recipe4.AddRecipe();
+			recipe4.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe4.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe4.AddIngredient(Mod.Find<ModItem>("ItemMoonStone").Type,1);
+			recipe4.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe4.Register();
 
-			ModRecipe recipe5 = new ModRecipe(mod);
+			Recipe recipe5 = Recipe.Create(Mod.Find<ModItem>("AlcremieSaltedCreamBall").Type);
 			recipe5.AddIngredient(this);
-			recipe5.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe5.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe5.AddIngredient(mod.GetItem("ItemMoonStone"),1);
-			recipe5.SetResult(mod.ItemType("AlcremieSaltedCreamBall"));
-			recipe5.AddTile(mod.TileType("EvolutionMachine"));
-			recipe5.AddRecipe();
+			recipe5.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe5.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe5.AddIngredient(Mod.Find<ModItem>("ItemMoonStone").Type,1);
+			recipe5.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe5.Register();
 
-			ModRecipe recipe6 = new ModRecipe(mod);
+			Recipe recipe6 = Recipe.Create(Mod.Find<ModItem>("AlcremieRubySwirlBall").Type);
 			recipe6.AddIngredient(this);
-			recipe6.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe6.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe6.AddIngredient(mod.GetItem("ItemSunStone"),1);
-			recipe6.SetResult(mod.ItemType("AlcremieRubySwirlBall"));
-			recipe6.AddTile(mod.TileType("EvolutionMachine"));
-			recipe6.AddRecipe();
+			recipe6.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe6.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe6.AddIngredient(Mod.Find<ModItem>("ItemSunStone").Type,1);
+			recipe6.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe6.Register();
 
-			ModRecipe recipe7 = new ModRecipe(mod);
+			Recipe recipe7 = Recipe.Create(Mod.Find<ModItem>("AlcremieCaramelSwirlBall").Type);
 			recipe7.AddIngredient(this);
-			recipe7.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe7.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe7.AddIngredient(mod.GetItem("ItemSunStone"),1);
-			recipe7.SetResult(mod.ItemType("AlcremieCaramelSwirlBall"));
-			recipe7.AddTile(mod.TileType("EvolutionMachine"));
-			recipe7.AddRecipe();
+			recipe7.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe7.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe7.AddIngredient(Mod.Find<ModItem>("ItemSunStone").Type,1);
+			recipe7.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe7.Register();
 
-			ModRecipe recipe8 = new ModRecipe(mod);
+			Recipe recipe8 = Recipe.Create(Mod.Find<ModItem>("AlcremieRainbowCreamBall").Type);
 			recipe8.AddIngredient(this);
-			recipe8.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe8.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe8.AddIngredient(mod.GetItem("ItemDuskStone"),1);
-			recipe8.SetResult(mod.ItemType("AlcremieRainbowCreamBall"));
-			recipe8.AddTile(mod.TileType("EvolutionMachine"));
-			recipe8.AddRecipe();
+			recipe8.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe8.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe8.AddIngredient(Mod.Find<ModItem>("ItemDuskStone").Type,1);
+			recipe8.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe8.Register();
 
 
 		}

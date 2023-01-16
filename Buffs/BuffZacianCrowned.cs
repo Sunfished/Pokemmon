@@ -6,7 +6,7 @@ namespace Pokemmon.Buffs
 {
 	public class BuffZacianCrowned : ModBuff
 	{
-		public override void SetDefaults() {
+		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Go, Zacian!");
 			Description.SetDefault("+92 HP\n+30% Melee/Ranged Damage\n+11 Melee/Ranged Defense\n+16% Magic/Summon Damage\n+11 Magic/Summon Defense\n+0.7 Speed\nFairy Type: Regens HP during nighttime\nSteel Type: Decreases incoming DMG by 20%");
 			Main.buffNoSave[Type] = true;
@@ -15,7 +15,7 @@ namespace Pokemmon.Buffs
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("ZacianCrowned")] > 0 && modPlayer.pokemonAmount == 1) {
+			if (player.ownedProjectileCounts[Mod.Find<ModProjectile>("ZacianCrowned").Type] > 0 && modPlayer.pokemonAmount == 1) {
 				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedZacianCrowned = true;
 				modPlayer.buffFairyType = true;
@@ -31,8 +31,8 @@ namespace Pokemmon.Buffs
 		
 			//Calc Buffs
 			var isMelee = true;
-			if(player.magicDamage > player.meleeDamage || player.magicDamage > player.rangedDamage ||
-			player.minionDamage > player.meleeDamage || player.minionDamage > player.rangedDamage)
+			if(player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Ranged).Flat ||
+			player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Ranged).Flat)
 				isMelee = false;
 			if (isMelee)
 			{
@@ -44,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 92;
-			player.meleeDamage *= 1.3f;
-			player.rangedDamage *= 1.3f;
-			player.magicDamage *= 1.16f;
-			player.minionDamage *= 1.16f;
+			player.GetDamage(DamageClass.Melee) *= 1.3f;
+			player.GetDamage(DamageClass.Ranged) *= 1.3f;
+			player.GetDamage(DamageClass.Magic) *= 1.16f;
+			player.GetDamage(DamageClass.Summon) *= 1.16f;
 			player.maxRunSpeed += 0.7f;
 			
 			//modPlayer.numSpawned++;

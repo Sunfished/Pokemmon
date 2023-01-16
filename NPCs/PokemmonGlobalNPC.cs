@@ -11,12 +11,12 @@ namespace PokemmonGlobalNPC.NPCs
 	{
 		public override bool InstancePerEntity => true;
 		
-		public override void NPCLoot(NPC npc) {
+		public override void OnKill(NPC npc) {
 			
 			//Martian Saucer drops ultra box
-			if (npc.type == NPCID.MartianSaucerCore && Main.rand.Next(10) == 0) {
-				Item.NewItem(npc.getRect(), ModContent.ItemType<BeastBox>(), 1);
-			}
+			if (npc.type == NPCID.MartianSaucerCore && Main.rand.NextBool(10)) {
+				Item.NewItem(npc.GetSource_Death(), npc.getRect(), ModContent.ItemType<BeastBox>(), 1);
+            }
 		}
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot) {
@@ -26,7 +26,7 @@ namespace PokemmonGlobalNPC.NPCs
 			{
 				//Malasada and Wishing Star
 				//Mutually exclusive
-				if(Main.rand.Next(2) == 0)
+				if(Main.rand.NextBool(2))
 				{
 					shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemMalasada>());
 					nextSlot++;
@@ -39,9 +39,9 @@ namespace PokemmonGlobalNPC.NPCs
 				
 				//Chipped Pot and Cracked Pot
 				//Chance to sell Cracked Pot, rarer chance to sell Chipped Pot
-				if(Main.rand.Next(3) == 0)
+				if(Main.rand.NextBool(3))
 				{
-					if (Main.rand.Next(3) == 0)
+					if (Main.rand.NextBool(3))
 					{
 						shop.item[nextSlot].SetDefaults(ModContent.ItemType<ItemChippedPot>());
 						nextSlot++;
@@ -54,7 +54,7 @@ namespace PokemmonGlobalNPC.NPCs
 				}
 				
 				//SportsBox
-				if(Main.rand.Next(15) == 0)
+				if(Main.rand.NextBool(15))
 				{
 					shop.item[nextSlot].SetDefaults(ModContent.ItemType<SportBox>());
 					nextSlot++;

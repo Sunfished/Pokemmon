@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,32 +17,32 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 27;
-			item.summon = true;
-			item.mana = 1;
-			item.width = 18;
-			item.height = 18;
-			item.useTime = 30;
-			item.useAnimation = 30;
-			item.useStyle = 4;
-			item.noMelee = true;
-			item.knockBack = 4;
-			item.value = 164705;
-			item.rare = 8;
-			item.UseSound = SoundID.Item4;
-			item.shoot = mod.ProjectileType("Gyarados");
-			item.shootSpeed = 10f;
-			item.buffType = mod.BuffType("BuffGyarados"); //The buff added to player after used the item
-			item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
-			item.stack = 1;
-			item.maxStack = 999;
+			Item.damage = 27;
+			Item.DamageType = DamageClass.Summon;
+			Item.mana = 1;
+			Item.width = 18;
+			Item.height = 18;
+			Item.useTime = 30;
+			Item.useAnimation = 30;
+			Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.noMelee = true;
+			Item.knockBack = 4;
+			Item.value = 164705;
+			Item.rare = ItemRarityID.Yellow;
+			Item.UseSound = SoundID.Item4;
+			Item.shoot = Mod.Find<ModProjectile>("Gyarados").Type;
+			Item.shootSpeed = 10f;
+			Item.buffType = Mod.Find<ModBuff>("BuffGyarados").Type; //The buff added to player after used the item
+			Item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
+			Item.stack = 1;
+			Item.maxStack = 999;
 		}
 
 		public override bool AltFunctionUse(Player player) {
 			return true;
 		}
 
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
 			modPlayer.ResetEffects();
 			modPlayer.pokemonAmount++;
@@ -48,21 +50,20 @@ namespace Pokemmon.Items.Pokemon
 			return player.altFunctionUse != 2;
 		}
 
-		public override bool UseItem(Player player) {
+		public override Nullable<bool> UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */ {
 			if (player.altFunctionUse == 2) {
-				player.MinionNPCTargetAim();
+				player.MinionNPCTargetAim(true);
 			}
 			return base.UseItem(player);
 		}
 		
 		public override void AddRecipes()
 		{
-			ModRecipe recipe99 = new ModRecipe(mod);
+			Recipe recipe99 = Recipe.Create(Mod.Find<ModItem>("MagikarpBall").Type);
 			recipe99.AddIngredient(this);
-			recipe99.AddIngredient(mod.GetItem("ItemEverstone"),1);
-			recipe99.SetResult(mod.ItemType("MagikarpBall"));
-			recipe99.AddTile(mod.TileType("EvolutionMachine"));
-			recipe99.AddRecipe();
+			recipe99.AddIngredient(Mod.Find<ModItem>("ItemEverstone").Type,1);
+			recipe99.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe99.Register();
 
 
 		}

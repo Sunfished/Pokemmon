@@ -14,17 +14,17 @@ namespace Pokemmon.Items.PokeBoxes
 		}
 		public override void SetDefaults()
 		{
-			item.width = 22;
-			item.height = 22;
-			item.useTime = 10;
-			item.useAnimation = 10;
-			//item.useStyle = 4;//Like Fallen Star
-			item.value = 200000;
-			item.rare = 2;
-			item.UseSound = SoundID.Item4;//Like Fallen Star
-            item.stack = 1;
-			item.maxStack = 999;
-			item.consumable = true;
+			Item.width = 22;
+			Item.height = 22;
+			Item.useTime = 10;
+			Item.useAnimation = 10;
+			//Item.useStyle = ItemUseStyleID.HoldUp;//Like Fallen Star
+			Item.value = 200000;
+			Item.rare = ItemRarityID.Green;
+			Item.UseSound = SoundID.Item4;//Like Fallen Star
+            Item.stack = 1;
+			Item.maxStack = 999;
+			Item.consumable = true;
 		}
 
 		/*public override void AddRecipes()
@@ -43,32 +43,32 @@ namespace Pokemmon.Items.PokeBoxes
         public override void RightClick(Player player)
         {
             int choice = Main.rand.Next(26);
-			if(choice==0) {player.QuickSpawnItem(mod.ItemType("BulbasaurBall"));}
-			if(choice==1) {player.QuickSpawnItem(mod.ItemType("CharmanderBall"));}
-			if(choice==2) {player.QuickSpawnItem(mod.ItemType("SquirtleBall"));}
-			if(choice==3) {player.QuickSpawnItem(mod.ItemType("PikachuPartnerBall"));}
-			if(choice==4) {player.QuickSpawnItem(mod.ItemType("EeveePartnerBall"));}
-			if(choice==5) {player.QuickSpawnItem(mod.ItemType("ChikoritaBall"));}
-			if(choice==6) {player.QuickSpawnItem(mod.ItemType("CyndaquilBall"));}
-			if(choice==7) {player.QuickSpawnItem(mod.ItemType("TotodileBall"));}
-			if(choice==8) {player.QuickSpawnItem(mod.ItemType("TreeckoBall"));}
-			if(choice==9) {player.QuickSpawnItem(mod.ItemType("TorchicBall"));}
-			if(choice==10) {player.QuickSpawnItem(mod.ItemType("MudkipBall"));}
-			if(choice==11) {player.QuickSpawnItem(mod.ItemType("TurtwigBall"));}
-			if(choice==12) {player.QuickSpawnItem(mod.ItemType("ChimcharBall"));}
-			if(choice==13) {player.QuickSpawnItem(mod.ItemType("PiplupBall"));}
-			if(choice==14) {player.QuickSpawnItem(mod.ItemType("SnivyBall"));}
-			if(choice==15) {player.QuickSpawnItem(mod.ItemType("TepigBall"));}
-			if(choice==16) {player.QuickSpawnItem(mod.ItemType("OshawottBall"));}
-			if(choice==17) {player.QuickSpawnItem(mod.ItemType("ChespinBall"));}
-			if(choice==18) {player.QuickSpawnItem(mod.ItemType("FennekinBall"));}
-			if(choice==19) {player.QuickSpawnItem(mod.ItemType("FroakieBall"));}
-			if(choice==20) {player.QuickSpawnItem(mod.ItemType("RowletBall"));}
-			if(choice==21) {player.QuickSpawnItem(mod.ItemType("LittenBall"));}
-			if(choice==22) {player.QuickSpawnItem(mod.ItemType("PopplioBall"));}
-			if(choice==23) {player.QuickSpawnItem(mod.ItemType("GrookeyBall"));}
-			if(choice==24) {player.QuickSpawnItem(mod.ItemType("ScorbunnyBall"));}
-			if(choice==25) {player.QuickSpawnItem(mod.ItemType("SobbleBall"));}
+			if(choice==0) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("BulbasaurBall").Type), Mod.Find<ModItem>("BulbasaurBall").Type);}
+			if(choice==1) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("CharmanderBall").Type), Mod.Find<ModItem>("CharmanderBall").Type);}
+			if(choice==2) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("SquirtleBall").Type), Mod.Find<ModItem>("SquirtleBall").Type);}
+			if(choice==3) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("PikachuPartnerBall").Type), Mod.Find<ModItem>("PikachuPartnerBall").Type);}
+			if(choice==4) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("EeveePartnerBall").Type), Mod.Find<ModItem>("EeveePartnerBall").Type);}
+			if(choice==5) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("ChikoritaBall").Type), Mod.Find<ModItem>("ChikoritaBall").Type);}
+			if(choice==6) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("CyndaquilBall").Type), Mod.Find<ModItem>("CyndaquilBall").Type);}
+			if(choice==7) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("TotodileBall").Type), Mod.Find<ModItem>("TotodileBall").Type);}
+			if(choice==8) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("TreeckoBall").Type), Mod.Find<ModItem>("TreeckoBall").Type);}
+			if(choice==9) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("TorchicBall").Type), Mod.Find<ModItem>("TorchicBall").Type);}
+			if(choice==10) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("MudkipBall").Type), Mod.Find<ModItem>("MudkipBall").Type);}
+			if(choice==11) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("TurtwigBall").Type), Mod.Find<ModItem>("TurtwigBall").Type);}
+			if(choice==12) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("ChimcharBall").Type), Mod.Find<ModItem>("ChimcharBall").Type);}
+			if(choice==13) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("PiplupBall").Type), Mod.Find<ModItem>("PiplupBall").Type);}
+			if(choice==14) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("SnivyBall").Type), Mod.Find<ModItem>("SnivyBall").Type);}
+			if(choice==15) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("TepigBall").Type), Mod.Find<ModItem>("TepigBall").Type);}
+			if(choice==16) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("OshawottBall").Type), Mod.Find<ModItem>("OshawottBall").Type);}
+			if(choice==17) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("ChespinBall").Type), Mod.Find<ModItem>("ChespinBall").Type);}
+			if(choice==18) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("FennekinBall").Type), Mod.Find<ModItem>("FennekinBall").Type);}
+			if(choice==19) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("FroakieBall").Type), Mod.Find<ModItem>("FroakieBall").Type);}
+			if(choice==20) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("RowletBall").Type), Mod.Find<ModItem>("RowletBall").Type);}
+			if(choice==21) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("LittenBall").Type), Mod.Find<ModItem>("LittenBall").Type);}
+			if(choice==22) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("PopplioBall").Type), Mod.Find<ModItem>("PopplioBall").Type);}
+			if(choice==23) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("GrookeyBall").Type), Mod.Find<ModItem>("GrookeyBall").Type);}
+			if(choice==24) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("ScorbunnyBall").Type), Mod.Find<ModItem>("ScorbunnyBall").Type);}
+			if(choice==25) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("SobbleBall").Type), Mod.Find<ModItem>("SobbleBall").Type);}
 
         }
 	}

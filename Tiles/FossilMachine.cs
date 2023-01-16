@@ -12,7 +12,7 @@ namespace Pokemmon.Tiles
 {
 	public class FossilMachine : ModTile
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileNoAttach[Type] = true;
@@ -30,13 +30,14 @@ namespace Pokemmon.Tiles
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Fossil Machine");
 			AddMapEntry(new Color(200, 200, 200), name);
-			
-			disableSmartCursor = true;
-			//adjTiles = new int[] { TileID.WorkBenches };
-		}
+
+			TileID.Sets.DisableSmartCursor[Type] = true;
+            //adjTiles = new int[] { TileID.WorkBenches };
+        }
 		
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			Item.NewItem(i * 16, j * 16, 32, 16, mod.ItemType("FossilMachine"));
+			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, Mod.Find<ModItem>("FossilMachine").Type);
 		}
-	}
+
+    }
 }

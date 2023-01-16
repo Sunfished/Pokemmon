@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,148 +12,132 @@ namespace Pokemmon.Items.Placeable
 		}
 
 		public override void SetDefaults() {
-			item.width = 40;
-			item.height = 41;
-			item.maxStack = 99;
-			item.useTurn = true;
-			item.autoReuse = true;
-			item.useAnimation = 15;
-			item.useTime = 10;
-			item.useStyle = 1;
-			item.consumable = true;
-			item.value = 150000;
-			item.createTile = mod.TileType("FossilMachine");
+			Item.width = 40;
+			Item.height = 41;
+			Item.maxStack = 99;
+			Item.useTurn = true;
+			Item.autoReuse = true;
+			Item.useAnimation = 15;
+			Item.useTime = 10;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.consumable = true;
+			Item.value = 150000;
+			Item.createTile = Mod.Find<ModTile>("FossilMachine").Type;
 		}
 
 		public override void AddRecipes() {
 			
 			//Craft Itself
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddTile(TileID.Anvils);
 			recipe.AddIngredient(ItemID.IronBar, 20);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 			
-			ModRecipe recipe2 = new ModRecipe(mod);
+			Recipe recipe2 = CreateRecipe();
 			recipe2.AddTile(TileID.Anvils);
 			recipe2.AddIngredient(ItemID.LeadBar, 20);
-			recipe2.SetResult(this);
-			recipe2.AddRecipe();
+			recipe2.Register();
 			
 			//Gen 1 Fossils
-			ModRecipe recipeA = new ModRecipe(mod);
-			recipeA.AddTile(mod.TileType("FossilMachine"));
-			recipeA.AddIngredient(mod.GetItem("ItemHelixFossil"));
-			recipeA.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			recipeA.SetResult(mod.GetItem("OmanyteBall"));
-			recipeA.AddRecipe();
+			//Recipe recipeA = Recipe.Create(Mod.Find<ModItem>("OmanyteBall").Type);
+            Recipe recipeA = Recipe.Create(Mod.Find<ModItem>("OmanyteBall").Type);
+            recipeA.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipeA.AddIngredient(Mod,"ItemHelixFossil");
+			recipeA.AddIngredient(Mod,"ItemExpCandyS");
+			recipeA.Register();
 			
-			ModRecipe recipeB = new ModRecipe(mod);
-			recipeB.AddTile(mod.TileType("FossilMachine"));
-			recipeB.AddIngredient(mod.GetItem("ItemDomeFossil"));
-			recipeB.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			recipeB.SetResult(mod.GetItem("KabutoBall"));
-			recipeB.AddRecipe();
+			Recipe recipeB = Recipe.Create(Mod.Find<ModItem>("KabutoBall").Type);
+			recipeB.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipeB.AddIngredient(Mod,"ItemDomeFossil");;
+			recipeB.AddIngredient(Mod,"ItemExpCandyS");;
+			recipeB.Register();
 			
-			ModRecipe recipec = new ModRecipe(mod);
-			recipec.AddTile(mod.TileType("FossilMachine"));
-			recipec.AddIngredient(mod.GetItem("ItemOldAmber"));
-			recipec.AddIngredient(mod.GetItem("ItemExpCandyL"));
-			recipec.SetResult(mod.GetItem("AerodactylBall"));
-			recipec.AddRecipe();
+			Recipe recipec = Recipe.Create(Mod.Find<ModItem>("AerodactylBall").Type);
+			recipec.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipec.AddIngredient(Mod,"ItemOldAmber");;
+			recipec.AddIngredient(Mod,"ItemExpCandyL");;
+			recipec.Register();
 			
 			//Gen 3 Fossils
-			ModRecipe reciped = new ModRecipe(mod);
-			reciped.AddTile(mod.TileType("FossilMachine"));
-			reciped.AddIngredient(mod.GetItem("ItemClawFossil"));
-			reciped.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			reciped.SetResult(mod.GetItem("AnorithBall"));
-			reciped.AddRecipe();
+			Recipe reciped = Recipe.Create(Mod.Find<ModItem>("AnorithBall").Type);
+			reciped.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			reciped.AddIngredient(Mod,"ItemClawFossil");;
+			reciped.AddIngredient(Mod,"ItemExpCandyS");;
+			reciped.Register();
 			
-			ModRecipe recipee = new ModRecipe(mod);
-			recipee.AddTile(mod.TileType("FossilMachine"));
-			recipee.AddIngredient(mod.GetItem("ItemRootFossil"));
-			recipee.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			recipee.SetResult(mod.GetItem("LileepBall"));
-			recipee.AddRecipe();
+			Recipe recipee = Recipe.Create(Mod.Find<ModItem>("LileepBall").Type);
+			recipee.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipee.AddIngredient(Mod,"ItemRootFossil");;
+			recipee.AddIngredient(Mod,"ItemExpCandyS");;
+			recipee.Register();
 			
 			//Gen 4 Fossils
-			ModRecipe recipef = new ModRecipe(mod);
-			recipef.AddTile(mod.TileType("FossilMachine"));
-			recipef.AddIngredient(mod.GetItem("ItemArmorFossil"));
-			recipef.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			recipef.SetResult(mod.GetItem("ShieldonBall"));
-			recipef.AddRecipe();
+			Recipe recipef = Recipe.Create(Mod.Find<ModItem>("ShieldonBall").Type);
+			recipef.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipef.AddIngredient(Mod,"ItemArmorFossil");;
+			recipef.AddIngredient(Mod,"ItemExpCandyS");;
+			recipef.Register();
 			
-			ModRecipe recipeg = new ModRecipe(mod);
-			recipeg.AddTile(mod.TileType("FossilMachine"));
-			recipeg.AddIngredient(mod.GetItem("ItemSkullFossil"));
-			recipeg.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			recipeg.SetResult(mod.GetItem("CranidosBall"));
-			recipeg.AddRecipe();
+			Recipe recipeg = Recipe.Create(Mod.Find<ModItem>("CranidosBall").Type);
+			recipeg.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipeg.AddIngredient(Mod,"ItemSkullFossil");;
+			recipeg.AddIngredient(Mod,"ItemExpCandyS");;
+			recipeg.Register();
 			
 			//Gen 5 Fossils
-			ModRecipe recipeh = new ModRecipe(mod);
-			recipeh.AddTile(mod.TileType("FossilMachine"));
-			recipeh.AddIngredient(mod.GetItem("ItemPlumeFossil"));
-			recipeh.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			recipeh.SetResult(mod.GetItem("ArchenBall"));
-			recipeh.AddRecipe();
+			Recipe recipeh = Recipe.Create(Mod.Find<ModItem>("ArchenBall").Type);
+			recipeh.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipeh.AddIngredient(Mod,"ItemPlumeFossil");;
+			recipeh.AddIngredient(Mod,"ItemExpCandyS");;
+			recipeh.Register();
 			
-			ModRecipe recipei = new ModRecipe(mod);
-			recipei.AddTile(mod.TileType("FossilMachine"));
-			recipei.AddIngredient(mod.GetItem("ItemCoverFossil"));
-			recipei.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			recipei.SetResult(mod.GetItem("TirtougaBall"));
-			recipei.AddRecipe();
+			Recipe recipei = Recipe.Create(Mod.Find<ModItem>("TirtougaBall").Type);
+			recipei.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipei.AddIngredient(Mod,"ItemCoverFossil");;
+			recipei.AddIngredient(Mod,"ItemExpCandyS");;
+			recipei.Register();
 			
 			//Gen 6 Fossils
-			ModRecipe recipej = new ModRecipe(mod);
-			recipej.AddTile(mod.TileType("FossilMachine"));
-			recipej.AddIngredient(mod.GetItem("ItemSailFossil"));
-			recipej.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			recipej.SetResult(mod.GetItem("AmauraBall"));
-			recipej.AddRecipe();
+			Recipe recipej = Recipe.Create(Mod.Find<ModItem>("AmauraBall").Type);
+			recipej.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipej.AddIngredient(Mod,"ItemSailFossil");;
+			recipej.AddIngredient(Mod,"ItemExpCandyS");;
+			recipej.Register();
 			
-			ModRecipe recipek = new ModRecipe(mod);
-			recipek.AddTile(mod.TileType("FossilMachine"));
-			recipek.AddIngredient(mod.GetItem("ItemJawFossil"));
-			recipek.AddIngredient(mod.GetItem("ItemExpCandyS"));
-			recipek.SetResult(mod.GetItem("TyruntBall"));
-			recipek.AddRecipe();
+			Recipe recipek = Recipe.Create(Mod.Find<ModItem>("TyruntBall").Type);
+			recipek.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipek.AddIngredient(Mod,"ItemJawFossil");;
+			recipek.AddIngredient(Mod,"ItemExpCandyS");;
+			recipek.Register();
 			
 			//Gen 8 Fossils
-			ModRecipe recipel = new ModRecipe(mod);
-			recipel.AddTile(mod.TileType("FossilMachine"));
-			recipel.AddIngredient(mod.GetItem("ItemFossilizedDrake"));
-			recipel.AddIngredient(mod.GetItem("ItemFossilizedBird"));
-			recipel.AddIngredient(mod.GetItem("ItemExpCandyL"));
-			recipel.SetResult(mod.GetItem("DracozoltBall"));
-			recipel.AddRecipe();
+			Recipe recipel = Recipe.Create(Mod.Find<ModItem>("DracozoltBall").Type);
+			recipel.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipel.AddIngredient(Mod,"ItemFossilizedDrake");;
+			recipel.AddIngredient(Mod,"ItemFossilizedBird");;
+			recipel.AddIngredient(Mod,"ItemExpCandyL");;
+			recipel.Register();
 			
-			ModRecipe recipem = new ModRecipe(mod);
-			recipem.AddTile(mod.TileType("FossilMachine"));
-			recipem.AddIngredient(mod.GetItem("ItemFossilizedDrake"));
-			recipem.AddIngredient(mod.GetItem("ItemFossilizedFish"));
-			recipem.AddIngredient(mod.GetItem("ItemExpCandyL"));
-			recipem.SetResult(mod.GetItem("DracovishBall"));
-			recipem.AddRecipe();
+			Recipe recipem = Recipe.Create(Mod.Find<ModItem>("DracovishBall").Type);
+			recipem.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipem.AddIngredient(Mod,"ItemFossilizedDrake");;
+			recipem.AddIngredient(Mod,"ItemFossilizedFish");;
+			recipem.AddIngredient(Mod,"ItemExpCandyL");;
+			recipem.Register();
 			
-			ModRecipe recipen = new ModRecipe(mod);
-			recipen.AddTile(mod.TileType("FossilMachine"));
-			recipen.AddIngredient(mod.GetItem("ItemFossilizedDino"));
-			recipen.AddIngredient(mod.GetItem("ItemFossilizedBird"));
-			recipen.AddIngredient(mod.GetItem("ItemExpCandyL"));
-			recipen.SetResult(mod.GetItem("ArctozoltBall"));
-			recipen.AddRecipe();
+			Recipe recipen = Recipe.Create(Mod.Find<ModItem>("ArctozoltBall").Type);
+			recipen.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipen.AddIngredient(Mod,"ItemFossilizedDino");;
+			recipen.AddIngredient(Mod,"ItemFossilizedBird");;
+			recipen.AddIngredient(Mod,"ItemExpCandyL");;
+			recipen.Register();
 			
-			ModRecipe recipeo = new ModRecipe(mod);
-			recipeo.AddTile(mod.TileType("FossilMachine"));
-			recipeo.AddIngredient(mod.GetItem("ItemFossilizedDino"));
-			recipeo.AddIngredient(mod.GetItem("ItemFossilizedFish"));
-			recipeo.AddIngredient(mod.GetItem("ItemExpCandyL"));
-			recipeo.SetResult(mod.GetItem("ArctovishBall"));
-			recipeo.AddRecipe();
+			Recipe recipeo = Recipe.Create(Mod.Find<ModItem>("ArctovishBall").Type);
+			recipeo.AddTile(Mod.Find<ModTile>("FossilMachine").Type);
+			recipeo.AddIngredient(Mod,"ItemFossilizedDino");;
+			recipeo.AddIngredient(Mod,"ItemFossilizedFish");;
+			recipeo.AddIngredient(Mod,"ItemExpCandyL");;
+			recipeo.Register();
 		}
 	}
 }

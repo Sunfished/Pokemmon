@@ -14,17 +14,17 @@ namespace Pokemmon.Items.PokeBoxes
 		}
 		public override void SetDefaults()
 		{
-			item.width = 22;
-			item.height = 22;
-			item.useTime = 10;
-			item.useAnimation = 10;
-			//item.useStyle = 4;//Like Fallen Star
-			item.value = 1000000;
-			item.rare = 2;
-			item.UseSound = SoundID.Item4;//Like Fallen Star
-            item.stack = 1;
-			item.maxStack = 999;
-			item.consumable = true;
+			Item.width = 22;
+			Item.height = 22;
+			Item.useTime = 10;
+			Item.useAnimation = 10;
+			//Item.useStyle = ItemUseStyleID.HoldUp;//Like Fallen Star
+			Item.value = 1000000;
+			Item.rare = ItemRarityID.Green;
+			Item.UseSound = SoundID.Item4;//Like Fallen Star
+            Item.stack = 1;
+			Item.maxStack = 999;
+			Item.consumable = true;
 		}
 
 		/*public override void AddRecipes()
@@ -43,16 +43,16 @@ namespace Pokemmon.Items.PokeBoxes
         public override void RightClick(Player player)
         {
             int choice = Main.rand.Next(10);
-			if(choice==0) {player.QuickSpawnItem(mod.ItemType("NihilegoBall"));}
-			if(choice==1) {player.QuickSpawnItem(mod.ItemType("BuzzwoleBall"));}
-			if(choice==2) {player.QuickSpawnItem(mod.ItemType("PheromosaBall"));}
-			if(choice==3) {player.QuickSpawnItem(mod.ItemType("XurkitreeBall"));}
-			if(choice==4) {player.QuickSpawnItem(mod.ItemType("CelesteelaBall"));}
-			if(choice==5) {player.QuickSpawnItem(mod.ItemType("KartanaBall"));}
-			if(choice==6) {player.QuickSpawnItem(mod.ItemType("GuzzlordBall"));}
-			if(choice==7) {player.QuickSpawnItem(mod.ItemType("PoipoleBall"));}
-			if(choice==8) {player.QuickSpawnItem(mod.ItemType("StakatakaBall"));}
-			if(choice==9) {player.QuickSpawnItem(mod.ItemType("BlacephalonBall"));}
+			if(choice==0) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("NihilegoBall").Type), Mod.Find<ModItem>("NihilegoBall").Type);}
+			if(choice==1) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("BuzzwoleBall").Type), Mod.Find<ModItem>("BuzzwoleBall").Type);}
+			if(choice==2) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("PheromosaBall").Type), Mod.Find<ModItem>("PheromosaBall").Type);}
+			if(choice==3) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("XurkitreeBall").Type), Mod.Find<ModItem>("XurkitreeBall").Type);}
+			if(choice==4) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("CelesteelaBall").Type), Mod.Find<ModItem>("CelesteelaBall").Type);}
+			if(choice==5) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("KartanaBall").Type), Mod.Find<ModItem>("KartanaBall").Type);}
+			if(choice==6) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("GuzzlordBall").Type), Mod.Find<ModItem>("GuzzlordBall").Type);}
+			if(choice==7) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("PoipoleBall").Type), Mod.Find<ModItem>("PoipoleBall").Type);}
+			if(choice==8) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("StakatakaBall").Type), Mod.Find<ModItem>("StakatakaBall").Type);}
+			if(choice==9) {player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>("BlacephalonBall").Type), Mod.Find<ModItem>("BlacephalonBall").Type);}
 
         }
 	}

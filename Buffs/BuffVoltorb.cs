@@ -6,7 +6,7 @@ namespace Pokemmon.Buffs
 {
 	public class BuffVoltorb : ModBuff
 	{
-		public override void SetDefaults() {
+		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Go, Voltorb!");
 			Description.SetDefault("+40 HP\n+6% Melee/Ranged Damage\n+5 Melee/Ranged Defense\n+11% Magic/Summon Damage\n+5 Magic/Summon Defense\n+0.5 Speed\nElectric Type: Unimplemented Effect");
 			Main.buffNoSave[Type] = true;
@@ -15,7 +15,7 @@ namespace Pokemmon.Buffs
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Voltorb")] > 0 && modPlayer.pokemonAmount == 1) {
+			if (player.ownedProjectileCounts[Mod.Find<ModProjectile>("Voltorb").Type] > 0 && modPlayer.pokemonAmount == 1) {
 				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedVoltorb = true;
 				modPlayer.buffElectricType = true;
@@ -29,8 +29,8 @@ namespace Pokemmon.Buffs
 		
 			//Calc Buffs
 			var isMelee = true;
-			if(player.magicDamage > player.meleeDamage || player.magicDamage > player.rangedDamage ||
-			player.minionDamage > player.meleeDamage || player.minionDamage > player.rangedDamage)
+			if(player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Ranged).Flat ||
+			player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Ranged).Flat)
 				isMelee = false;
 			if (isMelee)
 			{
@@ -42,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 40;
-			player.meleeDamage *= 1.06f;
-			player.rangedDamage *= 1.06f;
-			player.magicDamage *= 1.11f;
-			player.minionDamage *= 1.11f;
+			player.GetDamage(DamageClass.Melee) *= 1.06f;
+			player.GetDamage(DamageClass.Ranged) *= 1.06f;
+			player.GetDamage(DamageClass.Magic) *= 1.11f;
+			player.GetDamage(DamageClass.Summon) *= 1.11f;
 			player.maxRunSpeed += 0.5f;
 			
 			//modPlayer.numSpawned++;

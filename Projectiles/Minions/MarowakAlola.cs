@@ -16,34 +16,34 @@ namespace Pokemmon.Projectiles.Minions
 			fireType=true;
 			ghostType=true;
 			
-			projectile.netImportant = true;
+			Projectile.netImportant = true;
 
-			projectile.width = 48;
-			projectile.height = 42;
-			Main.projFrames[projectile.type] = 1;
-			projectile.timeLeft = 18000;
+			Projectile.width = 48;
+			Projectile.height = 42;
+			Main.projFrames[Projectile.type] = 1;
+			Projectile.timeLeft = 18000;
 			//projectile.ignoreWater = true;
-            projectile.tileCollide = false;
+            Projectile.tileCollide = false;
 			
 			// Only controls if it deals damage to enemies on contact (more on that later)
-			projectile.friendly = true;
+			Projectile.friendly = true;
 			// Only determines the damage type
-			projectile.minion = true;
+			Projectile.minion = true;
 			// Amount of slots this minion occupies from the total minion slots available to the player (more on that later)
-			projectile.minionSlots = 1f;
+			Projectile.minionSlots = 1f;
 			// Needed so the minion doesn't despawn on collision with enemies or tiles
-			projectile.penetrate = -1;
+			Projectile.penetrate = -1;
 		}
 
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Marowak");
 			// Denotes that this projectile is a pet or minion
-			Main.projPet[projectile.type] = true;
+			Main.projPet[Projectile.type] = true;
 			// This is needed so your minion can properly spawn when summoned and replaced when other minions are summoned
-			ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
+			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			// Don't mistake this with "if this is true, then it will automatically home". It is just for damage reduction for certain NPCs
-			ProjectileID.Sets.Homing[projectile.type] = true;
+			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 		}
 	}
 }
