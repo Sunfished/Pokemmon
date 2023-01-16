@@ -12,16 +12,16 @@ namespace Pokemmon.Items
 		}
 		public override void SetDefaults()
 		{
-			item.width = 18;
-			item.height = 19;
-			item.useTime = 10;
-			item.useAnimation = 10;
-			item.useStyle = 4;//Like Fallen Star
-			item.value = 10000;
-			item.rare = 2;
-			item.UseSound = SoundID.Item4;//Like Fallen Star
-            item.maxStack = 999;
-			item.value = 50000;
+			Item.width = 18;
+			Item.height = 19;
+			Item.useTime = 10;
+			Item.useAnimation = 10;
+			Item.useStyle = ItemUseStyleID.HoldUp;//Like Fallen Star
+			Item.value = 10000;
+			Item.rare = ItemRarityID.Green;
+			Item.UseSound = SoundID.Item4;//Like Fallen Star
+            Item.maxStack = 999;
+			Item.value = 50000;
 		}
 		
 		

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "eXf7nRPyb9WPSqz1xChx/muinzGjMQU+OIJ2ElOMtsTRe+5NbKCvZeJzyhKcaaNaQxwttJGbd4BJcuQd/hYZ+A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ema87\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Pokemmon\\Pokemmon.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ema87\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}

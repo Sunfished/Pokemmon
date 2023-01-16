@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,46 +13,42 @@ namespace Pokemmon.Items
 		}
 		public override void SetDefaults()
 		{
-			item.width = 21;
-			item.height = 20;
-			item.useTime = 10;
-			item.useAnimation = 10;
-			item.useStyle = 4;//Like Fallen Star
-			item.value = 10000;
-			item.rare = 2;
-			item.UseSound = SoundID.Item4;//Like Fallen Star
-            item.maxStack = 999;
-			item.value = 1;
+			Item.width = 21;
+			Item.height = 20;
+			Item.useTime = 10;
+			Item.useAnimation = 10;
+			Item.useStyle = ItemUseStyleID.HoldUp;//Like Fallen Star
+			Item.value = 10000;
+			Item.rare = ItemRarityID.Green;
+			Item.UseSound = SoundID.Item4;//Like Fallen Star
+            Item.maxStack = 999;
+			Item.value = 1;
 		}
 		
 		public override void AddRecipes() {
-			ModRecipe recipe0 = new ModRecipe(mod);
+			Recipe recipe0 = CreateRecipe();
 			recipe0.AddIngredient(ItemID.FallenStar,1);
 			recipe0.AddIngredient(ItemID.FragmentSolar,1);
 			recipe0.AddTile(TileID.WorkBenches);
-			recipe0.SetResult(this);
-			recipe0.AddRecipe();
+			recipe0.Register();
 
-			ModRecipe recipe1 = new ModRecipe(mod);
+			Recipe recipe1 = CreateRecipe();
 			recipe1.AddIngredient(ItemID.FallenStar,1);
 			recipe1.AddIngredient(ItemID.FragmentVortex,1);
 			recipe1.AddTile(TileID.WorkBenches);
-			recipe1.SetResult(this);
-			recipe1.AddRecipe();
+			recipe1.Register();
 
-			ModRecipe recipe2 = new ModRecipe(mod);
+			Recipe recipe2 = CreateRecipe();
 			recipe2.AddIngredient(ItemID.FallenStar,1);
 			recipe2.AddIngredient(ItemID.FragmentNebula,1);
 			recipe2.AddTile(TileID.WorkBenches);
-			recipe2.SetResult(this);
-			recipe2.AddRecipe();
+			recipe2.Register();
 
-			ModRecipe recipe3 = new ModRecipe(mod);
+			Recipe recipe3 = CreateRecipe();
 			recipe3.AddIngredient(ItemID.FallenStar,1);
 			recipe3.AddIngredient(ItemID.FragmentStardust,1);
 			recipe3.AddTile(TileID.WorkBenches);
-			recipe3.SetResult(this);
-			recipe3.AddRecipe();
+			recipe3.Register();
 
 		}
 	}

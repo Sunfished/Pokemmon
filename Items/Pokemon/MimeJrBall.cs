@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,32 +17,32 @@ namespace Pokemmon.Items.Pokemon
 		}
 
 		public override void SetDefaults() {
-			item.damage = 15;
-			item.summon = true;
-			item.mana = 1;
-			item.width = 18;
-			item.height = 18;
-			item.useTime = 30;
-			item.useAnimation = 30;
-			item.useStyle = 4;
-			item.noMelee = true;
-			item.knockBack = 0;
-			item.value = 86274;
-			item.rare = 4;
-			item.UseSound = SoundID.Item4;
-			item.shoot = mod.ProjectileType("MimeJr");
-			item.shootSpeed = 10f;
-			item.buffType = mod.BuffType("BuffMimeJr"); //The buff added to player after used the item
-			item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
-			item.stack = 1;
-			item.maxStack = 999;
+			Item.damage = 15;
+			Item.DamageType = DamageClass.Summon;
+			Item.mana = 1;
+			Item.width = 18;
+			Item.height = 18;
+			Item.useTime = 30;
+			Item.useAnimation = 30;
+			Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.noMelee = true;
+			Item.knockBack = 0;
+			Item.value = 86274;
+			Item.rare = ItemRarityID.LightRed;
+			Item.UseSound = SoundID.Item4;
+			Item.shoot = Mod.Find<ModProjectile>("MimeJr").Type;
+			Item.shootSpeed = 10f;
+			Item.buffType = Mod.Find<ModBuff>("BuffMimeJr").Type; //The buff added to player after used the item
+			Item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
+			Item.stack = 1;
+			Item.maxStack = 999;
 		}
 
 		public override bool AltFunctionUse(Player player) {
 			return true;
 		}
 
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
 			modPlayer.ResetEffects();
 			modPlayer.pokemonAmount++;
@@ -48,31 +50,29 @@ namespace Pokemmon.Items.Pokemon
 			return player.altFunctionUse != 2;
 		}
 
-		public override bool UseItem(Player player) {
+		public override Nullable<bool> UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */ {
 			if (player.altFunctionUse == 2) {
-				player.MinionNPCTargetAim();
+				player.MinionNPCTargetAim(true);
 			}
 			return base.UseItem(player);
 		}
 		
 		public override void AddRecipes()
 		{
-			ModRecipe recipe0 = new ModRecipe(mod);
+			Recipe recipe0 = Recipe.Create(Mod.Find<ModItem>("MrMimeBall").Type);
 			recipe0.AddIngredient(this);
-			recipe0.AddIngredient(mod.GetItem("ItemTM"),1);
-			recipe0.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe0.SetResult(mod.ItemType("MrMimeBall"));
-			recipe0.AddTile(mod.TileType("EvolutionMachine"));
-			recipe0.AddRecipe();
+			recipe0.AddIngredient(Mod.Find<ModItem>("ItemTM").Type,1);
+			recipe0.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe0.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe0.Register();
 
-			ModRecipe recipe1 = new ModRecipe(mod);
+			Recipe recipe1 = Recipe.Create(Mod.Find<ModItem>("MrMimeGalarBall").Type);
 			recipe1.AddIngredient(this);
-			recipe1.AddIngredient(mod.GetItem("ItemTM"),1);
-			recipe1.AddIngredient(mod.GetItem("ItemWishingStar"),1);
-			recipe1.AddIngredient(mod.GetItem("ItemExpCandyM"),1);
-			recipe1.SetResult(mod.ItemType("MrMimeGalarBall"));
-			recipe1.AddTile(mod.TileType("EvolutionMachine"));
-			recipe1.AddRecipe();
+			recipe1.AddIngredient(Mod.Find<ModItem>("ItemTM").Type,1);
+			recipe1.AddIngredient(Mod.Find<ModItem>("ItemWishingStar").Type,1);
+			recipe1.AddIngredient(Mod.Find<ModItem>("ItemExpCandyM").Type,1);
+			recipe1.AddTile(Mod.Find<ModTile>("EvolutionMachine").Type);
+			recipe1.Register();
 
 
 		}

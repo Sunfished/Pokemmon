@@ -6,7 +6,7 @@ namespace Pokemmon.Buffs
 {
 	public class BuffWartortle : ModBuff
 	{
-		public override void SetDefaults() {
+		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Go, Wartortle!");
 			Description.SetDefault("+59 HP\n+12% Melee/Ranged Damage\n+8 Melee/Ranged Defense\n+13% Magic/Summon Damage\n+8 Magic/Summon Defense\n+0.3 Speed\nWater Type: Allows swimming and water breathing");
 			Main.buffNoSave[Type] = true;
@@ -15,7 +15,7 @@ namespace Pokemmon.Buffs
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("Wartortle")] > 0 && modPlayer.pokemonAmount == 1) {
+			if (player.ownedProjectileCounts[Mod.Find<ModProjectile>("Wartortle").Type] > 0 && modPlayer.pokemonAmount == 1) {
 				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedWartortle = true;
 				modPlayer.buffWaterType = true;
@@ -29,8 +29,8 @@ namespace Pokemmon.Buffs
 		
 			//Calc Buffs
 			var isMelee = true;
-			if(player.magicDamage > player.meleeDamage || player.magicDamage > player.rangedDamage ||
-			player.minionDamage > player.meleeDamage || player.minionDamage > player.rangedDamage)
+			if(player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Ranged).Flat ||
+			player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Ranged).Flat)
 				isMelee = false;
 			if (isMelee)
 			{
@@ -42,10 +42,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 59;
-			player.meleeDamage *= 1.12f;
-			player.rangedDamage *= 1.12f;
-			player.magicDamage *= 1.13f;
-			player.minionDamage *= 1.13f;
+			player.GetDamage(DamageClass.Melee) *= 1.12f;
+			player.GetDamage(DamageClass.Ranged) *= 1.12f;
+			player.GetDamage(DamageClass.Magic) *= 1.13f;
+			player.GetDamage(DamageClass.Summon) *= 1.13f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;

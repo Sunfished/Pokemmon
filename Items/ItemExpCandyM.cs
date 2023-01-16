@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,32 +13,30 @@ namespace Pokemmon.Items
 		}
 		public override void SetDefaults()
 		{
-			item.width = 14;
-			item.height = 15;
-			item.useTime = 10;
-			item.useAnimation = 10;
-			item.useStyle = 4;//Like Fallen Star
-			item.value = 10000;
-			item.rare = 2;
-			item.UseSound = SoundID.Item4;//Like Fallen Star
-            item.maxStack = 999;
-			item.value = 1;
+			Item.width = 14;
+			Item.height = 15;
+			Item.useTime = 10;
+			Item.useAnimation = 10;
+			Item.useStyle = ItemUseStyleID.HoldUp;//Like Fallen Star
+			Item.value = 10000;
+			Item.rare = ItemRarityID.Green;
+			Item.UseSound = SoundID.Item4;//Like Fallen Star
+            Item.maxStack = 999;
+			Item.value = 1;
 		}
 		
 		public override void AddRecipes() {
-			ModRecipe recipe0 = new ModRecipe(mod);
+			Recipe recipe0 = CreateRecipe();
 			recipe0.AddIngredient(ItemID.FallenStar,1);
 			recipe0.AddIngredient(ItemID.CobaltOre,1);
 			recipe0.AddTile(TileID.WorkBenches);
-			recipe0.SetResult(this);
-			recipe0.AddRecipe();
+			recipe0.Register();
 
-			ModRecipe recipe1 = new ModRecipe(mod);
+			Recipe recipe1 = CreateRecipe();
 			recipe1.AddIngredient(ItemID.FallenStar,1);
 			recipe1.AddIngredient(ItemID.PalladiumOre,1);
 			recipe1.AddTile(TileID.WorkBenches);
-			recipe1.SetResult(this);
-			recipe1.AddRecipe();
+			recipe1.Register();
 
 		}
 	}

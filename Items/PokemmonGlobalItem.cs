@@ -17,7 +17,7 @@ namespace PokemmonGlobalItem.Items
 		// Prevent Prefixes on Pokeballs
 		public override bool? PrefixChance(Item item, int pre, UnifiedRandom rand) {
 			if (pre == -1) {
-				if (item.summon && item.modItem?.mod == mod) {
+				if (item.CountsAsClass(DamageClass.Summon) && item.ModItem?.Mod == Mod) {
 					return false;
 				}
 			}
@@ -54,7 +54,7 @@ namespace PokemmonGlobalItem.Items
 					else if (choice==9) stone = "Ice";
 					
 					stone = "Item" + stone + "Stone";
-					player.QuickSpawnItem(mod.ItemType(stone));
+					player.QuickSpawnItem(player.GetSource_OpenItem(Mod.Find<ModItem>(stone).Type), Mod.Find<ModItem>(stone).Type);
 				}
 			}
 		}
@@ -87,7 +87,7 @@ namespace PokemmonGlobalItem.Items
 					else if(choice==13) mon = "ItemFossilizedFish";
 					else if(choice==14) mon = "ItemFossilizedDino";
 					
-					resultType = mod.ItemType(mon);
+					resultType = Mod.Find<ModItem>(mon).Type;
 				}
 			}
 		}
@@ -95,36 +95,32 @@ namespace PokemmonGlobalItem.Items
 		public override void AddRecipes() {
 			
 			//Meltan Candy - Iron Ore
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = Recipe.Create(Mod.Find<ModItem>("ItemMeltanCandy").Type);
 			recipe.AddTile(TileID.Furnaces);
-			recipe.AddIngredient(mod.ItemType("ItemExpCandyXL"));
+			recipe.AddIngredient(Mod.Find<ModItem>("ItemExpCandyXL").Type);
 			recipe.AddIngredient(ItemID.IronOre, 400);
-			recipe.SetResult(mod.ItemType("ItemMeltanCandy"));
-			recipe.AddRecipe();
+			recipe.Register();
 			
 			//Meltan Candy - Iron Bar
-			ModRecipe recipeMeltan2 = new ModRecipe(mod);
+			Recipe recipeMeltan2 = Recipe.Create(Mod.Find<ModItem>("ItemMeltanCandy").Type);
 			recipeMeltan2.AddTile(TileID.Furnaces);
-			recipeMeltan2.AddIngredient(mod.ItemType("ItemExpCandyXL"));
+			recipeMeltan2.AddIngredient(Mod.Find<ModItem>("ItemExpCandyXL").Type);
 			recipeMeltan2.AddIngredient(ItemID.IronBar, 133);
-			recipeMeltan2.SetResult(mod.ItemType("ItemMeltanCandy"));
-			recipeMeltan2.AddRecipe();
+			recipeMeltan2.Register();
 			
 			//Meltan Candy - Lead Ore
-			ModRecipe recipe22 = new ModRecipe(mod);
+			Recipe recipe22 = Recipe.Create(Mod.Find<ModItem>("ItemMeltanCandy").Type);
 			recipe22.AddTile(TileID.Furnaces);
-			recipe22.AddIngredient(mod.ItemType("ItemExpCandyXL"));
+			recipe22.AddIngredient(Mod.Find<ModItem>("ItemExpCandyXL").Type);
 			recipe22.AddIngredient(ItemID.LeadOre, 400);
-			recipe22.SetResult(mod.ItemType("ItemMeltanCandy"));
-			recipe22.AddRecipe();
+			recipe22.Register();
 			
 			//Meltan Candy - Lead Bar
-			ModRecipe recipeMeltan22 = new ModRecipe(mod);
+			Recipe recipeMeltan22 = Recipe.Create(Mod.Find<ModItem>("ItemMeltanCandy").Type);
 			recipeMeltan22.AddTile(TileID.Furnaces);
-			recipeMeltan22.AddIngredient(mod.ItemType("ItemExpCandyXL"));
+			recipeMeltan22.AddIngredient(Mod.Find<ModItem>("ItemExpCandyXL").Type);
 			recipeMeltan22.AddIngredient(ItemID.LeadBar, 133);
-			recipeMeltan22.SetResult(mod.ItemType("ItemMeltanCandy"));
-			recipeMeltan22.AddRecipe();
+			recipeMeltan22.Register();
 			
 		}
 	}

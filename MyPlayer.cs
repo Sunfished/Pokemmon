@@ -2634,15 +2634,17 @@ namespace Pokemmon
 		}
 		
 		//Handle new player items
-		public override void SetupStartInventory(IList<Item> items)
+		public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)/* tModPorter Suggestion: Return an Item array to add to the players starting items. Use ModifyStartingInventory for modifying them if needed */
 		{
-			Item item = new Item();
-			item.SetDefaults(mod.ItemType("PremierBox"));
+            Item item = new Item();
+			item.SetDefaults(Mod.Find<ModItem>("PremierBox").Type);
 			item.stack = 1;
-			items.Add(item);
+            return new[] {
+                item
+            };
 		}
 		
-		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource) {
+		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter) {
 			
 			//Immunity to knockback
 			if (buffGroundType)
@@ -2657,71 +2659,71 @@ namespace Pokemmon
 		public override void PreUpdateBuffs() {
 			
 			//Dragon - Multiple buffs when hp dips below 1/5 max
-			bool canDragon = (buffDragonType && player.statLife <= (player.statLifeMax+player.statLifeMax2)/5);
+			bool canDragon = (buffDragonType && Player.statLife <= (Player.statLifeMax+Player.statLifeMax2)/5);
 			if (canDragon)
 			{
-				if (!player.HasBuff(BuffID.Regeneration))
-					player.AddBuff(BuffID.Regeneration,1);
+				if (!Player.HasBuff(BuffID.Regeneration))
+					Player.AddBuff(BuffID.Regeneration,1);
 			}
 			
 			//Grass - HP Regeneration during Day
 			if (buffGrassType)
 			{
-				if (!player.HasBuff(BuffID.Regeneration) && Main.dayTime)
-					player.AddBuff(BuffID.Regeneration,1);
+				if (!Player.HasBuff(BuffID.Regeneration) && Main.dayTime)
+					Player.AddBuff(BuffID.Regeneration,1);
 			}
 			
 			//Fire - Shine Buff
 			if (buffFireType)
 			{
-				if (!player.HasBuff(BuffID.Shine))
-					player.AddBuff(BuffID.Shine,1);
+				if (!Player.HasBuff(BuffID.Shine))
+					Player.AddBuff(BuffID.Shine,1);
 			}
 			
 			//Water - Gills + Flipper Buff
 			if (buffWaterType)
 			{
-				if (!player.HasBuff(BuffID.Flipper))
-					player.AddBuff(BuffID.Flipper,1);
-				if (!player.HasBuff(BuffID.Gills))
-					player.AddBuff(BuffID.Gills,1);
+				if (!Player.HasBuff(BuffID.Flipper))
+					Player.AddBuff(BuffID.Flipper,1);
+				if (!Player.HasBuff(BuffID.Gills))
+					Player.AddBuff(BuffID.Gills,1);
 			}
 			
 			if (buffFlyingType)
 			{
-				if (!player.HasBuff(BuffID.Featherfall))
-					player.AddBuff(BuffID.Featherfall,1);
+				if (!Player.HasBuff(BuffID.Featherfall))
+					Player.AddBuff(BuffID.Featherfall,1);
 			}
 			
 			if (buffFightingType || canDragon)
 			{
-				if (!player.HasBuff(BuffID.Rage))
-					player.AddBuff(BuffID.Rage,1);
+				if (!Player.HasBuff(BuffID.Rage))
+					Player.AddBuff(BuffID.Rage,1);
 			}
 			
 			if (buffRockType || canDragon)
 			{
-				if (!player.HasBuff(BuffID.Titan))
-					player.AddBuff(BuffID.Titan,1);
+				if (!Player.HasBuff(BuffID.Titan))
+					Player.AddBuff(BuffID.Titan,1);
 			}
 			
 			if (buffPsychicType || canDragon)
 			{
-				if (!player.HasBuff(BuffID.ManaRegeneration))
-					player.AddBuff(BuffID.ManaRegeneration,1);
+				if (!Player.HasBuff(BuffID.ManaRegeneration))
+					Player.AddBuff(BuffID.ManaRegeneration,1);
 			}
 			
 			if (buffSteelType || canDragon)
 			{
-				if (!player.HasBuff(BuffID.Endurance))
-					player.AddBuff(BuffID.Endurance,1);
+				if (!Player.HasBuff(BuffID.Endurance))
+					Player.AddBuff(BuffID.Endurance,1);
 			}
 			
 			//Fairy - HP Regeneration during Night
 			if (buffFairyType)
 			{
-				if (!player.HasBuff(BuffID.Regeneration) && !Main.dayTime)
-					player.AddBuff(BuffID.Regeneration,1);
+				if (!Player.HasBuff(BuffID.Regeneration) && !Main.dayTime)
+					Player.AddBuff(BuffID.Regeneration,1);
 			}
 		}
 	}

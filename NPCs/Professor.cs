@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ID;
@@ -17,37 +18,36 @@ namespace Pokemmon.NPCs
 
 		//public override string[] AltTextures => new[] { "Pokemmon/NPCs/Professor_Alt_1" };
 
-		public override bool Autoload(ref string name) {
-			name = "Professor";
-			return mod.Properties.Autoload;
+		public override bool IsLoadingEnabled(Mod mod) {
+			return mod.ContentAutoloadingEnabled;
 		}
 
 		public override void SetStaticDefaults() {
 			// DisplayName automatically assigned from .lang files, but the commented line below is the normal approach.
 			DisplayName.SetDefault("Professor");
-			Main.npcFrameCount[npc.type] = 25;
-			NPCID.Sets.ExtraFramesCount[npc.type] = 9;
-			NPCID.Sets.AttackFrameCount[npc.type] = 4;
-			NPCID.Sets.DangerDetectRange[npc.type] = 700;
-			NPCID.Sets.AttackType[npc.type] = 0;
-			NPCID.Sets.AttackTime[npc.type] = 90;
-			NPCID.Sets.AttackAverageChance[npc.type] = 30;
-			NPCID.Sets.HatOffsetY[npc.type] = 4;
+			Main.npcFrameCount[NPC.type] = 25;
+			NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
+			NPCID.Sets.AttackFrameCount[NPC.type] = 4;
+			NPCID.Sets.DangerDetectRange[NPC.type] = 700;
+			NPCID.Sets.AttackType[NPC.type] = 0;
+			NPCID.Sets.AttackTime[NPC.type] = 90;
+			NPCID.Sets.AttackAverageChance[NPC.type] = 30;
+			NPCID.Sets.HatOffsetY[NPC.type] = 4;
 		}
 
 		public override void SetDefaults() {
-			npc.townNPC = true;
-			npc.friendly = true;
-			npc.width = 18;
-			npc.height = 40;
-			npc.aiStyle = 7;
-			npc.damage = 10;
-			npc.defense = 15;
-			npc.lifeMax = 250;
-			npc.HitSound = SoundID.NPCHit1;
-			npc.DeathSound = SoundID.NPCDeath1;
-			npc.knockBackResist = 0.5f;
-			animationType = NPCID.Guide;
+			NPC.townNPC = true;
+			NPC.friendly = true;
+			NPC.width = 18;
+			NPC.height = 40;
+			NPC.aiStyle = 7;
+			NPC.damage = 10;
+			NPC.defense = 15;
+			NPC.lifeMax = 250;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath1;
+			NPC.knockBackResist = 0.5f;
+			AnimationType = NPCID.Guide;
 		}
 
 		/*public override void HitEffect(int hitDirection, double damage) {
@@ -65,58 +65,58 @@ namespace Pokemmon.NPCs
             return false;
 		}
 
-		public override string TownNPCName() {
+		public override List<string> SetNPCNameList()/* tModPorter Suggestion: Return a list of names */ {
 			switch (WorldGen.genRand.Next(25)) {
 				case 0:
-					return "Birch";
+					return "Birch".Split(',').ToList();
 				case 1:
-					return "Hawthorn";
+					return "Hawthorn".Split(',').ToList();
 				case 2:
-					return "Ash";
+					return "Ash".Split(',').ToList();
 				case 3:
-					return "Hemlock";
+					return "Hemlock".Split(',').ToList();
 				case 4:
-					return "Hickory";
+					return "Hickory".Split(',').ToList();
 				case 5:
-					return "Aspen";
+					return "Aspen".Split(',').ToList();
 				case 6:
-					return "Elm";
+					return "Elm".Split(',').ToList();
 				case 7:
-					return "Larch";
+					return "Larch".Split(',').ToList();
 				case 8:
-					return "Fir";
+					return "Fir".Split(',').ToList();
 				case 9:
-					return "Pine";
+					return "Pine".Split(',').ToList();
 				case 10:
-					return "Maple";
+					return "Maple".Split(',').ToList();
 				case 11:
-					return "Spruce";
+					return "Spruce".Split(',').ToList();
 				case 12:
-					return "Cedar";
+					return "Cedar".Split(',').ToList();
 				case 13:
-					return "Sycamore";
+					return "Sycamore".Split(',').ToList();
 				case 14:
-					return "Walnut";
+					return "Walnut".Split(',').ToList();
 				case 15:
-					return "Willow";
+					return "Willow".Split(',').ToList();
 				case 16:
-					return "Rowan";
+					return "Rowan".Split(',').ToList();
 				case 17:
-					return "Juniper";
+					return "Juniper".Split(',').ToList();
 				case 18:
-					return "Kukui";
+					return "Kukui".Split(',').ToList();
 				case 19:
-					return "Catalpa";
+					return "Catalpa".Split(',').ToList();
 				case 20:
-					return "Cypress";
+					return "Cypress".Split(',').ToList();
 				case 21:
-					return "Yew";
+					return "Yew".Split(',').ToList();
 				case 22:
-					return "Poplar";
+					return "Poplar".Split(',').ToList();
 				case 23:
-					return "Hazel";
+					return "Hazel".Split(',').ToList();
 				default:
-					return "Oak";
+					return "Oak".Split(',').ToList();
 			}
 		}
 
@@ -180,7 +180,7 @@ namespace Pokemmon.NPCs
 					Main.npcChatText = $"I upgraded your {Lang.GetItemNameValue(ItemID.HiveBackpack)} to a {Lang.GetItemNameValue(mod.ItemType<Items.Accessories.WaspNest>())}";
 					int hiveBackpackItemIndex = Main.LocalPlayer.FindItem(ItemID.HiveBackpack);
 					Main.LocalPlayer.inventory[hiveBackpackItemIndex].TurnToAir();
-					Main.LocalPlayer.QuickSpawnItem(mod.ItemType<Items.Accessories.WaspNest>());
+					Main.Localplayer.QuickSpawnItem(player.GetSource_OpenItem(mod.ItemType<Items.Accessories.WaspNest>()), mod.ItemType<Items.Accessories.WaspNest>());
 					return;
 				}//*/
 				shop = true;
@@ -199,73 +199,73 @@ namespace Pokemmon.NPCs
 		public override void SetupShop(Chest shop, ref int nextSlot) {
 			
 			//Grass Starters
-			shop.item[nextSlot].SetDefaults(mod.ItemType("BulbasaurBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("BulbasaurBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("ChikoritaBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("ChikoritaBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("TreeckoBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("TreeckoBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("TurtwigBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("TurtwigBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("SnivyBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("SnivyBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("ChespinBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("ChespinBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("RowletBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("RowletBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("GrookeyBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("GrookeyBall").Type);
 			nextSlot++;
 
 			//Fire Starters
-			shop.item[nextSlot].SetDefaults(mod.ItemType("CharmanderBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("CharmanderBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("CyndaquilBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("CyndaquilBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("TorchicBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("TorchicBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("ChimcharBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("ChimcharBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("TepigBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("TepigBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("FennekinBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("FennekinBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("LittenBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("LittenBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("ScorbunnyBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("ScorbunnyBall").Type);
 			nextSlot++;
 			
 			//Water Starters
-			shop.item[nextSlot].SetDefaults(mod.ItemType("SquirtleBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("SquirtleBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("TotodileBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("TotodileBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("MudkipBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("MudkipBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("PiplupBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("PiplupBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("OshawottBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("OshawottBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("FroakieBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("FroakieBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("PopplioBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("PopplioBall").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("SobbleBall"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("SobbleBall").Type);
 			nextSlot++;
 			
 			//PokeBoxes
-			shop.item[nextSlot].SetDefaults(mod.ItemType("PokeBox"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("PokeBox").Type);
 			nextSlot++;
-			shop.item[nextSlot].SetDefaults(mod.ItemType("NestBox"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("NestBox").Type);
 			nextSlot++;
 			
 			//EverStone
-			shop.item[nextSlot].SetDefaults(mod.ItemType("ItemEverstone"));
+			shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("ItemEverstone").Type);
 			nextSlot++;
 			
 			//Evolution Machine After Brain/Worm
 			if(NPC.downedBoss2)
 			{
-				shop.item[nextSlot].SetDefaults(mod.ItemType("EvolutionMachine"));
+				shop.item[nextSlot].SetDefaults(Mod.Find<ModItem>("EvolutionMachine").Type);
 				nextSlot++;
 			}
 
@@ -362,7 +362,7 @@ namespace Pokemmon.NPCs
 		}
 
 		public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
-			projType = mod.ProjectileType("SparklingBall");
+			projType = Mod.Find<ModProjectile>("SparklingBall").Type;
 			attackDelay = 1;
 		}
 

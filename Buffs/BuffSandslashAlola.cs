@@ -6,7 +6,7 @@ namespace Pokemmon.Buffs
 {
 	public class BuffSandslashAlola : ModBuff
 	{
-		public override void SetDefaults() {
+		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Go, Sandslash!");
 			Description.SetDefault("+75 HP\n+20% Melee/Ranged Damage\n+12 Melee/Ranged Defense\n+5% Magic/Summon Damage\n+6 Magic/Summon Defense\n+0.3 Speed\nIce Type: Unimplemented Effect\nSteel Type: Decreases incoming DMG by 20%");
 			Main.buffNoSave[Type] = true;
@@ -15,7 +15,7 @@ namespace Pokemmon.Buffs
 
 		public override void Update(Player player, ref int buffIndex) {
 			MyPlayer modPlayer = player.GetModPlayer<MyPlayer>();
-			if (player.ownedProjectileCounts[mod.ProjectileType("SandslashAlola")] > 0 && modPlayer.pokemonAmount == 1) {
+			if (player.ownedProjectileCounts[Mod.Find<ModProjectile>("SandslashAlola").Type] > 0 && modPlayer.pokemonAmount == 1) {
 				player.buffTime[buffIndex] = 18000;
 				modPlayer.summonedSandslashAlola = true;
 				modPlayer.buffIceType = true;
@@ -31,8 +31,8 @@ namespace Pokemmon.Buffs
 		
 			//Calc Buffs
 			var isMelee = true;
-			if(player.magicDamage > player.meleeDamage || player.magicDamage > player.rangedDamage ||
-			player.minionDamage > player.meleeDamage || player.minionDamage > player.rangedDamage)
+			if(player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Magic).Flat > player.GetDamage(DamageClass.Ranged).Flat ||
+			player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Melee).Flat || player.GetDamage(DamageClass.Summon).Flat > player.GetDamage(DamageClass.Ranged).Flat)
 				isMelee = false;
 			if (isMelee)
 			{
@@ -44,10 +44,10 @@ namespace Pokemmon.Buffs
 			}
 			
 			player.statLifeMax2 += 75;
-			player.meleeDamage *= 1.2f;
-			player.rangedDamage *= 1.2f;
-			player.magicDamage *= 1.05f;
-			player.minionDamage *= 1.05f;
+			player.GetDamage(DamageClass.Melee) *= 1.2f;
+			player.GetDamage(DamageClass.Ranged) *= 1.2f;
+			player.GetDamage(DamageClass.Magic) *= 1.05f;
+			player.GetDamage(DamageClass.Summon) *= 1.05f;
 			player.maxRunSpeed += 0.3f;
 			
 			//modPlayer.numSpawned++;
